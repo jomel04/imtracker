@@ -20,7 +20,7 @@
         ), array(
             ':acctgId' => $_POST['id']
         )) && $dbOperation->updateData('ca', array(
-            ':status' => "(For Accounting) " . "Status: " . $_POST['statusAccounting']
+            ':status' => "(For Accounting) " . "Status: " . $_POST['statusAccounting'] . " On: " . $_POST['releaseDateAccounting']
         ), array(
             ':caID' => $cashAdvanceID
         ))) {

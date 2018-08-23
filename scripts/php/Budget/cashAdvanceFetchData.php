@@ -5,7 +5,7 @@
 
     //Last Query = SELECT budget.budgetID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(DATE_ADD(budget.dateReceived, INTERVAL lead_time.leadTime + 2 DAY), NOW()) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID WHERE manager.status = 'Approved' AND budget.status != 'Approved'
     //QUERY
-    $query = "SELECT budget.budgetID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(DATE_ADD(budget.dateReceived, INTERVAL lead_time.leadTime + 2 DAY), NOW()) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID WHERE manager.status = 'Approved' AND budget.status != 'Approved'";
+    $query = "SELECT budget.budgetID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(DATE_ADD(budget.dateReceived, INTERVAL lead_time.leadTime - 2 DAY), NOW()) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID WHERE manager.status = 'Approved' AND budget.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -28,7 +28,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT budget.budgetID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(DATE_ADD(budget.dateReceived, INTERVAL lead_time.leadTime + 2 DAY), NOW()) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID WHERE manager.status = 'Approved' AND budget.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT budget.budgetID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(DATE_ADD(budget.dateReceived, INTERVAL lead_time.leadTime - 2 DAY), NOW()) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID WHERE manager.status = 'Approved' AND budget.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -94,7 +94,7 @@
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['status'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['BudgetRemarks'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['dateApproved'] . '</div>';
-                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['LeadTime'] - 2 . '</div>';
+                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['LeadTime'] . '</div>';
                 $subArray[] = "<div class='btn-group'><button type='button' id='".$row['budgetID']."' name='btnUpdateBudget' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['budgetID']."' name='btnDeleteBudget' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
             }
             $data[] = $subArray;

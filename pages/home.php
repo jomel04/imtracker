@@ -1,9 +1,10 @@
 <?php
 session_start();
-if(isset($_SESSION['user'])) {
- $user = $_SESSION['user'];
+if(isset($_SESSION['userType']) == 'Admin') {
+    $user = $_SESSION['user'];
+    echo $_SESSION['userType'];
 } else {
- echo "<script>location.assign('../index.php');</script>";
+    echo "<script>location.assign('../index.php');</script>";
 }
 ?>
 <!DOCTYPE html>

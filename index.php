@@ -1,7 +1,9 @@
 <?php
     session_start();
-    if(isset($_SESSION['user'])) {
+    if(isset($_SESSION['userType']) == 'Admin') {
         echo "<script>location.assign('pages/home.php');</script>";
+    } elseif(isset($_SESSION['userType']) == 'user') {
+        echo "<script>location.assign('pages/userview.php');</script>";
     }
 ?>
 <!DOCTYPE html>

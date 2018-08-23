@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2018 at 04:58 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 5.6.36
+-- Generation Time: Aug 23, 2018 at 11:04 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,9 +43,9 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(19, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(20, 3, '2018-08-22', 'Person 2', 'Released', 'Hahahaha', '2018-08-21'),
-(21, 3, '0000-00-00', '', '', '', '0000-00-00');
+(32, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(33, 3, '2018-08-23', 'Person 1', 'Released', 'ftrty', '2018-08-23'),
+(34, 3, '2018-08-24', 'Person 1', 'Released', 'aweeee', '2018-08-23');
 
 -- --------------------------------------------------------
 
@@ -300,9 +300,9 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(34, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(35, 2, 'No', '2018-08-15', 'Bantillan, E.', 'Approved', 'Hahahaha', '2018-08-21'),
-(36, 2, 'No', '2018-08-21', 'Bantillan, E.', 'Cancelled', 'aw', '2018-08-22');
+(47, 2, 'No', '2018-08-23', 'Bantillan, E.', 'Disapproved', '', '2018-08-23'),
+(48, 2, 'Yes', '2018-08-23', 'Nica', 'Approved', 'aw', '2018-08-23'),
+(49, 2, 'Yes', '2018-08-24', 'Nica', 'Approved', 'werw', '2018-08-24');
 
 -- --------------------------------------------------------
 
@@ -334,9 +334,9 @@ CREATE TABLE `ca` (
 --
 
 INSERT INTO `ca` (`caID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `requestor`, `purpose`, `remarks`, `cost`) VALUES
-(127, 1, 138, 139, 34, 19, 2, 5, 1, '2018-08-22', '2018-08-22 09:36:20', '', 'Abdullah , Omar', 'ASD', 'ASD', '123.00'),
-(128, 1, 138, 140, 35, 20, 6, 4, 1, '2018-06-28', '2018-08-22 09:51:34', '(For Accounting) Status: Released', 'Abdullah , Omar', 'sdf', 'sdf', '123.00'),
-(129, 1, 138, 141, 36, 21, 1, 7, 1, '2018-08-22', '2018-08-22 10:51:15', '(For Budget) Budgeted: No Status: Cancelled', 'Abdullah , Omar', 'wow', 'wow', '12121.00');
+(140, 1, 138, 152, 47, 32, 1, 4, 1, '2018-08-23', '2018-08-23 03:16:55', '(For Budget) Budgeted: No Status: Disapproved', 'Abdullah , Omar', 'asd', 'asd', '12312.00'),
+(141, 1, 138, 153, 48, 33, 3, 5, 1, '2018-08-23', '2018-08-23 03:18:35', '(For Accounting) Status: Released On: 2018-08-23', 'Abdullah , Omar', 'ad', 'sadf', '123.00'),
+(142, 1, 138, 154, 49, 34, 4, 5, 1, '2018-08-23', '2018-08-23 03:37:06', '(For Accounting) Status: Released On: 2018-08-23', 'Anggadol , Malkuth', 'dfg', 'fdg', '123.00');
 
 -- --------------------------------------------------------
 
@@ -460,9 +460,9 @@ CREATE TABLE `lead_time` (
 --
 
 INSERT INTO `lead_time` (`leadTimeID`, `type`, `leadTime`) VALUES
-(1, 'Cash Advance', 5),
-(2, 'Budget', 5),
-(3, 'Accounting', 5);
+(1, 'Cash Advance', 7),
+(2, 'Budget', 7),
+(3, 'Accounting', 7);
 
 -- --------------------------------------------------------
 
@@ -483,9 +483,9 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(139, '2018-08-22', 'Approved', '2018-08-22', 'ASD'),
-(140, '2018-08-16', 'Approved', '2018-08-16', 'sd'),
-(141, '2018-08-22', 'Approved', '2018-08-22', 'yeah');
+(152, '2018-08-23', 'Approved', '2018-08-23', 'sdf'),
+(153, '2018-08-23', 'Approved', '2018-08-23', 'asf'),
+(154, '2018-08-23', 'Approved', '2018-08-23', 'dfg');
 
 -- --------------------------------------------------------
 
@@ -608,7 +608,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userID`, `companyID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
 (1, 1, 'Omar', 'Abdullah', '..', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
-(10, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'user');
+(10, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
 
 --
 -- Indexes for dumped tables
@@ -722,7 +722,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -734,13 +734,13 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
 
 --
 -- AUTO_INCREMENT for table `cctl`
@@ -776,7 +776,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 
 --
 -- AUTO_INCREMENT for table `pr`

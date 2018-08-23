@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     //Fetching Budget Data
     var dataTable = $('#budget').DataTable({
@@ -18,14 +18,13 @@ $(document).ready(function () {
     });
 
     //Clicking Budget Tab
-    $('.budgetTab').click(function () {
+    $('.budgetTab').click(function() {
         dataTable.ajax.reload();
     });
 
     //Selecting Data Budget Data
-    $(document).on('click', 'button[name="btnUpdateBudget"]', function () {
+    $(document).on('click', 'button[name="btnUpdateBudget"]', function() {
         var id = $(this).attr('id');
-        // $('#budgetModal').modal('show');
         $.ajax({
             url: '../scripts/php/Budget/cashAdvanceSelectData.php',
             method: "POST",
@@ -33,8 +32,9 @@ $(document).ready(function () {
                 id: id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 $('#budgetModal').modal('show');
+                $('button[name="btnSubmitBudget"]').attr("data-dismiss", "modal");
                 $("input[name='getIdBudget']").val(id);
                 $("select[name='budgeted']").val(data.budgeted);
                 $("input[name='dateReceivedBudget']").val(data.dateReceivedBudget);
@@ -43,14 +43,14 @@ $(document).ready(function () {
                 $("select[name='statusBudget']").val(data.statusBudget);
                 $("textarea[name='remarksBudget']").val(data.remarksBudget);
             },
-            error: function () {
+            error: function() {
                 alert("There is an error");
             }
         });
     });
 
     //Submitting Accounting Data
-    $(document).on('click', 'button[name="btnSubmitBudget"]', function () {
+    $(document).on('click', 'button[name="btnSubmitBudget"]', function() {
         var id = $('input[name="getIdBudget"]').val();
         var budgeted = $('select[name="budgeted"]').val();
         var dateReceivedBudget = $('input[name="dateReceivedBudget"]').val();
@@ -71,14 +71,16 @@ $(document).ready(function () {
                     statusBudget: statusBudget,
                     remarksBudget: remarksBudget
                 },
-                success: function (data) {
+                success: function(data) {
                     alert(data);
                     dataTable.ajax.reload();
                 },
-                error: function () {
+                error: function() {
                     alert("There is an error!");
                 }
             });
+        } else {
+            alert("There are still empty fields!");
         }
     });
 });

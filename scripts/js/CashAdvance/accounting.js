@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     //Fetching Accounting Data
     var dataTable = $('#accounting').DataTable({
         "processing": true,
@@ -17,12 +17,12 @@ $(document).ready(function () {
     });
 
     //Reload AJAX
-    $('.accountingTab').click(function () {
+    $('.accountingTab').click(function() {
         dataTable.ajax.reload();
     });
 
     //Selecting Accounting Data
-    $(document).on('click', 'button[name="btnUpdateAccounting"]', function () {
+    $(document).on('click', 'button[name="btnUpdateAccounting"]', function() {
         var id = $(this).attr('id');
         $.ajax({
             url: '../scripts/php/Accounting/cashAdvanceSelectData.php',
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 id: id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 $('#accountingModal').modal('show');
                 $('button[name="btnSubmitAccounting"]').attr("data-dismiss", "modal");
                 $("input[name='getIdAccounting']").val(id);
@@ -41,14 +41,14 @@ $(document).ready(function () {
                 $("textarea[name='remarksAccounting']").val(data.remarksAccounting);
                 $("input[name='releaseDateAccounting']").val(data.releaseDateAccounting);
             },
-            error: function () {
+            error: function() {
                 alert("There is an error");
             }
         });
     });
 
     //Submitting Accounting Data
-    $(document).on('click', 'button[name="btnSubmitAccounting"]', function () {
+    $(document).on('click', 'button[name="btnSubmitAccounting"]', function() {
         var id = $('input[name="getIdAccounting"]').val();
         var dateReceivedAccounting = $('input[name="dateReceivedAccounting"]').val();
         var receivedByAccounting = $('select[name="receivedByAccounting"]').val();
@@ -67,14 +67,16 @@ $(document).ready(function () {
                     releaseDateAccounting: releaseDateAccounting,
                     remarksAccounting: remarksAccounting
                 },
-                success: function (data) {
+                success: function(data) {
                     alert(data);
                     dataTable.ajax.reload();
                 },
-                error: function () {
+                error: function() {
                     alert("There is an error!");
                 }
             });
+        } else {
+            alert("There are still empty fields!");
         }
     });
 });

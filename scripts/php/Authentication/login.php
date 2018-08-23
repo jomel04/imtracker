@@ -19,7 +19,11 @@
             if(password_verify($password, $result->password)) {
                 $_SESSION['user'] = $result->userID;
                 $_SESSION['userType'] = $result->userType;
-                echo "<script>location.assign('../../../pages/home.php');</script>";
+                if($_SESSION['userType'] == 'Admin') {
+                    echo "<script>location.assign('../../../pages/home.php');</script>";
+                } else {
+                    echo "<script>location.assign('../../../pages/userview.php');</script>";
+                }
             } else {
                 echo "<script>location.assign('../../../index.php');
                 alert('Username and password doesn\'t match');</script>";

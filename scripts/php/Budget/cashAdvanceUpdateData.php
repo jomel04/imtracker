@@ -25,6 +25,6 @@
         ), array(
             ':caID' => $cashAdvanceID
         ))) {
-            echo 'Successfully Updated!';
+            echo "Successfully Updated!";
         }
     }

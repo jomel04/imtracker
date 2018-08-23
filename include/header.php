@@ -5,6 +5,7 @@
     </button>
     <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
+            <?php if(isset($_SESSION['userType']) == 'Admin'): ?>
             <li class="nav-item">
                 <?php
                 if(isset($activeMenu) == 'ca') {
@@ -33,6 +34,17 @@
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
             </li>
+            <?php else: ?>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">
+                    Settings
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../pages/profile.php">Profile</a>
+                    <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
+                </div>
+            </li>
+            <?php endif;?> 
         </ul>
     </div>
 </nav>

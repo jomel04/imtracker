@@ -8,9 +8,9 @@
     $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, ca.status, expense_account.type AS ExpenseAccount, section.type AS Section, ca.requestor, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID";
 
     //For Search Bar
-    // if(!empty($_POST["search"]["value"])) {
-    //     $query .= " AND ca.requestor LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR ca.cost LIKE '%".$_POST['search']['value']."%' OR budget.budgeted LIKE '%".$_POST['search']['value']."%' OR budget.receivedBy LIKE '%".$_POST['search']['value']."%' OR budget.status LIKE '%".$_POST['search']['value']."%'";
-    // }
+    if(!empty($_POST["search"]["value"])) {
+        $query .= " AND ca.requestor LIKE '%".$_POST['search']['value']."%'";
+    }
 
     //For Ordering
     // if(isset($_POST['order'])) {
@@ -48,8 +48,32 @@
     	$filteredRows = $stmt->rowCount();
     	foreach($result as $row) {
             $subArray = array();
-            // if($row['budgeted'] == "") {
-                $subArray[] = '<div class="text-center">' . $row['dateCreated'] . '</div>';
+             if(strpos($row['status'], 'Cancelled')) {
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateCreated'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateEntered'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['purpose'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['remarks'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['cost'] . '</div>';
+            } elseif(strpos($row['status'], 'Disapproved')) {
+                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateCreated'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateEntered'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['purpose'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['remarks'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['cost'] . '</div>';
+            } elseif(strpos($row['status'], 'Processing')) {
+                 $subArray[] = '<div class="text-center">' . $row['dateCreated'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
@@ -60,39 +84,43 @@
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['remarks'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
-            // } elseif($row['LeadTime'] > '0') {
-            //     $subArray[] = '<div class="text-center">' . $row['budgetID'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['requestor'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['CashAdvanceRemarks'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['budgeted'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['receivedBy'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['status'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['BudgetRemarks'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['dateApproved'] . '</div>';
-            //     $subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
-            //     $subArray[] = "<div class='btn-group'><button type='button' id='".$row['budgetID']."' name='btnUpdateBudget' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['budgetID']."' name='btnDeleteBudget' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
-            // } else {
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['budgetID'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['requestor'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['ExpenseAccount'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['Section'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['purpose'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['CashAdvanceRemarks'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['cost'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['budgeted'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['dateReceived'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['receivedBy'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['status'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['BudgetRemarks'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['dateApproved'] . '</div>';
-            //     $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['LeadTime'] . '</div>';
-            //     $subArray[] = "<div class='btn-group'><button type='button' id='".$row['budgetID']."' name='btnUpdateBudget' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['budgetID']."' name='btnDeleteBudget' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
-            // }
+            } elseif(strpos($row['status'], 'For Signature')) {
+                 $subArray[] = '<div class="text-center">' . $row['dateCreated'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['remarks'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
+            } elseif(strpos($row['status'], 'Approved')) {
+                 $subArray[] = '<div class="text-center">' . $row['dateCreated'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['remarks'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
+            } else{
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['dateCreated'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['dateEntered'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['week_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['period_number'] . '</div>';
+                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:green;">' . $row['status'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['ExpenseAccount'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['Section'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['purpose'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['remarks'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color:green;">' . $row['cost'] . '</div>';
+            }
             $data[] = $subArray;
     	}
 		$output = array(

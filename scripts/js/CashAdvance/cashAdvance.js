@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     //Fetching Data
     var dataTable = $("#cashAdvance").DataTable({
         "processing": true,
@@ -15,7 +15,7 @@ $(document).ready(function () {
         "stateSave": true,
         "pagingType": "full_numbers"
     });
-    $("button[name='btnAdd']").click(function () {
+    $("button[name='btnAdd']").click(function() {
         $("#cashAdvanceForm")[0].reset();
         $("input[name='action']").val("Insert");
         $("button[name='cashAdvancebtnSubmit']").text("ADD");
@@ -25,7 +25,7 @@ $(document).ready(function () {
         $("select[name='requestor']").prop("disabled", false);
     });
     //Inserting to Database
-    $(document).on("click", "button[name='cashAdvancebtnSubmit']", function () {
+    $(document).on("click", "button[name='cashAdvancebtnSubmit']", function() {
         //Get ID
         var id = $("input[name='getIdCashAdvance']").val();
         //Data
@@ -61,27 +61,27 @@ $(document).ready(function () {
                     dateApproved: dateApproved,
                     managerRemarks: managerRemarks
                 },
-                success: function (data) {
+                success: function(data) {
                     alert(data);
                     dataTable.ajax.reload();
                 },
-                error: function () {
+                error: function() {
                     alert("There is an error!");
                 }
             });
         }
     });
-    $(document).on("click", "#btnClose", function () {
+    $(document).on("click", "#btnClose", function() {
         $("#cashAdvanceForm")[0].reset();
     });
 
     //For Delete
-    $(document).on("click", "button[name='btnDelete']", function () {
+    $(document).on("click", "button[name='btnDelete']", function() {
         var id = $(this).attr("id");
     });
 
     //For Update
-    $(document).on("click", "button[name='btnUpdate']", function () {
+    $(document).on("click", "button[name='btnUpdate']", function() {
         var id = $(this).attr("id");
         $.ajax({
             url: "../scripts/php/CashAdvance/cashAdvanceSelectData.php",
@@ -90,11 +90,12 @@ $(document).ready(function () {
                 id: id
             },
             dataType: "json",
-            success: function (data) {
+            success: function(data) {
                 $("#cashAdvanceModal").modal("show");
                 $("input[name='action']").val("Update");
                 $("input[name='getIdCashAdvance']").val(id);
                 $("button[name='cashAdvancebtnSubmit']").text("UPDATE");
+                $('button[name="cashAdvancebtnSubmit"]').attr("data-dismiss", "modal");
                 $("input[name='dateCreated']").val(data.dateCreated).prop("disabled", true);
                 $("select[name='expenseAccount']").val(data.expenseAccount.expenseID).prop("disabled", true);
                 $("select[name='section']").val(data.section.sectionID).prop("disabled", true);
@@ -107,7 +108,7 @@ $(document).ready(function () {
                 $("input[name='dateApproved']").val(data.dateApproved);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
             },
-            error: function () {
+            error: function() {
                 alert("There is an error!");
             }
         })
