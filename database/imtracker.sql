@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2018 at 11:04 AM
+-- Generation Time: Aug 24, 2018 at 10:13 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -43,9 +43,10 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(32, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(33, 3, '2018-08-23', 'Person 1', 'Released', 'ftrty', '2018-08-23'),
-(34, 3, '2018-08-24', 'Person 1', 'Released', 'aweeee', '2018-08-23');
+(35, 3, '2018-08-15', 'Person 2', 'Released', 'Hahahha', '2018-08-24'),
+(36, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(37, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(38, 3, '0000-00-00', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -300,9 +301,10 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(47, 2, 'No', '2018-08-23', 'Bantillan, E.', 'Disapproved', '', '2018-08-23'),
-(48, 2, 'Yes', '2018-08-23', 'Nica', 'Approved', 'aw', '2018-08-23'),
-(49, 2, 'Yes', '2018-08-24', 'Nica', 'Approved', 'werw', '2018-08-24');
+(50, 2, 'No', '2018-08-21', 'Nica', 'Approved', 'Hahahaha', '2018-08-24'),
+(51, 2, 'No', '2018-08-17', 'Bantillan, E.', 'Approved', 'Hahaha', '2018-08-24'),
+(52, 2, 'No', '2018-08-15', 'Nica', 'Cancelled', 'asd', '2018-08-24'),
+(53, 2, '', '0000-00-00', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -312,6 +314,7 @@ INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `rec
 
 CREATE TABLE `ca` (
   `caID` int(11) NOT NULL,
+  `adminID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `calID` int(11) NOT NULL,
   `managerID` int(11) DEFAULT NULL,
@@ -323,7 +326,6 @@ CREATE TABLE `ca` (
   `dateCreated` date NOT NULL,
   `dateEntered` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
-  `requestor` varchar(50) NOT NULL,
   `purpose` text NOT NULL,
   `remarks` text NOT NULL,
   `cost` decimal(18,2) NOT NULL
@@ -333,10 +335,11 @@ CREATE TABLE `ca` (
 -- Dumping data for table `ca`
 --
 
-INSERT INTO `ca` (`caID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `requestor`, `purpose`, `remarks`, `cost`) VALUES
-(140, 1, 138, 152, 47, 32, 1, 4, 1, '2018-08-23', '2018-08-23 03:16:55', '(For Budget) Budgeted: No Status: Disapproved', 'Abdullah , Omar', 'asd', 'asd', '12312.00'),
-(141, 1, 138, 153, 48, 33, 3, 5, 1, '2018-08-23', '2018-08-23 03:18:35', '(For Accounting) Status: Released On: 2018-08-23', 'Abdullah , Omar', 'ad', 'sadf', '123.00'),
-(142, 1, 138, 154, 49, 34, 4, 5, 1, '2018-08-23', '2018-08-23 03:37:06', '(For Accounting) Status: Released On: 2018-08-23', 'Anggadol , Malkuth', 'dfg', 'fdg', '123.00');
+INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `purpose`, `remarks`, `cost`) VALUES
+(143, 1, 10, 138, 155, 50, 35, 3, 5, 1, '2018-08-24', '2018-08-24 10:20:37', '(For Accounting) Status: Released On: 2018-08-24', 'hahaha', 'hahahaha', '100.00'),
+(144, 1, 1, 138, 156, 51, 36, 11, 1, 1, '2018-08-24', '2018-08-24 10:21:36', '(For Budget) Budgeted: No Status: Approved', 'saaaaaa', 'asaaa', '312312321312.00'),
+(145, 1, 1, 138, 157, 52, 37, 5, 6, 1, '2018-08-24', '2018-08-24 02:54:21', '(For Budget) Budgeted: No Status: Cancelled', 'HAHAHAH', 'HAHAHA', '1000.00'),
+(146, 1, 10, 138, 158, 53, 38, 24, 1, 1, '2018-08-10', '2018-08-24 03:12:57', 'For JGM - Disapproved', 'asdasd', 'asdasd', '123123.00');
 
 -- --------------------------------------------------------
 
@@ -483,9 +486,10 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(152, '2018-08-23', 'Approved', '2018-08-23', 'sdf'),
-(153, '2018-08-23', 'Approved', '2018-08-23', 'asf'),
-(154, '2018-08-23', 'Approved', '2018-08-23', 'dfg');
+(155, '2018-08-22', 'Approved', '2018-08-23', 'hahaha'),
+(156, '2018-08-24', 'Approved', '2018-08-24', 'asdas'),
+(157, '2018-08-24', 'Approved', '2018-08-24', ''),
+(158, '2018-08-24', 'Disapproved', '2018-08-24', 'Hahahaha');
 
 -- --------------------------------------------------------
 
@@ -645,7 +649,8 @@ ALTER TABLE `ca`
   ADD KEY `acctgID` (`acctgID`),
   ADD KEY `expenseID` (`expenseID`),
   ADD KEY `sectionID` (`sectionID`),
-  ADD KEY `leadTimeID` (`leadTimeID`);
+  ADD KEY `leadTimeID` (`leadTimeID`),
+  ADD KEY `adminID` (`adminID`);
 
 --
 -- Indexes for table `cctl`
@@ -722,7 +727,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -734,13 +739,13 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `cctl`
@@ -776,7 +781,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `pr`
@@ -824,6 +829,7 @@ ALTER TABLE `budget`
 ALTER TABLE `ca`
   ADD CONSTRAINT `ca_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ca_ibfk_10` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`),
+  ADD CONSTRAINT `ca_ibfk_11` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `ca_ibfk_2` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ca_ibfk_4` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ca_ibfk_5` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`) ON DELETE CASCADE ON UPDATE CASCADE,
