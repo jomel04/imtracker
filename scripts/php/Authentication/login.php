@@ -1,10 +1,8 @@
 <?php
     session_start();
     use System\Classes\Database\DatabaseOperation;
-    use System\Classes\Functions;
     require "../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
-    $funcBootstrap = new Functions();
 
     if(isset($_POST["btnLogin"])) {
         $username = $_POST['username'];

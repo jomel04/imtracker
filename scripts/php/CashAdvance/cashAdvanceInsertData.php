@@ -84,7 +84,8 @@
 			//For Cash Advance Table
 			/* -------------------------------------------------- */
 			$cashAdvanceData = array(
-				":userID" => $_SESSION['user'],
+				":adminID" => $_SESSION['user'],
+				":userID" => $_POST['requestor'],
 				":calID" => $getWeekNumber,
 				":managerID" => $managerInsertId,
 				":budgetID" => $budgetInsertId,
@@ -95,7 +96,6 @@
 				":dateCreated" => date("Y-m-d", strtotime($_POST['dateCreated'])),
 				":dateEntered" => date("Y-m-d h:i:s"),
 				":status" => "For JGM - " . $_POST['status'],
-				":requestor" => $_POST['requestor'],
 				":purpose" => $_POST['purpose'],
 				":remarks" => $_POST['cashAdvanceRemarks'],
 				":cost" => $_POST['cost']

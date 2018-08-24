@@ -2,14 +2,12 @@
     use System\Classes\Database\DatabaseOperation;
     require "../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
-
-    //Last Query = SELECT accounting.acctgID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, DATEDIFF(DATE_ADD(accounting.dateReceived, INTERVAL lead_time.leadTime DAY), NOW()) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID WHERE manager.status = 'Approved' AND budget.budgeted = 'Yes'AND accounting.status != 'Released'
     //QUERY
-    $query = "SELECT accounting.acctgID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, DATEDIFF(DATE_ADD(accounting.dateReceived, INTERVAL lead_time.leadTime - 2 DAY), NOW()) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'";
+    $query = "SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, DATEDIFF(NOW(), DATE_ADD(accounting.dateReceived, INTERVAL (lead_time.leadTime / 7) * 2 DAY)) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
-        $query .= " AND ca.requestor LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR ca.cost LIKE '%".$_POST['search']['value']."%' OR accounting.receivedBy LIKE '%".$_POST['search']['value']."%' OR accounting.status LIKE '%".$_POST['search']['value']."%' OR DATEDIFF(DATE_ADD(accounting.dateReceived, INTERVAL lead_time.leadTime DAY), NOW()) LIKE '%".$_POST['search']['value']."%'";
+        $query .= " AND users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR ca.cost LIKE '%".$_POST['search']['value']."%' OR accounting.receivedBy LIKE '%".$_POST['search']['value']."%' OR accounting.status LIKE '%".$_POST['search']['value']."%'";
     }
 
     // For Ordering
@@ -28,7 +26,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT accounting.acctgID, ca.requestor, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, DATEDIFF(DATE_ADD(accounting.dateReceived, INTERVAL lead_time.leadTime - 2 DAY), NOW()) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'");
+			$stmt = $dbOperation->connect()->prepare("SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, DATEDIFF(NOW(), DATE_ADD(accounting.dateReceived, INTERVAL (lead_time.leadTime / 7) * 2 DAY)) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -50,7 +48,7 @@
             $subArray = array();
             if($row['status'] == "") {
                 $subArray[] = '<div class="text-center">' . $row['acctgID'] . '</div>';
-                $subArray[] = '<div class="text-center">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
@@ -63,9 +61,9 @@
                 $subArray[] = '<div class="text-center">' . $row['releaseDate'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
                 $subArray[] = "<div class='btn-group'><button type='button' id='".$row['acctgID']."' name='btnUpdateAccounting' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['acctgID']."' name='btnDeleteAccounting' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
-            } elseif($row['LeadTime'] > '0') {
+            } elseif($row['LeadTime'] < '5') {
                 $subArray[] = '<div class="text-center">' . $row['acctgID'] . '</div>';
-                $subArray[] = '<div class="text-center">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
@@ -80,7 +78,7 @@
                 $subArray[] = "<div class='btn-group'><button type='button' id='".$row['acctgID']."' name='btnUpdateAccounting' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['acctgID']."' name='btnDeleteAccounting' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
             } else {
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['acctgID'] . '</div>';
-                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['requestor'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['purpose'] . '</div>';

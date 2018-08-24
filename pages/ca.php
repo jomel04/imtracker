@@ -5,7 +5,6 @@
     $dbOperation = new DatabaseOperation();
     if(isset($_SESSION['userType']) == 'Admin') {
         $user = $_SESSION['user'];
-        // echo $user;
     } else {
         echo "<script>location.assign('../index.php');</script>";
     }
@@ -129,7 +128,7 @@
                                     <th style="background-color: #EB465A">Status</th>
                                     <th style="background-color: #EB465A">Remarks</th>
                                     <th style="background-color: #EB465A">Date Approved</th>
-                                    <th style="background-color: #EB465A">Lead time</th>
+                                    <th style="background-color: #EB465A">Lead time (Days)</th>
                                     <th style="background-color: #EB465A">Action</th>
                                 </tr>
                             </thead>
@@ -154,7 +153,7 @@
                                     <th style="background-color: #EB465A">Status</th>
                                     <th style="background-color: #EB465A">Remarks</th>
                                     <th style="background-color: #EB465A">Release Date</th>
-                                    <th style="background-color: #EB465A">Lead time</th>
+                                    <th style="background-color: #EB465A">Lead time (Days)</th>
                                     <th style="background-color: #EB465A">Action</th>
                                 </tr>
                             </thead>

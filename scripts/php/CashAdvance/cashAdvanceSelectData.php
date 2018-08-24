@@ -5,19 +5,16 @@
 
     if(isset($_POST['id'])) {
     	//Data
-    	$datas = array();
+        $datas = array();
+        $stmt = $dbOperation->connect()->query("SELECT ca.dateCreated, users.userID, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN users ON ca.userID = users.userID WHERE ca.caID = " . $_POST['id']);
 
-    	$dataCa = array(
-    		":caID" => $_POST['id']
-    	);
-    	foreach($dbOperation->selectRow("ca", $dataCa) as $row) {
-    		$datas['dateCreated'] = $row->dateCreated;
-    		$datas['requestor'] = $row->requestor;
-    		$datas['purpose'] = $row->purpose;
-    		$datas['requestor'] = $row->requestor;
-    		$datas['remarks'] = $row->remarks;
-    		$datas['cost'] = $row->cost;
-    	}
+        foreach($stmt->fetchAll() as $row) {
+            $datas['dateCreated'] = $row->dateCreated;
+            $datas['requestor'] = $row->userID;
+            $datas['purpose'] = $row->purpose;
+            $datas['remarks'] = $row->remarks;
+            $datas['cost'] = $row->cost;
+        }
 
     	//Getting Expense Account type
     	$stmt = $dbOperation->connect()->query("SELECT expense_account.expenseID FROM expense_account INNER JOIN ca ON ca.expenseID = expense_account.expenseID WHERE ca.caID = '".$_POST['id']."'");

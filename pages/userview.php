@@ -5,7 +5,6 @@
     $dbOperation = new DatabaseOperation();
     if(isset($_SESSION['userType']) == 'User') {
     	$user = $_SESSION['user'];
-        // echo $user;
     } else {
         echo "<script>location.assign('../index.php');</script>";
     }
@@ -45,7 +44,6 @@
 
     <body>
         <?php
-            $activeMenu = 'ca';
             require '../include/header.php';
         ?>
             <!-- Nav tabs -->
@@ -65,10 +63,10 @@
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                <div class="tab-pane container-fluid fade" id="cashAdvanceSection">
+                <div class="tab-pane container-fluid active" id="cashAdvanceSection">
                     <div class="table-responsive">
                         <br>
-                        <table id="summary" class="stripe hover cell-border" style="width:100%">
+                        <table id="cashAdvance" class="stripe hover cell-border" style="width:100%">
                             <thead>
                                 <tr class="text-center text-light">
                                     <th style="background-color: #3AAFA9">Date Created</th>
@@ -88,72 +86,16 @@
                     </div>
                 </div>
                 <div class="tab-pane container-fluid fade" id="requestForPaymentSection">
-                    <div class="table-responsive">
-                        <br>
-                        <table id="summary" class="stripe hover cell-border" style="width:100%">
-                            <thead>
-                                <tr class="text-center text-light">
-                                    <th style="background-color: #3AAFA9">Date Created</th>
-                                    <th style="background-color: #3AAFA9">Date Entered</th>
-                                    <th style="background-color: #3AAFA9">Week no.</th>
-                                    <th style="background-color: #3AAFA9">Period no.</th>
-                                    <th style="background-color: #3AAFA9">Status</th>
-                                    <th style="background-color: #3AAFA9">Expense Account</th>
-                                    <th style="background-color: #3AAFA9">Section</th>
-                                    <th style="background-color: #3AAFA9">Requestor</th>
-                                    <th style="background-color: #3AAFA9">Purpose</th>
-                                    <th style="background-color: #3AAFA9">Remarks</th>
-                                    <th style="background-color: #3AAFA9">Cost</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    ...
                 </div>
                 <div class="tab-pane container-fluid fade" id="purchaseRequestSection">
-                    <div class="table-responsive">
-                        <br>
-                        <table id="summary" class="stripe hover cell-border" style="width:100%">
-                            <thead>
-                                <tr class="text-center text-light">
-                                    <th style="background-color: #3AAFA9">Date Created</th>
-                                    <th style="background-color: #3AAFA9">Date Entered</th>
-                                    <th style="background-color: #3AAFA9">Week no.</th>
-                                    <th style="background-color: #3AAFA9">Period no.</th>
-                                    <th style="background-color: #3AAFA9">Status</th>
-                                    <th style="background-color: #3AAFA9">Expense Account</th>
-                                    <th style="background-color: #3AAFA9">Section</th>
-                                    <th style="background-color: #3AAFA9">Requestor</th>
-                                    <th style="background-color: #3AAFA9">Purpose</th>
-                                    <th style="background-color: #3AAFA9">Remarks</th>
-                                    <th style="background-color: #3AAFA9">Cost</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    ...
                 </div>
                 <div class="tab-pane container-fluid fade" id="jobServiceRequestSection">
-                    <div class="table-responsive">
-                        <br>
-                        <table id="summary" class="stripe hover cell-border" style="width:100%">
-                            <thead>
-                                <tr class="text-center text-light">
-                                    <th style="background-color: #3AAFA9">Date Created</th>
-                                    <th style="background-color: #3AAFA9">Date Entered</th>
-                                    <th style="background-color: #3AAFA9">Week no.</th>
-                                    <th style="background-color: #3AAFA9">Period no.</th>
-                                    <th style="background-color: #3AAFA9">Status</th>
-                                    <th style="background-color: #3AAFA9">Expense Account</th>
-                                    <th style="background-color: #3AAFA9">Section</th>
-                                    <th style="background-color: #3AAFA9">Requestor</th>
-                                    <th style="background-color: #3AAFA9">Purpose</th>
-                                    <th style="background-color: #3AAFA9">Remarks</th>
-                                    <th style="background-color: #3AAFA9">Cost</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
+                    ...
                 </div>
             </div>
+            <script src="../scripts/js/UserView/CashAdvance.js"></script>
     </body>
 
     </html>

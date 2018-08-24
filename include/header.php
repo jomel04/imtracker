@@ -1,11 +1,15 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
+	<?php if($_SESSION['userType'] == 'Admin'): ?>
     <a class="navbar-brand" href="home.php"><img src="../resources/images/NEH.png" class="img-fluid" width="60" height="60"></a>
+	<?php elseif($_SESSION['userType'] == 'User'): ?>
+	<a class="navbar-brand" href="userview.php"><img src="../resources/images/NEH.png" class="img-fluid" width="60" height="60"></a>
+	<?php endif; ?>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
     </button>
     <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
-            <?php if(isset($_SESSION['userType']) == 'Admin'): ?>
+            <?php if($_SESSION['userType'] == 'Admin'): ?>
             <li class="nav-item">
                 <?php
                 if(isset($activeMenu) == 'ca') {
@@ -34,7 +38,7 @@
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
             </li>
-            <?php else: ?>
+        	<?php elseif($_SESSION['userType'] == 'User'): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">
                     Settings
@@ -44,7 +48,7 @@
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
             </li>
-            <?php endif;?> 
+            <?php endif; ?> 
         </ul>
     </div>
 </nav>

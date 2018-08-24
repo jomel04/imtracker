@@ -75,7 +75,7 @@
                                                     $stmt = $dbOperation->connect()->query("SELECT * FROM users ORDER BY lastName");
                                                     while($row = $stmt->fetch()) {
                                                         ?>
-                                                    <option value="<?php echo $row->lastName . " , " . $row->firstName;?>">
+                                                    <option value="<?php echo $row->userID;?>">
                                                         <?php echo $row->lastName . ", " . $row->firstName;?>
                                                     </option>
                                                     <?php
