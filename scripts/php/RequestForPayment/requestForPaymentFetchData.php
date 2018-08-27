@@ -4,7 +4,7 @@
     $dbOperation = new DatabaseOperation();
 
     //QUERY
-    $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'";
+    $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -27,7 +27,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -56,7 +56,7 @@
     		$subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] .  '</div>';
     		$subArray[] = $row['purpose'];
-    		$subArray[] = $row['remarks'];
+    		$subArray[] = $row['CashAdvanceRemarks'];
     		$subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';

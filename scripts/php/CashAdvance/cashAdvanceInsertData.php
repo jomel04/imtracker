@@ -95,7 +95,8 @@
 				":leadTimeID" => $getLeadTimeId,
 				":dateCreated" => date("Y-m-d", strtotime($_POST['dateCreated'])),
 				":dateEntered" => date("Y-m-d h:i:s"),
-				":status" => "For JGM - " . $_POST['status'],
+				":status" => "(For JGM) " . "Status: " . $_POST['status'],
+				":state" => "Active",
 				":purpose" => $_POST['purpose'],
 				":remarks" => $_POST['cashAdvanceRemarks'],
 				":cost" => $_POST['cost']
@@ -125,7 +126,7 @@
 			//Update Manager && CA Table
 			/* -------------------------------------------------- */
 			if($dbOperation->updateData("ca", array(
-				":status" => "For JGM - " . $_POST['status'],
+				":status" => "(For JGM) " . "Status: " . $_POST['status'],
 				":purpose" => $_POST['purpose'],
 				":remarks" => $_POST['cashAdvanceRemarks'],
 				":cost" => $_POST['cost']

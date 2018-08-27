@@ -1,19 +1,19 @@
 $(document).ready(function() {
     //Fetching Data
-    var dataTable = $("#cashAdvance").DataTable({
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-            url: "../scripts/php/CashAdvance/cashAdvanceFetchData.php",
-            type: "POST"
-        },
-        "columnDefs": [{
-            "targets": [0],
-            "orderable": false
-        }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+    var dataTable = $("#requestForPayment").DataTable({
+        // "processing": true,
+        // "serverSide": true,
+        // "order": [],
+        // "ajax": {
+        //     url: "../scripts/php/RequestForPayment/cashAdvanceFetchData.php",
+        //     type: "POST"
+        // },
+        // "columnDefs": [{
+        //     "targets": [0],
+        //     "orderable": false
+        // }],
+        // "stateSave": true,
+        // "pagingType": "full_numbers"
     });
     $("button[name='btnAdd']").click(function() {
         $("#cashAdvanceForm")[0].reset();

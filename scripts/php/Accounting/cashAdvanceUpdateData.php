@@ -15,7 +15,7 @@
             ':dateReceived' => date('Y-m-d', strtotime($_POST['dateReceivedAccounting'])),
             ':receivedBy' => $_POST['receivedByAccounting'],
             ':status' => $_POST['statusAccounting'],
-            ':releaseDate' => date('Y-m-d', strtotime($_POST['releaseDateAccounting'])),
+            ':releaseDate' => $_POST['releaseDateAccounting'],
             ':remarks' => $_POST['remarksAccounting']
         ), array(
             ':acctgId' => $_POST['id']

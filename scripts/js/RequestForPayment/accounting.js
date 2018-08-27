@@ -1,19 +1,19 @@
 $(document).ready(function() {
     //Fetching Accounting Data
     var dataTable = $('#accounting').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-            url: "../scripts/php/Accounting/cashAdvanceFetchData.php",
-            method: "POST"
-        },
-        "columnDefs": [{
-            "targets": [0],
-            "orderable": false
-        }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        // "processing": true,
+        // "serverSide": true,
+        // "order": [],
+        // "ajax": {
+        //     url: "../scripts/php/Accounting/cashAdvanceFetchData.php",
+        //     method: "POST"
+        // },
+        // "columnDefs": [{
+        //     "targets": [0],
+        //     "orderable": false
+        // }],
+        // "stateSave": true,
+        // "pagingType": "full_numbers"
     });
 
     //Reload AJAX

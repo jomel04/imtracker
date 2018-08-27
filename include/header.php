@@ -11,17 +11,18 @@
         <ul class="navbar-nav">
             <?php if($_SESSION['userType'] == 'Admin'): ?>
             <li class="nav-item">
-                <?php
-                if(isset($activeMenu) == 'ca') {
-                    echo "<a class='nav-link active' href='../pages/ca.php'>CA</a>";
-                }
-                else {
-                    echo "<a class='nav-link' href='../pages/ca.php'>CA</a>";
-                }
-                ?>
+                <?php if($activeMenu == 'ca'): ?>
+                <a class="nav-link active" href="../pages/ca.php">CA</a>
+                <?php else: ?>
+                <a class="nav-link" href="../pages/ca.php">CA</a>
+                <?php endif; ?>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">RFP</a>
+                <?php if($activeMenu == 'rfp'): ?>
+                <a class="nav-link active" href="../pages/rfp.php">RFP</a>
+                <?php else: ?>
+                <a class="nav-link" href="../pages/rfp.php">RFP</a>
+                <?php endif; ?>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">PR</a>

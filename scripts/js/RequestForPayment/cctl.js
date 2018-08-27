@@ -1,19 +1,19 @@
 $(document).ready(function() {
     //Fetching Budget Data
-    var dataTable = $('#budget').DataTable({
-        "processing": true,
-        "serverSide": true,
-        "order": [],
-        "ajax": {
-            url: "../scripts/php/Budget/cashAdvanceFetchData.php",
-            method: "POST"
-        },
-        "columnDefs": [{
-            "targets": [0],
-            "orderable": false
-        }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+    var dataTable = $('#cctl').DataTable({
+        // "processing": true,
+        // "serverSide": true,
+        // "order": [],
+        // "ajax": {
+        //     url: "../scripts/php/Budget/cashAdvanceFetchData.php",
+        //     method: "POST"
+        // },
+        // "columnDefs": [{
+        //     "targets": [0],
+        //     "orderable": false
+        // }],
+        // "stateSave": true,
+        // "pagingType": "full_numbers"
     });
 
     //Clicking Budget Tab

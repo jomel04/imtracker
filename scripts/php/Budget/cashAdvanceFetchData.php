@@ -3,7 +3,7 @@
     require "../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
     //QUERY
-    $query = "SELECT budget.budgetID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(NOW(), DATE_ADD(budget.dateReceived, INTERVAL (lead_time.leadTime / 7) * 2 DAY)) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status != 'Approved'";
+    $query = "SELECT budget.budgetID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, 5 * (DATEDIFF(NOW(), budget.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(budget.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -26,7 +26,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT budget.budgetID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, DATEDIFF(NOW(), DATE_ADD(budget.dateReceived, INTERVAL (lead_time.leadTime / 7) * 2 DAY)) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT budget.budgetID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, 5 * (DATEDIFF(NOW(), budget.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(budget.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -62,7 +62,7 @@
                 $subArray[] = '<div class="text-center">' . $row['dateApproved'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
                 $subArray[] = "<div class='btn-group'><button type='button' id='".$row['budgetID']."' name='btnUpdateBudget' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['budgetID']."' name='btnDeleteBudget' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
-            } elseif($row['LeadTime'] < '5') {
+            } elseif($row['LeadTime'] < '6') {
                 $subArray[] = '<div class="text-center">' . $row['budgetID'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
