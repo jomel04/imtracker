@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/Accounting/cashAdvanceFetchData.php",
+            url: "../scripts/php/Accounting/CashAdvance/cashAdvanceFetchData.php",
             method: "POST"
         },
         "columnDefs": [{
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $(document).on('click', 'button[name="btnUpdateAccounting"]', function() {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/Accounting/cashAdvanceSelectData.php',
+            url: '../scripts/php/Accounting/CashAdvance/cashAdvanceSelectData.php',
             method: "POST",
             data: {
                 id: id
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var remarksAccounting = $('textarea[name="remarksAccounting"]').val();
         if (dateReceivedAccounting != "" && receivedByAccounting != "" && statusAccounting != "") {
             $.ajax({
-                url: "../scripts/php/Accounting/cashAdvanceUpdateData.php",
+                url: "../scripts/php/Accounting/CashAdvance/cashAdvanceUpdateData.php",
                 method: "POST",
                 data: {
                     id: id,

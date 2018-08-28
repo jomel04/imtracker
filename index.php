@@ -20,7 +20,6 @@
     <!-- BOOTSTRAP CSS-->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- BOOTSTRAP JS -->
-    <!-- <script src="node_modules/popper.js/dist/popper.min.js"></script> -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- CSS -->
     <link rel="stylesheet" href="resources/css/index.css">

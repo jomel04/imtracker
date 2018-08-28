@@ -18,8 +18,6 @@
   "homepage": "https://github.com/jomel04/imtracker#readme",
   "dependencies": {
     "bootstrap": "^4.1.3",
-    "datatables.net-bs4": "^1.10.19",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.4"
+    "jquery": "^3.3.1"
   }
 }

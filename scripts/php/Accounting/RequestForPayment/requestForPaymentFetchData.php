@@ -1,13 +1,13 @@
 <?php
     use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
     //QUERY
-    $query = "SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, 5 * (DATEDIFF(NOW(), accounting.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(accounting.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'";
+    $query = "SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, 5 * (DATEDIFF(NOW(), accounting.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(accounting.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM accounting INNER JOIN rfp ON rfp.acctgID = accounting.acctgID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN budget ON rfp.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON rfp.userID = users.userID INNER JOIN cctl ON rfp.cctlID = cctl.cctlID WHERE manager.status = 'Approved' AND cctl.status ='Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
-        $query .= " AND users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR ca.cost LIKE '%".$_POST['search']['value']."%' OR accounting.receivedBy LIKE '%".$_POST['search']['value']."%' OR accounting.status LIKE '%".$_POST['search']['value']."%'";
+        $query .= " AND users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR accounting.receivedBy LIKE '%".$_POST['search']['value']."%' OR accounting.status LIKE '%".$_POST['search']['value']."%'";
     }
 
     // For Ordering
@@ -26,7 +26,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, 5 * (DATEDIFF(NOW(), accounting.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(accounting.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM accounting INNER JOIN ca ON ca.acctgID = accounting.acctgID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'");
+			$stmt = $dbOperation->connect()->prepare("SELECT accounting.acctgID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, accounting.dateReceived, accounting.receivedBy, accounting.status, accounting.remarks AS AccountingRemarks, accounting.releaseDate, 5 * (DATEDIFF(NOW(), accounting.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(accounting.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM accounting INNER JOIN rfp ON rfp.acctgID = accounting.acctgID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN budget ON rfp.budgetID = budget.budgetID INNER JOIN lead_time ON lead_time.leadTimeID = accounting.leadTimeID INNER JOIN users ON rfp.userID = users.userID INNER JOIN cctl ON rfp.cctlID = cctl.cctlID WHERE manager.status = 'Approved' AND cctl.status ='Approved' AND budget.status = 'Approved' AND accounting.status != 'Released'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -52,7 +52,7 @@
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
-                $subArray[] = '<div class="text-center">' . $row['CashAdvanceRemarks'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['RequestForPaymentRemarks'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['receivedBy'] . '</div>';
@@ -67,7 +67,7 @@
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
-                $subArray[] = '<div class="text-center">' . $row['CashAdvanceRemarks'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['RequestForPaymentRemarks'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['receivedBy'] . '</div>';
@@ -82,7 +82,7 @@
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['purpose'] . '</div>';
-                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['CashAdvanceRemarks'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['RequestForPaymentRemarks'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['cost'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['dateReceived'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['receivedBy'] . '</div>';

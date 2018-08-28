@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/Budget/cashAdvanceFetchData.php",
+            url: "../scripts/php/Budget/CashAdvance/cashAdvanceFetchData.php",
             method: "POST"
         },
         "columnDefs": [{
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $(document).on('click', 'button[name="btnUpdateBudget"]', function() {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/Budget/cashAdvanceSelectData.php',
+            url: '../scripts/php/Budget/CashAdvance/cashAdvanceSelectData.php',
             method: "POST",
             data: {
                 id: id
@@ -59,7 +59,7 @@ $(document).ready(function() {
         var remarksBudget = $('textarea[name="remarksBudget"]').val();
         if (budgeted != "" && dateReceivedBudget != "" && dateApprovedBudget != "" && receivedByBudget != "" && statusBudget != "") {
             $.ajax({
-                url: "../scripts/php/Budget/cashAdvanceUpdateData.php",
+                url: "../scripts/php/Budget/CashAdvance/cashAdvanceUpdateData.php",
                 method: "POST",
                 data: {
                     id: id,

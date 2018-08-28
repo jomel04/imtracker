@@ -1,19 +1,19 @@
 $(document).ready(function() {
     //Fetching Budget Data
     var dataTable = $('#budget').DataTable({
-        // "processing": true,
-        // "serverSide": true,
-        // "order": [],
-        // "ajax": {
-        //     url: "../scripts/php/Budget/cashAdvanceFetchData.php",
-        //     method: "POST"
-        // },
-        // "columnDefs": [{
-        //     "targets": [0],
-        //     "orderable": false
-        // }],
-        // "stateSave": true,
-        // "pagingType": "full_numbers"
+        "processing": true,
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            url: "../scripts/php/Budget/RequestForPayment/requestForPaymentFetchData.php",
+            method: "POST"
+        },
+        "columnDefs": [{
+            "targets": [0],
+            "orderable": false
+        }],
+        "stateSave": true,
+        "pagingType": "full_numbers"
     });
 
     //Clicking Budget Tab
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $(document).on('click', 'button[name="btnUpdateBudget"]', function() {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/Budget/cashAdvanceSelectData.php',
+            url: '../scripts/php/Budget/RequestForPayment/requestForPaymentSelectData.php',
             method: "POST",
             data: {
                 id: id
@@ -59,7 +59,7 @@ $(document).ready(function() {
         var remarksBudget = $('textarea[name="remarksBudget"]').val();
         if (budgeted != "" && dateReceivedBudget != "" && dateApprovedBudget != "" && receivedByBudget != "" && statusBudget != "") {
             $.ajax({
-                url: "../scripts/php/Budget/cashAdvanceUpdateData.php",
+                url: "../scripts/php/Budget/RequestForPayment/requestForPaymentUpdateData.php",
                 method: "POST",
                 data: {
                     id: id,

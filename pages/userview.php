@@ -24,7 +24,6 @@
         <!-- BOOTSTRAP CSS-->
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- BOOTSTRAP JS -->
-        <!-- <script src="../node_modules/popper.js/dist/popper.min.js"></script> -->
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- DATATABLES -->
         <script src="../resources/datatables/datatables.min.js"></script>
@@ -45,7 +44,7 @@
                     <a class="nav-link active cashAdvanceTab" data-toggle="tab" href="#cashAdvanceSection">Cash Advance</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link accountingTab" data-toggle="tab" href="#requestForPaymentSection">Request for Payment</a>
+                    <a class="nav-link requestForPaymentTab" data-toggle="tab" href="#requestForPaymentSection">Request for Payment</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link purchaseRequestTab" data-toggle="tab" href="#purchaseRequestSection">Purchase Request</a>
@@ -79,7 +78,27 @@
                     </div>
                 </div>
                 <div class="tab-pane container-fluid fade" id="requestForPaymentSection">
-                    ...
+                    <div class="table-responsive">
+                        <br>
+                        <table id="requestForPayment" class="stripe hover cell-border" style="width:100%">
+                            <thead>
+                                <tr class="text-center text-light">
+                                    <th style="background-color: #3AAFA9">Date Created</th>
+                                    <th style="background-color: #3AAFA9">Date Entered</th>
+                                    <th style="background-color: #3AAFA9">Week no.</th>
+                                    <th style="background-color: #3AAFA9">Period no.</th>
+                                    <th style="background-color: #3AAFA9">Status</th>
+                                    <th style="background-color: #3AAFA9">Expense Account</th>
+                                    <th style="background-color: #3AAFA9">Section</th>
+                                    <th style="background-color: #3AAFA9">Requestor</th>
+                                    <th style="background-color: #3AAFA9">Payee</th>
+                                    <th style="background-color: #3AAFA9">Purpose</th>
+                                    <th style="background-color: #3AAFA9">Remarks</th>
+                                    <th style="background-color: #3AAFA9">Cost</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
                 <div class="tab-pane container-fluid fade" id="purchaseRequestSection">
                     ...
@@ -89,6 +108,7 @@
                 </div>
             </div>
             <script src="../scripts/js/UserView/CashAdvance.js"></script>
+            <script src="../scripts/js/UserView/RequestForPayment.js"></script>
     </body>
 
     </html>

@@ -1,6 +1,6 @@
 <?php
     use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
     //QUERY
     $query = "SELECT budget.budgetID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, budget.budgeted, budget.dateReceived, budget.receivedBy, budget.status, budget.remarks AS BudgetRemarks, budget.dateApproved, 5 * (DATEDIFF(NOW(), budget.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(budget.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM ca INNER JOIN budget ON ca.budgetID = budget.budgetID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON budget.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN users ON ca.userID = users.userID WHERE manager.status = 'Approved' AND budget.status != 'Approved'";

@@ -1,14 +1,14 @@
 <?php
     use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
 
     if(isset($_POST['id'])) {
-        //Get CA ID
-        $cashAdvanceID = '';
-        $stmt = $dbOperation->connect()->query("SELECT caID FROM ca WHERE acctgID = " . $_POST['id']);
+        //Get RFP ID
+        $rfpID = '';
+        $stmt = $dbOperation->connect()->query("SELECT rfpID FROM rfp WHERE acctgID = " . $_POST['id']);
         if($result = $stmt->fetch()) {
-            $cashAdvanceID .= $result->caID;
+            $rfpID .= $result->rfpID;
         }
         //Get Data
         if($dbOperation->updateData('accounting', array(
@@ -19,10 +19,10 @@
             ':remarks' => $_POST['remarksAccounting']
         ), array(
             ':acctgId' => $_POST['id']
-        )) && $dbOperation->updateData('ca', array(
+        )) && $dbOperation->updateData('rfp', array(
             ':status' => "(For Accounting) " . "Status: " . $_POST['statusAccounting'] . " On: " . $_POST['releaseDateAccounting']
         ), array(
-            ':caID' => $cashAdvanceID
+            ':rfpID' => $rfpID
         ))) {
             echo 'Successfully Updated!';
         }

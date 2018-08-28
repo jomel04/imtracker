@@ -31,6 +31,7 @@ if(isset($_SESSION['userType']) == 'Admin') {
     </head>
     <body>
         <?php
+        $activeMenu = '';
         require '../include/header.php';
         ?>
         <br>

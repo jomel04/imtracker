@@ -4,18 +4,18 @@
     $dbOperation = new DatabaseOperation();
 
     //QUERY
-    $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'";
+    $query = "SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON rfp.leadTimeID = lead_time.leadTimeID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
-        $query .= " AND users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR banana_calendars.week_number LIKE '%".$_POST['search']['value']."%' OR banana_calendars.period_number LIKE '%".$_POST['search']['value']."%' OR manager.status LIKE '%".$_POST['search']['value']."%'";
+        $query .= " AND users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%'  OR rfp.payee LIKE '%".$_POST['search']['value']."%' OR expense_account.type LIKE '%".$_POST['search']['value']."%' OR section.type LIKE '%".$_POST['search']['value']."%' OR banana_calendars.week_number LIKE '%".$_POST['search']['value']."%' OR banana_calendars.period_number LIKE '%".$_POST['search']['value']."%' OR manager.status LIKE '%".$_POST['search']['value']."%'";
     }
 
     //For Ordering
     if(isset($_POST['order'])) {
         $query .= ' ORDER BY ' . $_POST['order']['0']['column'] . ' ' . $_POST['order']['0']['dir'] . ' ';
     } else {
-        $query .= ' ORDER BY ca.caID ';
+        $query .= ' ORDER BY rfp.rfpID ';
     }
 
     //Limit display
@@ -27,7 +27,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks AS CashAdvanceRemarks, ca.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM ca INNER JOIN manager ON ca.managerID = manager.managerID INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN lead_time ON ca.leadTimeID = lead_time.leadTimeID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active' AND manager.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON rfp.leadTimeID = lead_time.leadTimeID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -47,7 +47,7 @@
     	$filteredRows = $stmt->rowCount();
     	foreach($result as $row) {
     		$subArray = array();
-    		$subArray[] = '<div class="text-center">' . $row['caID'] . '</div>';
+    		$subArray[] = '<div class="text-center">' . $row['rfpID'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['dateCreated'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
@@ -55,8 +55,9 @@
     		$subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] .  '</div>';
+    		$subArray[] = '<div class="text-center">' . $row['payee'] .  '</div>';
     		$subArray[] = $row['purpose'];
-    		$subArray[] = $row['CashAdvanceRemarks'];
+    		$subArray[] = $row['RequestForPaymentRemarks'];
     		$subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';
@@ -64,7 +65,7 @@
     		$subArray[] = '<div class="text-center">' . $row['DateApproved'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['ManagerRemarks'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['NoOfDays'] . '</div>';
-    		$subArray[] = "<div class='btn-group'><button type='button' id='".$row['caID']."' name='btnUpdate' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['caID']."' name='btnDelete' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
+    		$subArray[] = "<div class='btn-group'><button type='button' id='".$row['rfpID']."' name='btnUpdate' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['rfpID']."' name='btnDelete' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
     		$data[] = $subArray;
     	}
 		$output = array(

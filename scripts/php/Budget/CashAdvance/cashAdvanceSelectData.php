@@ -1,6 +1,6 @@
 <?php
 	use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
 
     if(isset($_POST['id'])) {

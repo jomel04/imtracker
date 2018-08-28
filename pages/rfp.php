@@ -24,7 +24,6 @@
         <!-- BOOTSTRAP CSS-->
         <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
         <!-- BOOTSTRAP JS -->
-        <!-- <script src="../node_modules/popper.js/dist/popper.min.js"></script> -->
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- DATATABLES -->
         <script src="../resources/datatables/datatables.min.js"></script>
@@ -39,6 +38,10 @@
         <?php
             $activeMenu = 'rfp';
             require '../include/header.php';
+            require '../include/Modals/RequestForPayment/requestForPaymentModal.php';
+            require '../include/Modals/RequestForPayment/cctlModal.php';
+            require '../include/Modals/RequestForPayment/budgetModal.php';
+            require '../include/Modals/RequestForPayment/accountingModal.php';
         ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs justify-content-center mt-4">
@@ -109,6 +112,13 @@
                         <table id="cctl" class="stripe hover cell-border" style="width:100%">
                             <thead>
                                 <tr class="text-center text-light">
+                                    <th style="background-color: #3AAFA9">NO</th>
+                                    <th style="background-color: #3AAFA9">Requestor</th>
+                                    <th style="background-color: #3AAFA9">Expense Account</th>
+                                    <th style="background-color: #3AAFA9">Section</th>
+                                    <th style="background-color: #3AAFA9">Purpose</th>
+                                    <th style="background-color: #3AAFA9">Remarks</th>
+                                    <th style="background-color: #3AAFA9">Cost</th>
                                     <th style="background-color: #EB465A">Date Received (Entered)</th>
                                     <th style="background-color: #EB465A">Received by</th>
                                     <th style="background-color: #EB465A">Status</th>
@@ -197,8 +207,8 @@
                 </div>
             </div>
             <script src="../scripts/js/RequestForPayment/requestForPayment.js"></script>
-            <script src="../scripts/js/RequestForPayment/budget.js"></script>
             <script src="../scripts/js/RequestForPayment/cctl.js"></script>
+            <script src="../scripts/js/RequestForPayment/budget.js"></script>
             <script src="../scripts/js/RequestForPayment/accounting.js"></script>
             <script src="../scripts/js/RequestForPayment/summary.js"></script>
     </body>

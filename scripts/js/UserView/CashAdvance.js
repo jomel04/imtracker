@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/UserView/cashAdvanceFetchData.php",
+            url: "../scripts/php/UserView/cashAdvance.php",
             method: "POST"
         },
         "columnDefs": [{

@@ -1,19 +1,19 @@
 $(document).ready(function() {
     //Fetching Accounting Data
     var dataTable = $('#accounting').DataTable({
-        // "processing": true,
-        // "serverSide": true,
-        // "order": [],
-        // "ajax": {
-        //     url: "../scripts/php/Accounting/cashAdvanceFetchData.php",
-        //     method: "POST"
-        // },
-        // "columnDefs": [{
-        //     "targets": [0],
-        //     "orderable": false
-        // }],
-        // "stateSave": true,
-        // "pagingType": "full_numbers"
+        "processing": true,
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            url: "../scripts/php/Accounting/RequestForPayment/requestForPaymentFetchData.php",
+            method: "POST"
+        },
+        "columnDefs": [{
+            "targets": [0],
+            "orderable": false
+        }],
+        "stateSave": true,
+        "pagingType": "full_numbers"
     });
 
     //Reload AJAX
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $(document).on('click', 'button[name="btnUpdateAccounting"]', function() {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/Accounting/cashAdvanceSelectData.php',
+            url: '../scripts/php/Accounting/RequestForPayment/requestForPaymentSelectData.php',
             method: "POST",
             data: {
                 id: id
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var remarksAccounting = $('textarea[name="remarksAccounting"]').val();
         if (dateReceivedAccounting != "" && receivedByAccounting != "" && statusAccounting != "") {
             $.ajax({
-                url: "../scripts/php/Accounting/cashAdvanceUpdateData.php",
+                url: "../scripts/php/Accounting/RequestForPayment/requestForPaymentUpdateData.php",
                 method: "POST",
                 data: {
                     id: id,

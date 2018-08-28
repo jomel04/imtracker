@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2018 at 05:17 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Aug 28, 2018 at 10:08 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,10 +43,12 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(43, 3, '2018-08-27', 'Someone', 'Hahaha', 'Hahaha', '2018-08-27'),
-(44, 3, '2018-08-20', 'Person 2', 'Processing', 'Hahahaha', '0000-00-00'),
-(45, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(46, 3, '0000-00-00', '', '', '', '0000-00-00');
+(54, 3, '2018-08-28', 'Person 1', 'Released', 'hmmmm', '2018-08-28'),
+(55, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(56, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(57, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(58, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(59, 3, '0000-00-00', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -301,10 +303,12 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(58, 2, 'No', '2018-08-27', 'Someone', 'Cancelled', 'Hahaha', '2018-08-27'),
-(59, 2, 'Yes', '2018-08-27', 'Bantillan, E.', 'Approved', '', '2018-08-27'),
-(60, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(61, 2, '', '0000-00-00', '', '', '', '0000-00-00');
+(69, 2, 'Yes', '2018-08-28', 'Bantillan, E.', 'Approved', 'Yehey', '2018-08-28'),
+(70, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
+(71, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
+(72, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
+(73, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
+(74, 2, '', '0000-00-00', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -337,9 +341,10 @@ CREATE TABLE `ca` (
 --
 
 INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
-(151, 1, 1, 139, 164, 59, 44, 24, 1, 1, '2018-08-27', '2018-08-27 10:40:58', '(For Accounting) Status: Processing On: ', 'Active', 'My purpose is ...', 'Remarks is ..', '500.00'),
-(152, 1, 10, 139, 165, 60, 45, 10, 2, 1, '2018-08-27', '2018-08-27 10:54:43', '(For JGM) Status: ', 'Active', 'Hahaha', 'Hahaha', '555.00'),
-(153, 1, 10, 139, 166, 61, 46, 13, 1, 1, '2018-08-27', '2018-08-27 10:55:44', '(For JGM) Status: Processing', 'Active', 'ooops', 'ooops', '5123.00');
+(155, 1, 10, 139, 175, 70, 55, 4, 1, 1, '2018-08-07', '2018-08-28 04:02:30', '(For JGM) Status: Processing', 'Active', 'asd', 'asd', '0.00'),
+(156, 1, 1, 139, 176, 71, 56, 5, 4, 1, '2018-08-23', '2018-08-28 04:03:14', '(For JGM) Status: For Signature', 'Active', 'asd', 'asd', '0.00'),
+(157, 1, 1, 139, 178, 73, 58, 8, 6, 1, '2018-08-28', '2018-08-28 04:06:33', '(For JGM) Status: Cancelled', 'Active', 'Hahaha', 'Hahaha', '676767.00'),
+(158, 1, 10, 139, 179, 74, 59, 7, 4, 1, '2018-08-23', '2018-08-28 04:07:07', '(For JGM) Status: For Signature', 'Active', 'asd', 'asd', '0.00');
 
 -- --------------------------------------------------------
 
@@ -349,6 +354,7 @@ INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`,
 
 CREATE TABLE `cctl` (
   `cctlID` int(11) NOT NULL,
+  `leadTimeID` int(11) NOT NULL,
   `dateReceived` date NOT NULL,
   `receivedBy` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
@@ -360,8 +366,13 @@ CREATE TABLE `cctl` (
 -- Dumping data for table `cctl`
 --
 
-INSERT INTO `cctl` (`cctlID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(1, '2018-08-27', 'Someone', 'Cancelled', 'Hahaha', '2018-08-27');
+INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
+(3, 5, '0000-00-00', '', '', '', '0000-00-00'),
+(4, 5, '0000-00-00', '', '', '', '0000-00-00'),
+(5, 5, '2018-08-27', 'Example 2', 'Approved', 'Hahaha', '2018-08-28'),
+(6, 5, '2018-08-24', 'Example 2', 'Approved', 'Hahaha', '2018-08-24'),
+(7, 5, '2018-08-16', 'Example 1', 'Approved', 'ui', '2018-08-28'),
+(8, 5, '0000-00-00', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -473,7 +484,8 @@ INSERT INTO `lead_time` (`leadTimeID`, `type`, `leadTime`) VALUES
 (1, 'Cash Advance', 7),
 (2, 'Budget', 7),
 (3, 'Accounting', 7),
-(4, 'RequestForPayment', 7);
+(4, 'Request for Payment', 7),
+(5, 'CCTL', 7);
 
 -- --------------------------------------------------------
 
@@ -494,10 +506,12 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(163, '2018-08-27', 'Cancelled', '2018-08-27', 'Hahaha'),
-(164, '2018-08-27', 'Approved', '2018-08-27', ''),
-(165, '0000-00-00', '', '0000-00-00', ''),
-(166, '2018-08-27', 'Processing', '2018-08-27', 'ooops');
+(174, '2018-08-28', 'Approved', '2018-08-28', 'Hahaha'),
+(175, '2018-08-28', 'Processing', '2018-08-28', 'asdas'),
+(176, '2018-08-28', 'For Signature', '2018-08-28', 'asd'),
+(177, '2018-08-22', 'For Signature', '2018-08-28', 'sad'),
+(178, '2018-08-28', 'Cancelled', '2018-08-28', 'Hahaha'),
+(179, '2018-08-28', 'For Signature', '2018-08-28', 'asd');
 
 -- --------------------------------------------------------
 
@@ -556,10 +570,10 @@ CREATE TABLE `rfp` (
   `adminID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `calID` int(11) NOT NULL,
-  `managerID` int(11) DEFAULT NULL,
-  `cctlID` int(11) DEFAULT NULL,
-  `budgetID` int(11) DEFAULT NULL,
-  `acctgID` int(11) DEFAULT NULL,
+  `managerID` int(11) NOT NULL,
+  `cctlID` int(11) NOT NULL,
+  `budgetID` int(11) NOT NULL,
+  `acctgID` int(11) NOT NULL,
   `expenseID` int(11) NOT NULL,
   `sectionID` int(11) NOT NULL,
   `leadTimeID` int(11) NOT NULL,
@@ -567,10 +581,9 @@ CREATE TABLE `rfp` (
   `dateEntered` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
   `state` varchar(20) NOT NULL,
-  `requestor` varchar(50) NOT NULL,
   `payee` varchar(50) NOT NULL,
-  `purpose` text NOT NULL,
-  `remarks` text NOT NULL,
+  `purpose` text,
+  `remarks` text,
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -578,8 +591,9 @@ CREATE TABLE `rfp` (
 -- Dumping data for table `rfp`
 --
 
-INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `state`, `requestor`, `payee`, `purpose`, `remarks`, `cost`) VALUES
-(2, 1, 10, 139, 163, 1, 58, 43, 20, 4, 4, '2018-08-27', '2018-08-27 11:16:20', '(For JGM) Status: Cancelled', 'Active', 'Abdullah, Omar', 'CFBA travel Station', 'Request For Payment', 'Request For Payment', '911.00');
+INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `state`, `payee`, `purpose`, `remarks`, `cost`) VALUES
+(7, 1, 10, 139, 174, 7, 69, 54, 9, 1, 4, '2018-08-28', '2018-08-28 03:36:27', '(For Accounting) Status: Released On: 2018-08-28', 'Active', 'CFBA travel Station', 'No purpose ..', 'No remarks ..', '555.00'),
+(8, 1, 1, 139, 177, 8, 72, 57, 4, 4, 4, '2018-08-22', '2018-08-28 04:05:54', '(For JGM) Status: For Signature', 'Active', 'Example 2', 'asd', 'asd', '0.00');
 
 -- --------------------------------------------------------
 
@@ -673,7 +687,8 @@ ALTER TABLE `ca`
 -- Indexes for table `cctl`
 --
 ALTER TABLE `cctl`
-  ADD PRIMARY KEY (`cctlID`);
+  ADD PRIMARY KEY (`cctlID`),
+  ADD KEY `leadTimeID` (`leadTimeID`);
 
 --
 -- Indexes for table `company`
@@ -754,7 +769,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -766,19 +781,19 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
 
 --
 -- AUTO_INCREMENT for table `cctl`
 --
 ALTER TABLE `cctl`
-  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -802,13 +817,13 @@ ALTER TABLE `jsr`
 -- AUTO_INCREMENT for table `lead_time`
 --
 ALTER TABLE `lead_time`
-  MODIFY `leadTimeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `leadTimeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 
 --
 -- AUTO_INCREMENT for table `pr`
@@ -826,7 +841,7 @@ ALTER TABLE `purchasing`
 -- AUTO_INCREMENT for table `rfp`
 --
 ALTER TABLE `rfp`
-  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `section`
@@ -871,17 +886,23 @@ ALTER TABLE `ca`
   ADD CONSTRAINT `ca_ibfk_2` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `cctl`
+--
+ALTER TABLE `cctl`
+  ADD CONSTRAINT `cctl_ibfk_1` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`);
+
+--
 -- Constraints for table `rfp`
 --
 ALTER TABLE `rfp`
   ADD CONSTRAINT `rfp_ibfk_1` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `rfp_ibfk_10` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`),
+  ADD CONSTRAINT `rfp_ibfk_11` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
+  ADD CONSTRAINT `rfp_ibfk_12` FOREIGN KEY (`cctlID`) REFERENCES `cctl` (`cctlID`),
+  ADD CONSTRAINT `rfp_ibfk_13` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
+  ADD CONSTRAINT `rfp_ibfk_14` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`),
   ADD CONSTRAINT `rfp_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `rfp_ibfk_3` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`),
-  ADD CONSTRAINT `rfp_ibfk_4` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
-  ADD CONSTRAINT `rfp_ibfk_5` FOREIGN KEY (`cctlID`) REFERENCES `cctl` (`cctlID`),
-  ADD CONSTRAINT `rfp_ibfk_6` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
-  ADD CONSTRAINT `rfp_ibfk_7` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`),
   ADD CONSTRAINT `rfp_ibfk_8` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`),
   ADD CONSTRAINT `rfp_ibfk_9` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`);
 

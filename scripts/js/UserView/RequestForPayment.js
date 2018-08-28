@@ -1,11 +1,11 @@
 $(document).ready(function() {
     //Fetching Summary Data
-    var dataTable = $('#summary').DataTable({
+    var dataTable = $('#requestForPayment').DataTable({
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/Summary/requestForPayment.php",
+            url: "../scripts/php/UserView/requestForPayment.php",
             method: "POST"
         },
         "columnDefs": [{
@@ -17,7 +17,7 @@ $(document).ready(function() {
     });
 
     //Clicking Budget Tab
-    $('.summaryTab').click(function () {
+    $('.requestForPaymentTab').click(function () {
         dataTable.ajax.reload();
     });
 });
