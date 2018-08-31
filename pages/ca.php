@@ -36,7 +36,7 @@
 
     <body>
         <?php
-            $activeMenu = 'ca';
+            $activeMenu = 'cashAdvance';
             require '../include/header.php';
             require '../include/Modals/CashAdvance/cashAdvanceModal.php';
             require '../include/Modals/CashAdvance/budgetModal.php';
@@ -61,8 +61,11 @@
             <div class="tab-content">
                 <div class="tab-pane container-fluid active" id="cashAdvanceSection">
                     <div class="row mt-3">
-                        <div class="col-sm-12 text-right">
-                            <button type="button" name="btnAdd" id="btnAdd" data-toggle="modal" data-target="#cashAdvanceModal" class="btn btn-primary btn-md">Add new record</button>
+                        <div class="col-sm-6 text-left">
+                            <button type="button" name="btnShowAll" class="btn btn-outline-primary btn-md">Show all records</button>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button type="button" name="btnAdd" id="btnAdd" data-toggle="modal" data-target="#cashAdvanceModal" class="btn btn-outline-primary btn-md">Add new record</button>
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -70,7 +73,7 @@
                         <table id="cashAdvance" class="stripe hover cell-border" style="width:100%">
                             <thead>
                                 <tr class="text-white text-center">
-                                    <th colspan="12" style="background-color: #3AAFA9;border-left: 2px solid #3AAFA9;border-right: 2px solid #3AAFA9">
+                                    <th colspan="11" style="background-color: #3AAFA9;border-left: 2px solid #3AAFA9;border-right: 2px solid #3AAFA9">
                                         <h3>Innovations Management Cash Advance Tracker</h3>
                                     </th>
                                     <th colspan="6" style="background-color: #EB465A;border-left: 2px solid #EB465A;border-right: 2px solid #EB465A">
@@ -89,7 +92,6 @@
                                     <th style="border-bottom: 2px solid #3AAFA9">Purpose</th>
                                     <th style="border-bottom: 2px solid #3AAFA9">Remarks</th>
                                     <th style="border-bottom: 2px solid #3AAFA9">Cost</th>
-                                    <th style="border-bottom: 2px solid #3AAFA9">Lead time</th>
                                     <th style="border-left: 2px solid #EB465A;border-bottom: 2px solid #EB465A">Date Received (Entered)</th>
                                     <th style="border-bottom: 2px solid #EB465A">Status</th>
                                     <th style="border-bottom: 2px solid #EB465A">Date Approved</th>

@@ -5,7 +5,7 @@ $(document).ready(function() {
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/Budget/CashAdvance/cashAdvanceFetchData.php",
+            url: "../scripts/php/Budget/CashAdvance/fetchData.php",
             method: "POST"
         },
         "columnDefs": [{
@@ -25,7 +25,7 @@ $(document).ready(function() {
     $(document).on('click', 'button[name="btnUpdateBudget"]', function() {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/Budget/CashAdvance/cashAdvanceSelectData.php',
+            url: '../scripts/php/Budget/CashAdvance/selectData.php',
             method: "POST",
             data: {
                 id: id
@@ -59,7 +59,7 @@ $(document).ready(function() {
         var remarksBudget = $('textarea[name="remarksBudget"]').val();
         if (budgeted != "" && dateReceivedBudget != "" && dateApprovedBudget != "" && receivedByBudget != "" && statusBudget != "") {
             $.ajax({
-                url: "../scripts/php/Budget/CashAdvance/cashAdvanceUpdateData.php",
+                url: "../scripts/php/Budget/CashAdvance/updateData.php",
                 method: "POST",
                 data: {
                     id: id,
@@ -80,6 +80,26 @@ $(document).ready(function() {
             });
         } else {
             alert("There are still empty fields!");
+        }
+    });
+
+    // For Delete
+    $(document).on("click", "button[name='btnDeleteBudget']", function () {
+        var id = $(this).attr("id");
+        if(confirm('Are you sure you want to remove this data?')) {
+            $.ajax({
+                url: "../scripts/php/Budget/CashAdvance/deleteData.php",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                }
+            });
+        } else {
+            return false;
         }
     });
 });

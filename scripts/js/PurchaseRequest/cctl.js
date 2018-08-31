@@ -5,7 +5,7 @@ $(document).ready(function () {
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/CCTL/RequestForPayment/fetchData.php",
+            url: "../scripts/php/CCTL/PurchaseRequest/fetchData.php",
             method: "POST"
         },
         "columnDefs": [{
@@ -25,7 +25,7 @@ $(document).ready(function () {
     $(document).on('click', 'button[name="btnUpdateCctl"]', function () {
         var id = $(this).attr('id');
         $.ajax({
-            url: '../scripts/php/CCTL/RequestForPayment/selectData.php',
+            url: '../scripts/php/CCTL/PurchaseRequest/selectData.php',
             method: "POST",
             data: {
                 id: id
@@ -57,7 +57,7 @@ $(document).ready(function () {
         var dateApprovedCctl = $('input[name="dateApprovedCctl"]').val();
         if (dateReceivedCctl != "" && receivedByCctl != "" && statusCctl != "" && dateApprovedCctl != "") {
             $.ajax({
-                url: "../scripts/php/CCTL/RequestForPayment/updateData.php",
+                url: "../scripts/php/CCTL/PurchaseRequest/updateData.php",
                 method: "POST",
                 data: {
                     id: id,
@@ -85,7 +85,7 @@ $(document).ready(function () {
         var id = $(this).attr("id");
         if (confirm('Are you sure you want to remove this data?')) {
             $.ajax({
-                url: "../scripts/php/CCTL/RequestForPayment/deleteData.php",
+                url: "../scripts/php/CCTL/PurchaseRequest/deleteData.php",
                 method: "POST",
                 data: {
                     id: id

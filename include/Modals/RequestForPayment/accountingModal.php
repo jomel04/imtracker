@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="dateReceivedAccounting">Date Received</label>
+                                    <label for="dateReceivedAccounting">Date Received / Entered</label>
                                     <input type="date" name="dateReceivedAccounting" id="dateReceivedAccounting" class="form-control" required>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <label for="remarksAccounting">Remarks</label>
+                                <label for="remarksAccounting">Remarks (Optional)</label>
                                 <div class="form-group">
                                     <textarea name="remarksAccounting" id="remarksAccounting" rows="3" cols="80" class="form-control"></textarea>
                                 </div>

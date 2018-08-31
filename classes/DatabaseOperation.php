@@ -62,8 +62,7 @@
 				echo $e->getMessage();
 			}
 		}
-
-
+		//Update Data
 		public function updateData($table, $data, $where) {
 			try {
 				$datas = array();
@@ -96,63 +95,4 @@
 				echo $e->getMessage();
 			}
 		}
-
-		// again where clause is left optional
-public function dbRowUpdate($table_name, $form_data, $where_clause='')
-{
-    // check for optional where clause
-    $whereSQL = '';
-    if(!empty($where_clause))
-    {
-        // check to see if the 'where' keyword exists
-        if(substr(strtoupper(trim($where_clause)), 0, 5) != 'WHERE')
-        {
-            // not found, add key word
-            $whereSQL = " WHERE ".$where_clause;
-        } else
-        {
-            $whereSQL = " ".trim($where_clause);
-        }
-    }
-    // start the actual SQL statement
-    $sql = "UPDATE ".$table_name." SET ";
-
-    // loop and build the column /
-    $sets = array();
-    foreach($form_data as $column => $value)
-    {
-         $sets[] = "`".$column."` = '".$value."'";
-    }
-    $sql .= implode(', ', $sets);
-
-    // append the where statement
-    $sql .= $whereSQL;
-
-    // run and return the query result
-    return $sql;
-}
-
-function dbRowDelete($table_name, $where_clause='')
-{
-    // check for optional where clause
-    $whereSQL = '';
-    if(!empty($where_clause))
-    {
-        // check to see if the 'where' keyword exists
-        if(substr(strtoupper(trim($where_clause)), 0, 5) != 'WHERE')
-        {
-            // not found, add keyword
-            $whereSQL = " WHERE ".$where_clause;
-        } else
-        {
-            $whereSQL = " ".trim($where_clause);
-        }
-    }
-    // build the query
-    $sql = "DELETE FROM ".$table_name.$whereSQL;
-
-    // run and return the query result resource
-    return mysql_query($sql);
-}
-
 	}

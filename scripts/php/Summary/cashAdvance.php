@@ -4,7 +4,7 @@
     $dbOperation = new DatabaseOperation();
 
     //QUERY
-    $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, ca.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN users ON ca.userID = users.userID";
+    $query = "SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, ca.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -27,7 +27,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, ca.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN users ON ca.userID = users.userID");
+			$stmt = $dbOperation->connect()->prepare("SELECT ca.caID, ca.dateCreated, ca.dateEntered, banana_calendars.week_number, banana_calendars.period_number, ca.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, ca.purpose, ca.remarks, ca.cost FROM ca INNER JOIN banana_calendars ON ca.calID = banana_calendars.calID INNER JOIN expense_account ON ca.expenseID = expense_account.expenseID INNER JOIN section ON ca.sectionID = section.sectionID INNER JOIN users ON ca.userID = users.userID WHERE ca.state = 'Active'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {

@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="dateReceivedBudget">Date Received</label>
+                                    <label for="dateReceivedBudget">Date Received / Entered</label>
                                     <input type="date" name="dateReceivedBudget" id="dateReceivedBudget" class="form-control" required>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-12">
-                                <label for="remarksBudget">Remarks</label>
+                                <label for="remarksBudget">Remarks (Optional)</label>
                                 <div class="form-group">
                                     <textarea name="remarksBudget" id="remarksBudget" rows="3" cols="80" class="form-control"></textarea>
                                 </div>

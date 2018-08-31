@@ -30,14 +30,28 @@
 			);
 			//Inserting Data and get last ID
 			$managerInsertId = $dbOperation->insertDataGetLastId("manager", $managerData);
-
-			//Getting lead time id
-			$queryLeadTimeId = $dbOperation->connect()->query("SELECT leadTimeID FROM lead_time WHERE type = 'Cash Advance'");
-			$getLeadTimeId = "";
-			if($resultLeadTimeId = $queryLeadTimeId->fetch()) {
-				$getLeadTimeId .= $resultLeadTimeId->leadTimeID;
-			}
 			/* -------------------------------------------------- */
+
+            //For CCTL Table
+			/* -------------------------------------------------- */
+			//Get leadTimeID
+			$queryCctlLeadTimeId = $dbOperation->connect()->query("SELECT leadTimeID FROM lead_time WHERE type = 'CCTL'");
+			$cctlLeadTimeId = "";
+			if($resultCctlLeadTimeId = $queryCctlLeadTimeId->fetch()) {
+				$cctlLeadTimeId .= $resultCctlLeadTimeId->leadTimeID;
+			}
+			$cctlData = array(
+				":leadTimeID" => $cctlLeadTimeId,
+				":dateReceived" => '0000-00-00',
+				":receivedBy" => '',
+				":status" => '',
+				":remarks" => '',
+				":dateApproved" => '0000-00-00'
+			);
+			//Get Last insert Id
+			$cctlInsertId = $dbOperation->insertDataGetLastId("cctl", $cctlData);
+            /* -------------------------------------------------- */
+            
 
 			//For Budget Table
 			/* -------------------------------------------------- */
@@ -58,6 +72,27 @@
 			);
 			//Get Last insert Id
 			$budgetInsertId = $dbOperation->insertDataGetLastId("budget", $budgetData);
+			/* -------------------------------------------------- */
+
+			//For Purchasing Table
+			/* -------------------------------------------------- */
+			//Get leadTimeID
+			$queryPurchasingLeadTimeId = $dbOperation->connect()->query("SELECT leadTimeID FROM lead_time WHERE type = 'Purchasing'");
+			$purchasingLeadTimeId = "";
+			if($resultPurchasingLeadTimeId = $queryPurchasingLeadTimeId->fetch()) {
+				$purchasingLeadTimeId .= $resultPurchasingLeadTimeId->leadTimeID;
+			}
+			$purchasingData = array(
+				":leadTimeID" => $purchasingLeadTimeId,
+				":dateReceived" => '0000-00-00',
+				":receivedBy" => '',
+				":status" => '',
+				":poNo" => '',
+				":remarks" => '',
+				":releaseDate" => '0000-00-00'
+			);
+			//Get Last insert Id
+			$purchasingInsertId = $dbOperation->insertDataGetLastId("purchasing", $purchasingData);
 			/* -------------------------------------------------- */
 
 
@@ -81,30 +116,33 @@
 			/* -------------------------------------------------- */
 
 
-			//For Cash Advance Table
+			//For Purchase Request Table
 			/* -------------------------------------------------- */
-			$cashAdvanceData = array(
+			$purchaseRequestData = array(
 				":adminID" => $_SESSION['user'],
 				":userID" => $_POST['requestor'],
 				":calID" => $getWeekNumber,
 				":managerID" => $managerInsertId,
+				":cctlID" => $cctlInsertId,
 				":budgetID" => $budgetInsertId,
+				":purchasingID" => $purchasingInsertId,
 				":acctgID" => $accountingInsertId,
 				":expenseID" => $_POST['expenseAccount'],
 				":sectionID" => $_POST['section'],
-				":leadTimeID" => $getLeadTimeId,
 				":dateCreated" => date("Y-m-d", strtotime($_POST['dateCreated'])),
 				":dateEntered" => date("Y-m-d h:i:s"),
+				":refNo" =>  $_POST['refNo'],
 				":status" => "(For JGM) " . "Status: " . $_POST['status'],
 				":state" => "Active",
 				":purpose" => $_POST['purpose'],
-				":remarks" => $_POST['cashAdvanceRemarks'],
-				":cost" => $_POST['cost']
+				":remarks" => $_POST['purchaseRequestRemarks'],
+				":cost" => $_POST['cost'],
+				":chargeTo" => $_POST['chargeTo']
 			);
 
-			//Inserting To Cash Advance Data
-			$queryCashAdvance = $dbOperation->insertData("ca", $cashAdvanceData);
-			if($queryCashAdvance) {
+			//Inserting To Purchase Request Data
+			$queryPurchaseRequest = $dbOperation->insertData("pr", $purchaseRequestData);
+			if($queryPurchaseRequest) {
 				echo "Inserted Successfully";
 			} else {
 				return false;
@@ -116,7 +154,7 @@
 
 			//Get Manager ID
 			/* -------------------------------------------------- */
-		    $stmt = $dbOperation->connect()->query("SELECT managerID FROM ca WHERE caID = " . $_POST['id']);
+		    $stmt = $dbOperation->connect()->query("SELECT managerID FROM pr WHERE prID = " . $_POST['id']);
 		    $managerID = '';
 		    while($row = $stmt->fetch()) {
 		       $managerID = $row->managerID;
@@ -125,12 +163,12 @@
 			
 			//Update Manager && CA Table
 			/* -------------------------------------------------- */
-			if($dbOperation->updateData("ca", array(
+			if($dbOperation->updateData("pr", array(
 				":status" => "(For JGM) " . "Status: " . $_POST['status'],
 				":purpose" => $_POST['purpose'],
-				":remarks" => $_POST['cashAdvanceRemarks'],
+				":remarks" => $_POST['purchaseRequestRemarks'],
 				":cost" => $_POST['cost']
-			), array(":caID" => $_POST['id'])) && $dbOperation->updateData("manager", array(
+			), array(":prID" => $_POST['id'])) && $dbOperation->updateData("manager", array(
 				":dateReceived" => $_POST['dateReceived'],
 				":status" => $_POST['status'],
 				":dateApproved" => $_POST['dateApproved'],

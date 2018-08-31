@@ -4,7 +4,7 @@
     $dbOperation = new DatabaseOperation();
 
     //QUERY
-    $query = "SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON rfp.leadTimeID = lead_time.leadTimeID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'";
+    $query = "SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -27,7 +27,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, lead_time.leadTime AS LeadTime, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON rfp.leadTimeID = lead_time.leadTimeID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT rfp.rfpID, rfp.dateCreated, rfp.dateEntered, banana_calendars.week_number, banana_calendars.period_number, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, rfp.payee, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, manager.dateReceived, manager.status AS Status, manager.dateApproved AS DateApproved,manager.remarks AS ManagerRemarks , DATEDIFF(manager.dateApproved, manager.dateReceived) AS NoOfDays FROM rfp INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN banana_calendars ON rfp.calID = banana_calendars.calID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -59,7 +59,6 @@
     		$subArray[] = $row['purpose'];
     		$subArray[] = $row['RequestForPaymentRemarks'];
     		$subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';
-    		$subArray[] = '<div class="text-center">' . $row['LeadTime'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['dateReceived'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['Status'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['DateApproved'] . '</div>';

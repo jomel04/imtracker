@@ -30,13 +30,6 @@
 			);
 			//Inserting Data and get last ID
 			$managerInsertId = $dbOperation->insertDataGetLastId("manager", $managerData);
-
-			//Getting lead time id
-			$queryLeadTimeId = $dbOperation->connect()->query("SELECT leadTimeID FROM lead_time WHERE type = 'Request for Payment'");
-			$getLeadTimeId = "";
-			if($resultLeadTimeId = $queryLeadTimeId->fetch()) {
-				$getLeadTimeId .= $resultLeadTimeId->leadTimeID;
-			}
 			/* -------------------------------------------------- */
 
             //For CCTL Table
@@ -102,7 +95,7 @@
 			/* -------------------------------------------------- */
 
 
-			//For Cash Advance Table
+			//For Request for Payment Table
 			/* -------------------------------------------------- */
 			$requestForPaymentData = array(
 				":adminID" => $_SESSION['user'],
@@ -114,7 +107,6 @@
 				":acctgID" => $accountingInsertId,
 				":expenseID" => $_POST['expenseAccount'],
 				":sectionID" => $_POST['section'],
-				":leadTimeID" => $getLeadTimeId,
 				":dateCreated" => date("Y-m-d", strtotime($_POST['dateCreated'])),
 				":dateEntered" => date("Y-m-d h:i:s"),
 				":status" => "(For JGM) " . "Status: " . $_POST['status'],
@@ -125,7 +117,7 @@
 				":cost" => $_POST['cost']
 			);
 
-			//Inserting To Cash Advance Data
+			//Inserting To Request for Payment Data
 			$queryRequestForPayment = $dbOperation->insertData("rfp", $requestForPaymentData);
 			if($queryRequestForPayment) {
 				echo "Inserted Successfully";

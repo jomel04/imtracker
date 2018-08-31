@@ -1,11 +1,11 @@
 $(document).ready(function() {
     //Fetching Data
-    var dataTable = $("#requestForPayment").DataTable({
+    var dataTable = $("#purchaseRequest").DataTable({
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/RequestForPayment/fetchData.php",
+            url: "../scripts/php/PurchaseRequest/fetchData.php",
             type: "POST"
         },
         "columnDefs": [{
@@ -16,50 +16,53 @@ $(document).ready(function() {
         "pagingType": "full_numbers"
     });
     $("button[name='btnAdd']").click(function() {
-        $("#requestForPaymentForm")[0].reset();
-        $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss", "modal");
+        $("#purchaseRequestForm")[0].reset();
+        $('button[name="purchaseRequestbtnSubmit"]').removeAttr("data-dismiss", "modal");
         $("input[name='action']").val("Insert");
-        $("button[name='requestForPaymentbtnSubmit']").text("ADD");
+        $("button[name='purchaseRequestbtnSubmit']").text("ADD");
         $("input[name='dateCreated']").prop("disabled", false);
+        $("input[name='refNo']").prop("disabled", false);
         $("select[name='expenseAccount']").prop("disabled", false);
         $("select[name='section']").prop("disabled", false);
         $("select[name='requestor']").prop("disabled", false);
-        $("select[name='payee']").prop("disabled", false);
+        $("select[name='chargeTo']").prop("disabled", false);
     });
     //Inserting to Database
-    $(document).on("click", "button[name='requestForPaymentbtnSubmit']", function() {
+    $(document).on("click", "button[name='purchaseRequestbtnSubmit']", function() {
         //Get ID
-        var id = $("input[name='getIdRequestForPayment']").val();
+        var id = $("input[name='getIdPurchaseRequest']").val();
         //Data
         var dateCreated = $("input[name='dateCreated']").val();
+        var refNo = $("input[name='refNo']").val();
         var expenseAccount = $("select[name='expenseAccount']").val();
         var section = $("select[name='section']").val();
         var requestor = $("select[name='requestor']").val();
-        var payee = $("select[name='payee']").val();
         var purpose = $("textarea[name='purpose']").val();
-        var requestForPaymentRemarks = $("textarea[name='requestForPaymentRemarks']").val();
+        var purchaseRequestRemarks = $("textarea[name='purchaseRequestRemarks']").val();
         var cost = $("input[name='cost']").val();
+        var chargeTo = $("select[name='chargeTo']").val();
 
         var dateReceived = $("input[name='dateReceived']").val();
         var status = $("select[name='status']").val();
         var dateApproved = $("input[name='dateApproved']").val();
         var managerRemarks = $("textarea[name='managerRemarks']").val();
         var action = $("input[name='action']").val();
-        if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && payee != "" && status != "") {
+        if (dateCreated != "" && refNo != "" && expenseAccount != "" && section != "" && requestor != "" && chargeTo != "" && status != "") {
             $.ajax({
-                url: "../scripts/php/RequestForPayment/insertData.php",
+                url: "../scripts/php/PurchaseRequest/insertData.php",
                 method: "POST",
                 data: {
                     id: id,
                     action: action,
                     dateCreated: dateCreated,
+                    refNo: refNo,
                     expenseAccount: expenseAccount,
                     section: section,
                     requestor: requestor,
-                    payee: payee,
-                    purpose: purpose,
-                    requestForPaymentRemarks: requestForPaymentRemarks,
                     cost: cost,
+                    chargeTo: chargeTo,
+                    purpose: purpose,
+                    purchaseRequestRemarks: purchaseRequestRemarks,
                     dateReceived: dateReceived,
                     status: status,
                     dateApproved: dateApproved,
@@ -76,33 +79,34 @@ $(document).ready(function() {
         }
     });
     $(document).on("click", "#btnClose", function() {
-        $("#requestForPaymentForm")[0].reset();
+        $("#purchaseRequestForm")[0].reset();
     });
 
     //For Update
     $(document).on("click", "button[name='btnUpdate']", function() {
         var id = $(this).attr("id");
         $.ajax({
-            url: "../scripts/php/RequestForPayment/selectData.php",
+            url: "../scripts/php/PurchaseRequest/selectData.php",
             method: "POST",
             data: {
                 id: id
             },
             dataType: "json",
             success: function(data) {
-                $("#requestForPaymentModal").modal("show");
+                $("#purchaseRequestModal").modal("show");
                 $("input[name='action']").val("Update");
-                $("input[name='getIdRequestForPayment']").val(id);
-                $("button[name='requestForPaymentbtnSubmit']").text("UPDATE");
-                $('button[name="requestForPaymentbtnSubmit"]').attr("data-dismiss", "modal");
+                $("input[name='getIdPurchaseRequest']").val(id);
+                $("button[name='purchaseRequestbtnSubmit']").text("UPDATE");
+                $('button[name="purchaseRequestbtnSubmit"]').attr("data-dismiss", "modal");
                 $("input[name='dateCreated']").val(data.dateCreated).prop("disabled", true);
+                $("input[name='refNo']").val(data.refNo).prop("disabled", true);
                 $("select[name='expenseAccount']").val(data.expenseAccount.expenseID).prop("disabled", true);
                 $("select[name='section']").val(data.section.sectionID).prop("disabled", true);
                 $("select[name='requestor']").val(data.requestor).prop("disabled", true);
-                $("select[name='payee']").val(data.payee).prop("disabled", true);
-                $("textarea[name='purpose']").val(data.purpose);
-                $("textarea[name='requestForPaymentRemarks']").val(data.remarks);
                 $("input[name='cost']").val(data.cost);
+                $("select[name='chargeTo']").val(data.chargeTo).prop("disabled", true);
+                $("textarea[name='purpose']").val(data.purpose);
+                $("textarea[name='purchaseRequestRemarks']").val(data.remarks);
                 $("input[name='dateReceived']").val(data.dateReceived);
                 $("select[name='status']").val(data.status);
                 $("input[name='dateApproved']").val(data.dateApproved);
@@ -119,7 +123,7 @@ $(document).ready(function() {
         var id = $(this).attr("id");
         if (confirm('Are you sure you want to remove this data?')) {
             $.ajax({
-                url: "../scripts/php/RequestForPayment/deleteData.php",
+                url: "../scripts/php/PurchaseRequest/deleteData.php",
                 method: "POST",
                 data: {
                     id: id

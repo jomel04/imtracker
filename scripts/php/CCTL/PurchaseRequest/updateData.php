@@ -1,14 +1,14 @@
 <?php
     use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
 
     if(isset($_POST['id'])) {
-        //Get CA ID
-        $rfpID = '';
-        $stmt = $dbOperation->connect()->query("SELECT rfpID FROM rfp WHERE cctlID = " . $_POST['id']);
+        //Get PR ID
+        $prID = '';
+        $stmt = $dbOperation->connect()->query("SELECT prID FROM pr WHERE cctlID = " . $_POST['id']);
         if($result = $stmt->fetch()) {
-            $rfpID .= $result->rfpID;
+            $prID .= $result->prID;
         }
         //Get Data
         if($dbOperation->updateData('cctl', array(
@@ -19,10 +19,10 @@
             ':dateApproved' => date('Y-m-d', strtotime($_POST['dateApprovedCctl']))
         ), array(
             ':cctlID' => $_POST['id']
-        )) && $dbOperation->updateData('rfp', array(
+        )) && $dbOperation->updateData('pr', array(
             ':status' => "(For Cctl) " . " Status: " . $_POST['statusCctl']
         ), array(
-            ':rfpID' => $rfpID
+            ':prID' => $prID
         ))) {
             echo "Successfully Updated!";
         }

@@ -1,9 +1,9 @@
 <?php
     use System\Classes\Database\DatabaseOperation;
-    require "../../../classes/Autoload.php";
+    require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
     //QUERY
-    $query = "SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE manager.status = 'Approved' AND cctl.status != 'Approved'";
+    $query = "SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -26,7 +26,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE manager.status = 'Approved' AND cctl.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {

@@ -59,9 +59,6 @@
                                                     }
                                                     ?>
                                             </select>
-                                            <span class='arrow'>
-                                                <label class='error'></label>
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +84,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
+                                        <label>Cost</label>
+                                        <div class="form-group">
+                                            <input type="number" name="cost" id="cost" class="form-control" value="0.00">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
                                         <label>Purpose</label>
                                         <div class="form-group">
                                             <textarea name="purpose" rows="3" cols="80" class="form-control"></textarea>
@@ -95,17 +100,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <label>Remarks</label>
+                                        <label>Remarks (Optional)</label>
                                         <div class="form-group">
                                             <textarea name="cashAdvanceRemarks" rows="3" cols="80" class="form-control"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12">
-                                        <label>Cost</label>
-                                        <div class="form-group">
-                                            <input type="number" name="cost" id="cost" class="form-control" value="0.0">
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +110,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <label>Date Received</label>
+                                        <label>Date Received / Entered</label>
                                         <div class="form-group">
                                             <input type="date" name="dateReceived" id="dateReceived" class="form-control">
                                         </div>
@@ -123,7 +120,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Status</label>
                                         <div class="form-group">
-                                            <select class="form-control" name="status">
+                                            <select class="form-control" name="status" required>
                                                 <option></option>
                                                 <option value="Approved">Approved</option>
                                                 <option value="Cancelled">Cancelled</option>
@@ -144,7 +141,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <label>Remarks</label>
+                                        <label>Remarks (Optional)</label>
                                         <div class="form-group">
                                             <textarea name="managerRemarks" rows="3" cols="80" class="form-control"></textarea>
                                         </div>

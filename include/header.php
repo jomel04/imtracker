@@ -11,21 +11,25 @@
         <ul class="navbar-nav">
             <?php if($_SESSION['userType'] == 'Admin'): ?>
             <li class="nav-item">
-                <?php if($activeMenu == 'ca'): ?>
+                <?php if($activeMenu == 'cashAdvance'): ?>
                 <a class="nav-link active" href="../pages/ca.php">CA</a>
                 <?php else: ?>
                 <a class="nav-link" href="../pages/ca.php">CA</a>
                 <?php endif; ?>
             </li>
             <li class="nav-item">
-                <?php if($activeMenu == 'rfp'): ?>
+                <?php if($activeMenu == 'requestForPayment'): ?>
                 <a class="nav-link active" href="../pages/rfp.php">RFP</a>
                 <?php else: ?>
                 <a class="nav-link" href="../pages/rfp.php">RFP</a>
                 <?php endif; ?>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">PR</a>
+                <?php if($activeMenu == 'purchaseRequest'): ?>
+                <a class="nav-link active" href="../pages/pr.php">PR</a>
+                <?php else: ?>
+                <a class="nav-link" href="../pages/pr.php">PR</a>
+                <?php endif; ?>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">JSR</a>

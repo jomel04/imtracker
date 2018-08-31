@@ -1,17 +1,17 @@
 <!-- The Modal -->
-<div class="modal fade" id="requestForPaymentModal">
+<div class="modal fade" id="purchaseRequestModal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="col-md-6 modal-title">Request for Payment</h4>
+                <h4 class="col-md-6 modal-title">Purchase Request</h4>
                 <h4 class="col-md-4 modal-title text-right">For JGM</h4>
                 <button type="button" id="btnClose" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
             <div class="modal-content">
                 <div class="modal-body">
-                    <form method="post" id="requestForPaymentForm">
+                    <form method="post" id="purchaseRequestForm">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="row">
@@ -19,6 +19,14 @@
                                         <label>Date Created</label>
                                         <div class="form-group has-danger">
                                             <input type="date" name="dateCreated" id="dateCreated" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">
+                                        <label>Referece no.</label>
+                                        <div class="form-group has-danger">
+                                            <input type="number" name="refNo" id="refNo" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -84,13 +92,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
-                                        <label>Payee</label>
+                                        <label>Charge to</label>
                                         <div class="form-group">
-                                            <select name="payee" class="form-control" required>
+                                            <select name="chargeTo" class="form-control" required>
                                                 <option></option>
-                                                <option value="CFBA travel Station">CFBA travel Station</option>
-                                                <option value="Example 2">Example 2</option>
-                                                <option value="Example 3">Example 3</option>
+                                                <option value="DANA FDN">DANA FDN</option>
+                                                <option value="DFADI">DFADI</option>
+                                                <option value="DFAI">DFAI</option>
+                                                <option value="DFFC">DFFC</option>
+                                                <option value="NEH">NEH</option>
+                                                <option value="NEH - FMI">NEH - FMI</option>
+                                                <option value="NEH - IM">NEH - IM</option>
+                                                <option value="RPBH">RPBH</option>
+                                                <option value="DEL MON">DEL MON</option>
                                             </select>
                                         </div>
                                     </div>
@@ -115,7 +129,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Remarks (Optional)</label>
                                         <div class="form-group">
-                                            <textarea name="requestForPaymentRemarks" rows="3" cols="80" class="form-control"></textarea>
+                                            <textarea name="purchaseRequestRemarks" rows="3" cols="80" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -163,10 +177,10 @@
                             </div>
                         </div>
                         <input type="hidden" name="action">
-                        <input type="hidden" name="getIdRequestForPayment">
+                        <input type="hidden" name="getIdPurchaseRequest">
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" name="requestForPaymentbtnSubmit" id="requestForPaymentbtnSubmit" class="btn btn-outline-success btn-block btn-lg">ADD</button>
+                                <button type="submit" name="purchaseRequestbtnSubmit" id="purchaseRequestbtnSubmit" class="btn btn-outline-success btn-block btn-lg">ADD</button>
                             </div>
                         </div>
                     </form>
