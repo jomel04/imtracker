@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2018 at 10:08 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Generation Time: Sep 01, 2018 at 04:45 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,12 +43,9 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(54, 3, '2018-08-28', 'Person 1', 'Released', 'hmmmm', '2018-08-28'),
-(55, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(56, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(57, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(58, 3, '0000-00-00', '', '', '', '0000-00-00'),
-(59, 3, '0000-00-00', '', '', '', '0000-00-00');
+(6, 3, '2018-09-03', 'Person 2', 'Released', '', '2018-09-03'),
+(7, 3, '0000-00-00', '', '', '', '0000-00-00'),
+(8, 3, '2018-08-31', 'Person 2', 'Released', '', '2018-08-31');
 
 -- --------------------------------------------------------
 
@@ -303,12 +300,9 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(69, 2, 'Yes', '2018-08-28', 'Bantillan, E.', 'Approved', 'Yehey', '2018-08-28'),
-(70, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(71, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(72, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(73, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
-(74, 2, '', '0000-00-00', '', '', '', '0000-00-00');
+(6, 2, 'Yes', '2018-08-31', 'Bantillan, E.', 'Approved', '', '2018-08-31'),
+(7, 2, '', '0000-00-00', '', '', '', '0000-00-00'),
+(8, 2, 'Yes', '2018-08-31', 'Bantillan, E.', 'Approved', '', '2018-08-31');
 
 -- --------------------------------------------------------
 
@@ -326,7 +320,6 @@ CREATE TABLE `ca` (
   `acctgID` int(11) NOT NULL,
   `expenseID` int(11) NOT NULL,
   `sectionID` int(11) NOT NULL,
-  `leadTimeID` int(11) NOT NULL,
   `dateCreated` date NOT NULL,
   `dateEntered` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
@@ -335,16 +328,6 @@ CREATE TABLE `ca` (
   `remarks` text NOT NULL,
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `ca`
---
-
-INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
-(155, 1, 10, 139, 175, 70, 55, 4, 1, 1, '2018-08-07', '2018-08-28 04:02:30', '(For JGM) Status: Processing', 'Active', 'asd', 'asd', '0.00'),
-(156, 1, 1, 139, 176, 71, 56, 5, 4, 1, '2018-08-23', '2018-08-28 04:03:14', '(For JGM) Status: For Signature', 'Active', 'asd', 'asd', '0.00'),
-(157, 1, 1, 139, 178, 73, 58, 8, 6, 1, '2018-08-28', '2018-08-28 04:06:33', '(For JGM) Status: Cancelled', 'Active', 'Hahaha', 'Hahaha', '676767.00'),
-(158, 1, 10, 139, 179, 74, 59, 7, 4, 1, '2018-08-23', '2018-08-28 04:07:07', '(For JGM) Status: For Signature', 'Active', 'asd', 'asd', '0.00');
 
 -- --------------------------------------------------------
 
@@ -367,12 +350,9 @@ CREATE TABLE `cctl` (
 --
 
 INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(3, 5, '0000-00-00', '', '', '', '0000-00-00'),
-(4, 5, '0000-00-00', '', '', '', '0000-00-00'),
-(5, 5, '2018-08-27', 'Example 2', 'Approved', 'Hahaha', '2018-08-28'),
-(6, 5, '2018-08-24', 'Example 2', 'Approved', 'Hahaha', '2018-08-24'),
-(7, 5, '2018-08-16', 'Example 1', 'Approved', 'ui', '2018-08-28'),
-(8, 5, '0000-00-00', '', '', '', '0000-00-00');
+(6, 5, '2018-08-31', 'Example 1', 'Approved', '', '2018-08-31'),
+(7, 5, '2018-08-22', 'Example 2', 'Cancelled', '', '2018-08-31'),
+(8, 5, '2018-08-22', 'Example 2', 'Approved', '', '2018-09-03');
 
 -- --------------------------------------------------------
 
@@ -382,17 +362,35 @@ INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `statu
 
 CREATE TABLE `company` (
   `companyID` int(11) NOT NULL,
-  `companyName` varchar(50) NOT NULL,
-  `department` varchar(50) NOT NULL
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`companyID`, `companyName`, `department`) VALUES
-(1, 'NEH', 'example'),
-(2, 'DANA', 'example');
+INSERT INTO `company` (`companyID`, `name`) VALUES
+(1, 'NEH'),
+(2, 'DANA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `departmentID` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`departmentID`, `name`) VALUES
+(1, 'IM'),
+(2, 'FMI');
 
 -- --------------------------------------------------------
 
@@ -443,23 +441,23 @@ INSERT INTO `expense_account` (`expenseID`, `type`) VALUES
 
 CREATE TABLE `jsr` (
   `jsrID` int(11) NOT NULL,
+  `adminID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
+  `calID` int(11) NOT NULL,
   `managerID` int(11) DEFAULT NULL,
   `cctlID` int(11) DEFAULT NULL,
   `budgetID` int(11) DEFAULT NULL,
+  `purchasingID` int(11) NOT NULL,
   `acctgID` int(11) DEFAULT NULL,
-  `calID` int(11) NOT NULL,
   `expenseID` int(11) NOT NULL,
+  `sectionID` int(11) NOT NULL,
   `dateCreated` date NOT NULL,
   `dateEntered` date NOT NULL,
-  `weekNo` int(11) NOT NULL,
-  `periodNo` int(11) NOT NULL,
-  `refNo` int(11) NOT NULL,
+  `refNo` bigint(20) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `section` varchar(50) NOT NULL,
-  `requestor` varchar(50) NOT NULL,
-  `purpose` varchar(50) NOT NULL,
-  `remarks` varchar(50) NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `purpose` text NOT NULL,
+  `remarks` text NOT NULL,
   `cost` decimal(18,2) NOT NULL,
   `chargeTo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -485,7 +483,8 @@ INSERT INTO `lead_time` (`leadTimeID`, `type`, `leadTime`) VALUES
 (2, 'Budget', 7),
 (3, 'Accounting', 7),
 (4, 'Request for Payment', 7),
-(5, 'CCTL', 7);
+(5, 'CCTL', 7),
+(6, 'Purchasing', 7);
 
 -- --------------------------------------------------------
 
@@ -506,12 +505,9 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(174, '2018-08-28', 'Approved', '2018-08-28', 'Hahaha'),
-(175, '2018-08-28', 'Processing', '2018-08-28', 'asdas'),
-(176, '2018-08-28', 'For Signature', '2018-08-28', 'asd'),
-(177, '2018-08-22', 'For Signature', '2018-08-28', 'sad'),
-(178, '2018-08-28', 'Cancelled', '2018-08-28', 'Hahaha'),
-(179, '2018-08-28', 'For Signature', '2018-08-28', 'asd');
+(6, '2018-08-31', 'Approved', '2018-08-31', ''),
+(7, '2018-08-31', 'Approved', '2018-08-31', ''),
+(8, '2018-09-03', 'Approved', '2018-09-03', '');
 
 -- --------------------------------------------------------
 
@@ -521,27 +517,35 @@ INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `r
 
 CREATE TABLE `pr` (
   `prID` int(11) NOT NULL,
+  `adminID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
+  `calID` int(11) NOT NULL,
   `managerID` int(11) NOT NULL,
   `cctlID` int(11) NOT NULL,
   `budgetID` int(11) NOT NULL,
   `purchasingID` int(11) NOT NULL,
   `acctgID` int(11) NOT NULL,
-  `calID` int(11) NOT NULL,
-  `expenseID` int(11) DEFAULT NULL,
+  `expenseID` int(11) NOT NULL,
+  `sectionID` int(11) NOT NULL,
   `dateCreated` date NOT NULL,
-  `dateEntered` date NOT NULL,
-  `weekNo` int(11) NOT NULL,
-  `periodNo` int(11) NOT NULL,
-  `refNo` int(11) NOT NULL,
+  `dateEntered` datetime NOT NULL,
+  `refNo` bigint(20) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `section` varchar(50) NOT NULL,
-  `requestor` varchar(50) NOT NULL,
-  `purpose` varchar(50) NOT NULL,
-  `remarks` varchar(50) NOT NULL,
+  `state` varchar(20) NOT NULL,
+  `purpose` text,
+  `remarks` text,
   `cost` decimal(18,2) NOT NULL,
   `chargeTo` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pr`
+--
+
+INSERT INTO `pr` (`prID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `purchasingID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `refNo`, `status`, `state`, `purpose`, `remarks`, `cost`, `chargeTo`) VALUES
+(2, 1, 2, 139, 6, 6, 6, 5, 6, 5, 1, '2018-08-31', '2018-08-31 09:13:52', 911, '(For Accounting) Status: Released On: 2018-09-03', 'Active', '', '', '911.00', 'NEH - IM'),
+(3, 1, 2, 139, 7, 7, 7, 6, 7, 17, 4, '2018-08-31', '2018-08-31 09:15:37', 199, '(For Cctl)  Status: Cancelled', 'Active', '', '', '199.00', 'NEH - FMI'),
+(4, 1, 1, 139, 8, 8, 8, 7, 8, 16, 5, '2018-09-03', '2018-09-01 09:41:22', 163, '(For Accounting) Status: Released On: 2018-08-31', 'Active', '', '', '163.00', 'RPBH');
 
 -- --------------------------------------------------------
 
@@ -551,13 +555,23 @@ CREATE TABLE `pr` (
 
 CREATE TABLE `purchasing` (
   `purchasingID` int(11) NOT NULL,
+  `leadTimeID` int(11) NOT NULL,
   `dateReceived` date NOT NULL,
   `receivedBy` varchar(50) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `poNo` int(11) NOT NULL,
+  `poNo` bigint(20) NOT NULL,
   `remarks` varchar(50) NOT NULL,
   `releaseDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `purchasing`
+--
+
+INSERT INTO `purchasing` (`purchasingID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `poNo`, `remarks`, `releaseDate`) VALUES
+(5, 6, '2018-08-21', 'Person 3', 'Delivered', 1121, 'hahaha', '2018-08-31'),
+(6, 6, '0000-00-00', '', '', 0, '', '0000-00-00'),
+(7, 6, '2018-08-31', 'Person 3', 'Delivered', 163, '', '2018-08-31');
 
 -- --------------------------------------------------------
 
@@ -576,7 +590,6 @@ CREATE TABLE `rfp` (
   `acctgID` int(11) NOT NULL,
   `expenseID` int(11) NOT NULL,
   `sectionID` int(11) NOT NULL,
-  `leadTimeID` int(11) NOT NULL,
   `dateCreated` date NOT NULL,
   `dateEntered` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
@@ -586,14 +599,6 @@ CREATE TABLE `rfp` (
   `remarks` text,
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `rfp`
---
-
-INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `leadTimeID`, `dateCreated`, `dateEntered`, `status`, `state`, `payee`, `purpose`, `remarks`, `cost`) VALUES
-(7, 1, 10, 139, 174, 7, 69, 54, 9, 1, 4, '2018-08-28', '2018-08-28 03:36:27', '(For Accounting) Status: Released On: 2018-08-28', 'Active', 'CFBA travel Station', 'No purpose ..', 'No remarks ..', '555.00'),
-(8, 1, 1, 139, 177, 8, 72, 57, 4, 4, 4, '2018-08-22', '2018-08-28 04:05:54', '(For JGM) Status: For Signature', 'Active', 'Example 2', 'asd', 'asd', '0.00');
 
 -- --------------------------------------------------------
 
@@ -628,6 +633,7 @@ INSERT INTO `section` (`sectionID`, `type`) VALUES
 CREATE TABLE `users` (
   `userID` int(11) NOT NULL,
   `companyID` int(11) NOT NULL,
+  `departmentID` int(11) NOT NULL,
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -640,9 +646,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userID`, `companyID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
-(1, 1, 'Omar', 'Abdullah', '..', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
-(10, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
+INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
+(1, 1, 1, 'Omar', 'Abdullah', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(2, 1, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
 
 --
 -- Indexes for dumped tables
@@ -680,7 +686,6 @@ ALTER TABLE `ca`
   ADD KEY `acctgID` (`acctgID`),
   ADD KEY `expenseID` (`expenseID`),
   ADD KEY `sectionID` (`sectionID`),
-  ADD KEY `leadTimeID` (`leadTimeID`),
   ADD KEY `adminID` (`adminID`);
 
 --
@@ -697,6 +702,12 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`companyID`);
 
 --
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`departmentID`);
+
+--
 -- Indexes for table `expense_account`
 --
 ALTER TABLE `expense_account`
@@ -706,7 +717,18 @@ ALTER TABLE `expense_account`
 -- Indexes for table `jsr`
 --
 ALTER TABLE `jsr`
-  ADD PRIMARY KEY (`jsrID`);
+  ADD PRIMARY KEY (`jsrID`),
+  ADD UNIQUE KEY `refNo` (`refNo`),
+  ADD KEY `adminID` (`adminID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `calID` (`calID`),
+  ADD KEY `managerID` (`managerID`),
+  ADD KEY `cctlID` (`cctlID`),
+  ADD KEY `budgetID` (`budgetID`),
+  ADD KEY `purchasingID` (`purchasingID`),
+  ADD KEY `acctgID` (`acctgID`),
+  ADD KEY `expenseID` (`expenseID`),
+  ADD KEY `sectionID` (`sectionID`);
 
 --
 -- Indexes for table `lead_time`
@@ -724,13 +746,26 @@ ALTER TABLE `manager`
 -- Indexes for table `pr`
 --
 ALTER TABLE `pr`
-  ADD PRIMARY KEY (`prID`);
+  ADD PRIMARY KEY (`prID`),
+  ADD UNIQUE KEY `refNo` (`refNo`),
+  ADD KEY `adminID` (`adminID`),
+  ADD KEY `userID` (`userID`),
+  ADD KEY `calID` (`calID`),
+  ADD KEY `managerID` (`managerID`),
+  ADD KEY `cctlID` (`cctlID`),
+  ADD KEY `budgetID` (`budgetID`),
+  ADD KEY `purchasingID` (`purchasingID`),
+  ADD KEY `acctgID` (`acctgID`),
+  ADD KEY `expenseID` (`expenseID`),
+  ADD KEY `sectionID` (`sectionID`);
 
 --
 -- Indexes for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  ADD PRIMARY KEY (`purchasingID`);
+  ADD PRIMARY KEY (`purchasingID`),
+  ADD UNIQUE KEY `poNo` (`poNo`),
+  ADD KEY `leadTimeID` (`leadTimeID`);
 
 --
 -- Indexes for table `rfp`
@@ -745,8 +780,7 @@ ALTER TABLE `rfp`
   ADD KEY `acctgID` (`acctgID`),
   ADD KEY `calID` (`calID`),
   ADD KEY `expenseID` (`expenseID`),
-  ADD KEY `sectionID` (`sectionID`),
-  ADD KEY `leadTimeID` (`leadTimeID`);
+  ADD KEY `sectionID` (`sectionID`);
 
 --
 -- Indexes for table `section`
@@ -759,7 +793,8 @@ ALTER TABLE `section`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userID`),
-  ADD KEY `companyID` (`companyID`);
+  ADD KEY `companyID` (`companyID`),
+  ADD KEY `departmentID` (`departmentID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -769,7 +804,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -781,13 +816,13 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=159;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cctl`
@@ -800,6 +835,12 @@ ALTER TABLE `cctl`
 --
 ALTER TABLE `company`
   MODIFY `companyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `departmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `expense_account`
@@ -817,31 +858,31 @@ ALTER TABLE `jsr`
 -- AUTO_INCREMENT for table `lead_time`
 --
 ALTER TABLE `lead_time`
-  MODIFY `leadTimeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `leadTimeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pr`
 --
 ALTER TABLE `pr`
-  MODIFY `prID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `prID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `rfp`
 --
 ALTER TABLE `rfp`
-  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `section`
@@ -853,7 +894,7 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -875,14 +916,13 @@ ALTER TABLE `budget`
 -- Constraints for table `ca`
 --
 ALTER TABLE `ca`
-  ADD CONSTRAINT `ca_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ca_ibfk_11` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `ca_ibfk_12` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
   ADD CONSTRAINT `ca_ibfk_13` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
   ADD CONSTRAINT `ca_ibfk_14` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`),
   ADD CONSTRAINT `ca_ibfk_15` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`),
   ADD CONSTRAINT `ca_ibfk_16` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`),
-  ADD CONSTRAINT `ca_ibfk_17` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`),
+  ADD CONSTRAINT `ca_ibfk_17` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `ca_ibfk_18` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `ca_ibfk_2` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -892,16 +932,51 @@ ALTER TABLE `cctl`
   ADD CONSTRAINT `cctl_ibfk_1` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`);
 
 --
+-- Constraints for table `jsr`
+--
+ALTER TABLE `jsr`
+  ADD CONSTRAINT `jsr_ibfk_1` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `jsr_ibfk_10` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`),
+  ADD CONSTRAINT `jsr_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `jsr_ibfk_3` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`),
+  ADD CONSTRAINT `jsr_ibfk_4` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
+  ADD CONSTRAINT `jsr_ibfk_5` FOREIGN KEY (`cctlID`) REFERENCES `cctl` (`cctlID`),
+  ADD CONSTRAINT `jsr_ibfk_6` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
+  ADD CONSTRAINT `jsr_ibfk_7` FOREIGN KEY (`purchasingID`) REFERENCES `purchasing` (`purchasingID`),
+  ADD CONSTRAINT `jsr_ibfk_8` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`),
+  ADD CONSTRAINT `jsr_ibfk_9` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`);
+
+--
+-- Constraints for table `pr`
+--
+ALTER TABLE `pr`
+  ADD CONSTRAINT `pr_ibfk_10` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`),
+  ADD CONSTRAINT `pr_ibfk_11` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`),
+  ADD CONSTRAINT `pr_ibfk_12` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `pr_ibfk_13` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `pr_ibfk_3` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`),
+  ADD CONSTRAINT `pr_ibfk_4` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
+  ADD CONSTRAINT `pr_ibfk_5` FOREIGN KEY (`cctlID`) REFERENCES `cctl` (`cctlID`),
+  ADD CONSTRAINT `pr_ibfk_6` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
+  ADD CONSTRAINT `pr_ibfk_7` FOREIGN KEY (`purchasingID`) REFERENCES `purchasing` (`purchasingID`),
+  ADD CONSTRAINT `pr_ibfk_8` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`);
+
+--
+-- Constraints for table `purchasing`
+--
+ALTER TABLE `purchasing`
+  ADD CONSTRAINT `purchasing_ibfk_1` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`);
+
+--
 -- Constraints for table `rfp`
 --
 ALTER TABLE `rfp`
-  ADD CONSTRAINT `rfp_ibfk_1` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
-  ADD CONSTRAINT `rfp_ibfk_10` FOREIGN KEY (`leadTimeID`) REFERENCES `lead_time` (`leadTimeID`),
   ADD CONSTRAINT `rfp_ibfk_11` FOREIGN KEY (`managerID`) REFERENCES `manager` (`managerID`),
   ADD CONSTRAINT `rfp_ibfk_12` FOREIGN KEY (`cctlID`) REFERENCES `cctl` (`cctlID`),
   ADD CONSTRAINT `rfp_ibfk_13` FOREIGN KEY (`budgetID`) REFERENCES `budget` (`budgetID`),
   ADD CONSTRAINT `rfp_ibfk_14` FOREIGN KEY (`acctgID`) REFERENCES `accounting` (`acctgID`),
-  ADD CONSTRAINT `rfp_ibfk_2` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `rfp_ibfk_15` FOREIGN KEY (`adminID`) REFERENCES `users` (`userID`),
+  ADD CONSTRAINT `rfp_ibfk_16` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   ADD CONSTRAINT `rfp_ibfk_3` FOREIGN KEY (`calID`) REFERENCES `banana_calendars` (`calID`),
   ADD CONSTRAINT `rfp_ibfk_8` FOREIGN KEY (`expenseID`) REFERENCES `expense_account` (`expenseID`),
   ADD CONSTRAINT `rfp_ibfk_9` FOREIGN KEY (`sectionID`) REFERENCES `section` (`sectionID`);
@@ -910,7 +985,8 @@ ALTER TABLE `rfp`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`companyID`) REFERENCES `company` (`companyID`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`companyID`) REFERENCES `company` (`companyID`),
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`departmentID`) REFERENCES `department` (`departmentID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

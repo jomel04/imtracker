@@ -141,7 +141,6 @@
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
-                $subArray[] = '<div class="text-center">' . $row['payee'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['remarks'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['cost'] . '</div>';

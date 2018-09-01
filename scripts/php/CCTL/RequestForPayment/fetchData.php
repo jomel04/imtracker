@@ -3,7 +3,7 @@
     require "../../../../classes/Autoload.php";
     $dbOperation = new DatabaseOperation();
     //QUERY
-    $query = "SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'";
+    $query = "SELECT cctl.cctlID, users.lastName, users.firstName, rfp.payee, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
@@ -26,7 +26,7 @@
 	function fetchAllData() {
 		$dbOperation = new DatabaseOperation();
 		try {
-			$stmt = $dbOperation->connect()->prepare("SELECT cctl.cctlID, users.lastName, users.firstName, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'");
+			$stmt = $dbOperation->connect()->prepare("SELECT cctl.cctlID, users.lastName, users.firstName, rfp.payee, expense_account.type AS ExpenseAccount, section.type AS Section, rfp.purpose, rfp.remarks AS RequestForPaymentRemarks, rfp.cost, cctl.dateReceived, cctl.receivedBy, cctl.status, cctl.remarks AS CctlRemarks, cctl.dateApproved, 5 * (DATEDIFF(NOW(), cctl.dateReceived) DIV 7) + MID('0123455401234434012332340122123401101234000123450', 7 * WEEKDAY(cctl.dateReceived) + WEEKDAY(NOW()) + 1, 1) AS LeadTime FROM rfp INNER JOIN cctl ON rfp.cctlID = cctl.cctlID INNER JOIN expense_account ON rfp.expenseID = expense_account.expenseID INNER JOIN section ON rfp.sectionID = section.sectionID INNER JOIN lead_time ON cctl.leadTimeID = lead_time.leadTimeID INNER JOIN manager ON rfp.managerID = manager.managerID INNER JOIN users ON rfp.userID = users.userID WHERE rfp.state = 'Active' AND manager.status = 'Approved' AND cctl.status != 'Approved'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -49,6 +49,7 @@
             if($row['status'] == "") {
                 $subArray[] = '<div class="text-center">' . $row['cctlID'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['payee'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
@@ -64,6 +65,7 @@
             } elseif($row['LeadTime'] < '6') {
                 $subArray[] = '<div class="text-center">' . $row['cctlID'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
+                $subArray[] = '<div class="text-center">' . $row['payee'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['purpose'] . '</div>';
@@ -79,6 +81,7 @@
             } else {
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['cctlID'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['lastName'] . ", " . $row['firstName'] . '</div>';
+                $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['payee'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color: #EB465A;">' . $row['purpose'] . '</div>';

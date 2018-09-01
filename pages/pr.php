@@ -40,6 +40,9 @@
             require '../include/header.php';
             require '../include/Modals/PurchaseRequest/main.php';
             require '../include/Modals/PurchaseRequest/cctl.php';
+            require '../include/Modals/PurchaseRequest/budget.php';
+            require '../include/Modals/PurchaseRequest/purchasing.php';
+            require '../include/Modals/PurchaseRequest/accounting.php';
         ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs justify-content-center mt-4">
@@ -76,7 +79,7 @@
                             <thead>
                                 <tr class="text-white text-center">
                                     <th colspan="13" style="background-color: #3AAFA9;border-left: 2px solid #3AAFA9;border-right: 2px solid #3AAFA9">
-                                        <h3>Innovations Management Purchase Request</h3>
+                                        <h3>Innovations Management Purchase Request Tracker</h3>
                                     </th>
                                     <th colspan="7" style="background-color: #EB465A;border-left: 2px solid #EB465A;border-right: 2px solid #EB465A">
                                         <h3>For JGM</h3>
@@ -244,6 +247,9 @@
             </div>
             <script src="../scripts/js/PurchaseRequest/purchaseRequest.js"></script>
             <script src="../scripts/js/PurchaseRequest/cctl.js"></script>
+            <script src="../scripts/js/PurchaseRequest/budget.js"></script>
+            <script src="../scripts/js/PurchaseRequest/purchasing.js"></script>
+            <script src="../scripts/js/PurchaseRequest/accounting.js"></script>
             <script src="../scripts/js/PurchaseRequest/summary.js"></script>
     </body>
 

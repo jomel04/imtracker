@@ -32,7 +32,11 @@
                 <?php endif; ?>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">JSR</a>
+                <?php if($activeMenu == 'jobServiceRequest'): ?>
+                <a class="nav-link active" href="../pages/jsr.php">JSR</a>
+                <?php else: ?>
+                <a class="nav-link" href="../pages/jsr.php">JSR</a>
+                <?php endif; ?>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">

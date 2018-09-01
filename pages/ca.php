@@ -38,9 +38,9 @@
         <?php
             $activeMenu = 'cashAdvance';
             require '../include/header.php';
-            require '../include/Modals/CashAdvance/cashAdvanceModal.php';
-            require '../include/Modals/CashAdvance/budgetModal.php';
-            require '../include/Modals/CashAdvance/accountingModal.php';
+            require '../include/Modals/CashAdvance/main.php';
+            require '../include/Modals/CashAdvance/budget.php';
+            require '../include/Modals/CashAdvance/accounting.php';
         ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs justify-content-center mt-4">

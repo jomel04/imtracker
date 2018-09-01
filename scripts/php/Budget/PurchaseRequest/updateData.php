@@ -4,11 +4,11 @@
     $dbOperation = new DatabaseOperation();
 
     if(isset($_POST['id'])) {
-        //Get RFP ID
-        $rfpID = '';
-        $stmt = $dbOperation->connect()->query("SELECT rfpID FROM rfp WHERE budgetID = " . $_POST['id']);
+        //Get PR ID
+        $prID = '';
+        $stmt = $dbOperation->connect()->query("SELECT prID FROM pr WHERE budgetID = " . $_POST['id']);
         if($result = $stmt->fetch()) {
-            $rfpID .= $result->rfpID;
+            $prID .= $result->prID;
         }
         //Get Data
         if($dbOperation->updateData('budget', array(
@@ -20,10 +20,10 @@
             ':remarks' => $_POST['remarksBudget']
         ), array(
             ':budgetID' => $_POST['id']
-        )) && $dbOperation->updateData('rfp', array(
+        )) && $dbOperation->updateData('pr', array(
             ':status' => "(For Budget) " . "Budgeted: " . $_POST['budgeted'] . " Status: " . $_POST['statusBudget']
         ), array(
-            ':rfpID' => $rfpID
+            ':prID' => $prID
         ))) {
             echo "Successfully Updated!";
         }
