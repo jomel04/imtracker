@@ -52,7 +52,7 @@
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 55px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:tomato;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -64,7 +64,7 @@
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:tomato;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -76,7 +76,7 @@
                 $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -88,7 +88,7 @@
                 $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -100,7 +100,7 @@
                 $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -112,7 +112,7 @@
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:green;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:green;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -124,7 +124,7 @@
                 $subArray[] = '<div class="text-center">' . $row['dateEntered'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre> style='text-align:center;'" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';

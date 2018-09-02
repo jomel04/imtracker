@@ -125,7 +125,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Received / Entered</label>
                                         <div class="form-group">
-                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control">
+                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -148,7 +148,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Approved</label>
                                         <div class="form-group">
-                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control">
+                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

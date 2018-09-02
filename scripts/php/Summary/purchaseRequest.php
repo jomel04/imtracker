@@ -5,11 +5,11 @@
     $dbOperation = new DatabaseOperation();
     
     //QUERY
-    $query = "SELECT pr.prID, pr.dateCreated, pr.dateEntered, pr.dateEntered, banana_calendars.week_number, banana_calendars.period_number, pr.refNo, pr.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, pr.purpose, pr.remarks, pr.cost, pr.chargeTo FROM pr INNER JOIN banana_calendars ON pr.calID = banana_calendars.calID INNER JOIN expense_account ON pr.expenseID = expense_account.expenseID INNER JOIN section ON pr.sectionID = section.sectionID INNER JOIN users ON pr.userID = users.userID WHERE pr.state = 'Active'";
+    $query = "SELECT pr.prID, pr.dateCreated, pr.dateEntered, banana_calendars.week_number, banana_calendars.period_number, pr.refNo, pr.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, pr.purpose, pr.remarks, pr.cost, pr.chargeTo FROM pr INNER JOIN banana_calendars ON pr.calID = banana_calendars.calID INNER JOIN expense_account ON pr.expenseID = expense_account.expenseID INNER JOIN section ON pr.sectionID = section.sectionID INNER JOIN users ON pr.userID = users.userID WHERE pr.state = 'Active'";
 
     //For Search Bar
     if(!empty($_POST["search"]["value"])) {
-        $query .= " AND expense_account.type LIKE '%".$_POST['search']['value']."%' OR pr.refNo LIKE '%".$_POST['search']['value']."%' OR pr.status LIKE '%".$_POST['search']['value']."%' OR banana_calendars.week_number LIKE '%".$_POST['search']['value']."%' OR banana_calendars.period_number LIKE '%".$_POST['search']['value']."%'";
+        $query .= " AND expense_account.type LIKE '%".$_POST['search']['value']."%' OR pr.refNo LIKE '%".$_POST['search']['value']."%' OR pr.status LIKE '%".$_POST['search']['value']."%' OR banana_calendars.week_number LIKE '%".$_POST['search']['value']."%' OR banana_calendars.period_number LIKE '%".$_POST['search']['value']."%' OR users.lastName LIKE '%".$_POST['search']['value']."%' OR users.firstName LIKE '%".$_POST['search']['value']."%' OR pr.chargeTo LIKE '%".$_POST['search']['value']."%'";
     }
 
     //For Ordering
@@ -27,7 +27,7 @@
     //Function for total filtered records
 	function fetchAllData() {
 		try {
-			$stmt = $GLOBALS['dbOperation']->connect()->prepare("SELECT pr.prID, pr.dateCreated, pr.dateEntered, pr.dateEntered, banana_calendars.week_number, banana_calendars.period_number, pr.refNo, pr.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, pr.purpose, pr.remarks, pr.cost, pr.chargeTo FROM pr INNER JOIN banana_calendars ON pr.calID = banana_calendars.calID INNER JOIN expense_account ON pr.expenseID = expense_account.expenseID INNER JOIN section ON pr.sectionID = section.sectionID INNER JOIN users ON pr.userID = users.userID WHERE pr.state = 'Active'");
+			$stmt = $GLOBALS['dbOperation']->connect()->prepare("SELECT pr.prID, pr.dateCreated, pr.dateEntered, banana_calendars.week_number, banana_calendars.period_number, pr.refNo, pr.status, expense_account.type AS ExpenseAccount, section.type AS Section, users.lastName, users.firstName, pr.purpose, pr.remarks, pr.cost, pr.chargeTo FROM pr INNER JOIN banana_calendars ON pr.calID = banana_calendars.calID INNER JOIN expense_account ON pr.expenseID = expense_account.expenseID INNER JOIN section ON pr.sectionID = section.sectionID INNER JOIN users ON pr.userID = users.userID WHERE pr.state = 'Active'");
 			$stmt->execute();
 			$result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 			if(!$result) {
@@ -53,7 +53,7 @@
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:tomato;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -67,7 +67,7 @@
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:tomato;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:tomato;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:tomato;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -81,7 +81,7 @@
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -95,7 +95,7 @@
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -109,7 +109,7 @@
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -123,7 +123,7 @@
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;color:green;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='color:green;text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center" style="color:green;">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
@@ -137,7 +137,7 @@
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['refNo'] . '</div>';
-                $subArray[] = '<div class="text-center" style="padding: 0 50px;">' . $row['status'] . '</div>';
+                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';

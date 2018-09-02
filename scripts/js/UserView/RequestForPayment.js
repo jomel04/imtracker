@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //Fetching Summary Data
+    //Fetching User View Summary Data
     var dataTable = $('#requestForPayment').DataTable({
         "processing": true,
         "serverSide": true,

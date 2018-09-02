@@ -19,14 +19,13 @@
 			}
 			/* -------------------------------------------------- */
 
-
 			//For Manager Table
 			/* -------------------------------------------------- */
 			$managerData = array(
-				":dateReceived" => $_POST['dateReceived'],
+				":dateReceived" => (!empty($_POST['dateReceived'])) ? $_POST['dateReceived'] : NULL,
 				":status" => $_POST['status'],
-				":dateApproved" => $_POST['dateApproved'],
-				":remarks" => $_POST['managerRemarks']
+				":dateApproved" => (!empty($_POST['dateApproved'])) ? $_POST['dateApproved'] : NULL,
+				":remarks" => (!empty($_POST['managerRemarks'])) ? $_POST['managerRemarks'] : NULL
 			);
 			//Inserting Data and get last ID
 			$managerInsertId = $dbOperation->insertDataGetLastId("manager", $managerData);
@@ -40,18 +39,11 @@
 				$budgetLeadTimeId .= $resultBudgetLeadTimeId->leadTimeID;
 			}
 			$budgetData = array(
-				":leadTimeID" => $budgetLeadTimeId,
-				":budgeted" => '',
-				":dateReceived" => '0000-00-00',
-				":receivedBy" => '',
-				":status" => '',
-				":remarks" => '',
-				":dateApproved" => '0000-00-00'
+				":leadTimeID" => $budgetLeadTimeId
 			);
 			//Get Last insert Id
 			$budgetInsertId = $dbOperation->insertDataGetLastId("budget", $budgetData);
 			/* -------------------------------------------------- */
-
 
 			//For Accounting Table 
 			/* -------------------------------------------------- */
@@ -61,17 +53,11 @@
 				$accountingLeadTimeId .= $resultAccountingLeadTimeId->leadTimeID;
 			}
 			$accountingData = array(
-				":leadTimeID" => $accountingLeadTimeId,
-				":dateReceived" => '0000-00-00',
-				":receivedBy" => '',
-				":status" => '',
-				":remarks" => '',
-				":releaseDate" => '0000-00-00'
+				":leadTimeID" => $accountingLeadTimeId
 			);
 			//Get Last insert Id
 			$accountingInsertId = $dbOperation->insertDataGetLastId("accounting", $accountingData);
 			/* -------------------------------------------------- */
-
 
 			//For Cash Advance Table
 			/* -------------------------------------------------- */
@@ -86,10 +72,10 @@
 				":sectionID" => $_POST['section'],
 				":dateCreated" => date("Y-m-d", strtotime($_POST['dateCreated'])),
 				":dateEntered" => date("Y-m-d h:i:s"),
-				":status" => "(For JGM) " . "Status: " . $_POST['status'],
+				":status" => "(For JGM)\n" . "Status: " . $_POST['status'],
 				":state" => "Active",
-				":purpose" => $_POST['purpose'],
-				":remarks" => $_POST['cashAdvanceRemarks'],
+				":purpose" => (!empty($_POST['purpose'])) ? $_POST['purpose'] : NULL,
+				":remarks" => (!empty($_POST['cashAdvanceRemarks'])) ? $_POST['cashAdvanceRemarks'] : NULL,
 				":cost" => $_POST['cost']
 			);
 
@@ -117,15 +103,15 @@
 			//Update Manager && CA Table
 			/* -------------------------------------------------- */
 			if($dbOperation->updateData("ca", array(
-				":status" => "(For JGM) " . "Status: " . $_POST['status'],
-				":purpose" => $_POST['purpose'],
-				":remarks" => $_POST['cashAdvanceRemarks'],
+				":status" => "(For JGM)\n" . "Status: " . $_POST['status'],
+				":purpose" => (!empty($_POST['purpose'])) ? $_POST['purpose'] : NULL,
+				":remarks" => (!empty($_POST['cashAdvanceRemarks'])) ? $_POST['cashAdvanceRemarks'] : NULL,
 				":cost" => $_POST['cost']
 			), array(":caID" => $_POST['id'])) && $dbOperation->updateData("manager", array(
-				":dateReceived" => $_POST['dateReceived'],
+				":dateReceived" => (!empty($_POST['dateReceived'])) ? $_POST['dateReceived'] : NULL,
 				":status" => $_POST['status'],
-				":dateApproved" => $_POST['dateApproved'],
-				":remarks" => $_POST['managerRemarks']
+				":dateApproved" => (!empty($_POST['dateApproved'])) ? $_POST['dateApproved'] : NULL,
+				":remarks" => (!empty($_POST['managerRemarks'])) ? $_POST['managerRemarks'] : NULL
 			), array(":managerID" => $managerID))) {
 				echo "Successfully updated!";
 			}

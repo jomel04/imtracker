@@ -45,7 +45,7 @@ $(document).ready(function() {
         var dateApproved = $("input[name='dateApproved']").val();
         var managerRemarks = $("textarea[name='managerRemarks']").val();
         var action = $("input[name='action']").val();
-        if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && payee != "" && status != "") {
+        if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && payee != "" && dateReceived != "" && status != "" && dateApproved != "") {
             $.ajax({
                 url: "../scripts/php/RequestForPayment/insertData.php",
                 method: "POST",

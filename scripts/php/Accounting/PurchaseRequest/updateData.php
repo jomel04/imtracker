@@ -15,12 +15,12 @@
             ':dateReceived' => date('Y-m-d', strtotime($_POST['dateReceivedAccounting'])),
             ':receivedBy' => $_POST['receivedByAccounting'],
             ':status' => $_POST['statusAccounting'],
-            ':releaseDate' => $_POST['releaseDateAccounting'],
-            ':remarks' => $_POST['remarksAccounting']
+            ':releaseDate' => (!empty($_POST['releaseDateAccounting'])) ? $_POST['releaseDateAccounting'] : NULL,
+            ':remarks' => (!empty($_POST['remarksAccounting'])) ? $_POST['remarksAccounting'] : NULL
         ), array(
             ':acctgId' => $_POST['id']
         )) && $dbOperation->updateData('pr', array(
-            ':status' => "(For Accounting) " . "Status: " . $_POST['statusAccounting'] . " On: " . $_POST['releaseDateAccounting']
+            ':status' => "(For Accounting)\n" . "Status: " . $_POST['statusAccounting'] . "\nOn: " . $_POST['releaseDateAccounting']
         ), array(
             ':prID' => $prID
         ))) {

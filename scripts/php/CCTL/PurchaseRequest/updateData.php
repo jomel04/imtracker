@@ -15,12 +15,12 @@
             ':dateReceived' => date('Y-m-d', strtotime($_POST['dateReceivedCctl'])),
             ':receivedBy' => $_POST['receivedByCctl'],
             ':status' => $_POST['statusCctl'],
-            ':remarks' => $_POST['remarksCctl'],
+            ':remarks' => (!empty($_POST['remarksCctl'])) ? $_POST['remarksCctl'] : NULL,
             ':dateApproved' => date('Y-m-d', strtotime($_POST['dateApprovedCctl']))
         ), array(
             ':cctlID' => $_POST['id']
         )) && $dbOperation->updateData('pr', array(
-            ':status' => "(For Cctl) " . " Status: " . $_POST['statusCctl']
+            ':status' => "(For Cctl)\n" . "Status: " . $_POST['statusCctl']
         ), array(
             ':prID' => $prID
         ))) {

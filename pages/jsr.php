@@ -38,6 +38,10 @@
         <?php
             $activeMenu = 'jobServiceRequest';
             require '../include/header.php';
+            require '../include/Modals/JobServiceRequest/main.php';
+            require '../include/Modals/JobServiceRequest/cctl.php';
+            require '../include/Modals/JobServiceRequest/budget.php';
+            require '../include/Modals/JobServiceRequest/purchasing.php';
         ?>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs justify-content-center mt-4">
@@ -240,12 +244,12 @@
                     </div>
                 </div>
             </div>
-            <!-- <script src="../scripts/js/PurchaseRequest/purchaseRequest.js"></script>
-            <script src="../scripts/js/PurchaseRequest/cctl.js"></script>
-            <script src="../scripts/js/PurchaseRequest/budget.js"></script>
-            <script src="../scripts/js/PurchaseRequest/purchasing.js"></script>
-            <script src="../scripts/js/PurchaseRequest/accounting.js"></script>
-            <script src="../scripts/js/PurchaseRequest/summary.js"></script> -->
+            <script src="../scripts/js/JobServiceRequest/jobServiceRequest.js"></script>
+            <script src="../scripts/js/JobServiceRequest/cctl.js"></script>
+            <script src="../scripts/js/JobServiceRequest/budget.js"></script>
+            <script src="../scripts/js/JobServiceRequest/purchasing.js"></script>
+            <!-- <script src="../scripts/js/PurchaseRequest/accounting.js"></script> -->
+            <script src="../scripts/js/JobServiceRequest/summary.js"></script>
     </body>
 
     </html>

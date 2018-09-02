@@ -17,7 +17,7 @@
             ':dateApproved' => date('Y-m-d', strtotime($_POST['dateApprovedBudget'])),
             ':receivedBy' => $_POST['receivedByBudget'],
             ':status' => $_POST['statusBudget'],
-            ':remarks' => $_POST['remarksBudget']
+            ':remarks' => (!empty($_POST['remarksBudget'])) ? $_POST['remarksBudget'] : NULL
         ), array(
             ':budgetID' => $_POST['id']
         )) && $dbOperation->updateData('rfp', array(

@@ -45,7 +45,7 @@ $(document).ready(function () {
         var dateApproved = $("input[name='dateApproved']").val();
         var managerRemarks = $("textarea[name='managerRemarks']").val();
         var action = $("input[name='action']").val();
-        if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && status != "") {
+        if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && dateReceived != "" && status != "" && dateApproved != "") {
             $.ajax({
                 url: "../scripts/php/CashAdvance/insertData.php",
                 method: "POST",
@@ -131,7 +131,7 @@ $(document).ready(function () {
             }
         })
     });
-
+    
     // Show all records
     // $(document).on('click', 'button[name="btnShowAll"]', function () {
     //     var dataTable = $("#cashAdvance").DataTable({

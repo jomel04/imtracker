@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //Fetching Data
     var dataTable = $("#purchaseRequest").DataTable({
         "processing": true,
@@ -15,7 +15,7 @@ $(document).ready(function() {
         "stateSave": true,
         "pagingType": "full_numbers"
     });
-    $("button[name='btnAdd']").click(function() {
+    $("button[name='btnAdd']").click(function () {
         $("#purchaseRequestForm")[0].reset();
         $('button[name="purchaseRequestbtnSubmit"]').removeAttr("data-dismiss", "modal");
         $("input[name='action']").val("Insert");
@@ -28,7 +28,7 @@ $(document).ready(function() {
         $("select[name='chargeTo']").prop("disabled", false);
     });
     //Inserting to Database
-    $(document).on("click", "button[name='purchaseRequestbtnSubmit']", function() {
+    $(document).on("click", "button[name='purchaseRequestbtnSubmit']", function () {
         //Get ID
         var id = $("input[name='getIdPurchaseRequest']").val();
         //Data
@@ -47,7 +47,7 @@ $(document).ready(function() {
         var dateApproved = $("input[name='dateApproved']").val();
         var managerRemarks = $("textarea[name='managerRemarks']").val();
         var action = $("input[name='action']").val();
-        if (dateCreated != "" && refNo != "" && expenseAccount != "" && section != "" && requestor != "" && chargeTo != "" && status != "") {
+        if (dateCreated != "" && refNo != "" && expenseAccount != "" && section != "" && requestor != "" && chargeTo != "" && dateReceived != "" && status != "" && dateApproved != "") {
             $.ajax({
                 url: "../scripts/php/PurchaseRequest/insertData.php",
                 method: "POST",
@@ -68,22 +68,22 @@ $(document).ready(function() {
                     dateApproved: dateApproved,
                     managerRemarks: managerRemarks
                 },
-                success: function(data) {
+                success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
                 },
-                error: function() {
+                error: function () {
                     alert("There is an error!");
                 }
             });
         }
     });
-    $(document).on("click", "#btnClose", function() {
+    $(document).on("click", "#btnClose", function () {
         $("#purchaseRequestForm")[0].reset();
     });
 
     //For Update
-    $(document).on("click", "button[name='btnUpdate']", function() {
+    $(document).on("click", "button[name='btnUpdate']", function () {
         var id = $(this).attr("id");
         $.ajax({
             url: "../scripts/php/PurchaseRequest/selectData.php",
@@ -92,7 +92,7 @@ $(document).ready(function() {
                 id: id
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 $("#purchaseRequestModal").modal("show");
                 $("input[name='action']").val("Update");
                 $("input[name='getIdPurchaseRequest']").val(id);
@@ -112,7 +112,7 @@ $(document).ready(function() {
                 $("input[name='dateApproved']").val(data.dateApproved);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
             },
-            error: function() {
+            error: function () {
                 alert("There is an error!");
             }
         })

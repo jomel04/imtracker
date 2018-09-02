@@ -16,12 +16,12 @@
             ':receivedBy' => $_POST['receivedByPurchasing'],
             ':status' => $_POST['statusPurchasing'],
             ':poNo' => $_POST['poNoPurchasing'],
-            ':remarks' => $_POST['remarksPurchasing'],
-            ':releaseDate' => $_POST['releaseDatePurchasing']
+            ':remarks' => (!empty($_POST['remarksPurchasing'])) ? $_POST['remarksPurchasing'] : NULL,
+            ':releaseDate' => (!empty($_POST['releaseDatePurchasing'])) ? $_POST['releaseDatePurchasing'] : NULL,
         ), array(
             ':purchasingID' => $_POST['id']
         )) && $dbOperation->updateData('pr', array(
-            ':status' => "(For Purchasing) " . " Status: " . $_POST['statusPurchasing']
+            ':status' => "(For Purchasing)\n" . "Status: " . $_POST['statusPurchasing']
         ), array(
             ':prID' => $prID
         ))) {
