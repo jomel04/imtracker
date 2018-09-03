@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2018 at 12:26 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Sep 03, 2018 at 05:07 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,9 +44,10 @@ CREATE TABLE `accounting` (
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
 (23, 3, '2018-08-30', 'Person 2', 'Released', '', '2018-08-30'),
-(24, 3, '2018-08-30', 'Person 2', 'Processing', '', '2018-08-30'),
+(24, 3, '2018-08-30', 'Person 2', 'Processing', NULL, NULL),
 (25, 3, NULL, NULL, '', NULL, NULL),
-(26, 3, NULL, NULL, '', NULL, NULL);
+(26, 3, NULL, NULL, '', NULL, NULL),
+(27, 3, '2018-09-03', 'Person 2', 'Processing', NULL, '2018-09-03');
 
 -- --------------------------------------------------------
 
@@ -305,7 +306,8 @@ INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `rec
 (25, 2, 'Yes', '2018-08-30', 'Bantillan, E.', 'Approved', NULL, '2018-08-30'),
 (26, 2, 'Yes', '2018-08-30', 'Bantillan, E.', 'Approved', NULL, '2018-08-30'),
 (27, 2, NULL, NULL, NULL, '', NULL, NULL),
-(28, 2, NULL, NULL, NULL, '', NULL, NULL);
+(28, 2, NULL, NULL, NULL, '', NULL, NULL),
+(29, 2, 'Yes', '2018-09-03', 'Bantillan, E.', 'Approved', NULL, '2018-09-03');
 
 -- --------------------------------------------------------
 
@@ -338,7 +340,8 @@ CREATE TABLE `ca` (
 
 INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
 (4, 1, 2, 139, 24, 25, 23, 3, 4, '2018-08-30', '2018-09-02 05:22:57', '(For Accounting)\nStatus: Released\nOn: 2018-08-30', 'Active', 'hahaha', 'hahaha', '12312.00'),
-(5, 1, 2, 139, 25, 26, 24, 6, 1, '2018-08-30', '2018-09-02 05:34:11', '(For Accounting)\nStatus: Processing\nOn: 2018-08-30', 'Active', NULL, NULL, '123.00');
+(5, 1, 2, 139, 25, 26, 24, 6, 1, '2018-08-30', '2018-09-02 05:34:11', '(For Accounting)\nStatus: Processing\nOn: ', 'Active', NULL, NULL, '123.00'),
+(6, 1, 2, 140, 28, 29, 27, 9, 1, '2018-08-30', '2018-09-03 09:19:49', '(For Accounting)\nStatus: Processing\nOn: 2018-09-03', 'Active', '123', '123', '123.00');
 
 -- --------------------------------------------------------
 
@@ -526,7 +529,8 @@ INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `r
 (24, '2018-08-30', 'Approved', '2018-08-30', NULL),
 (25, '2018-08-30', 'Approved', '2018-08-30', NULL),
 (26, '2018-08-30', 'Disapproved', '2018-08-30', 'Hahaha'),
-(27, '2018-08-30', 'Disapproved', '2018-08-30', NULL);
+(27, '2018-08-30', 'Approved', '2018-08-30', NULL),
+(28, '2018-08-30', 'Approved', '2018-08-30', NULL);
 
 -- --------------------------------------------------------
 
@@ -621,7 +625,7 @@ CREATE TABLE `rfp` (
 --
 
 INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `payee`, `purpose`, `remarks`, `cost`) VALUES
-(3, 1, 2, 139, 27, 23, 28, 26, 7, 4, '2018-08-30', '2018-09-02 06:22:21', '(For JGM)\nStatus: Disapproved', 'Active', 'CFBA travel Station', 'Hahaha', 'Hahaha', '9999.00');
+(3, 1, 2, 139, 27, 23, 28, 26, 7, 4, '2018-08-30', '2018-09-02 06:22:21', '(For JGM)\nStatus: Approved', 'Active', 'CFBA travel Station', 'Hahaha', 'Hahaha', '9999.00');
 
 -- --------------------------------------------------------
 
@@ -826,7 +830,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -838,13 +842,13 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cctl`
@@ -886,7 +890,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `pr`

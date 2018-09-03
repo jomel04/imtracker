@@ -21,7 +21,7 @@
         ), array(
             ':budgetID' => $_POST['id']
         )) && $dbOperation->updateData('rfp', array(
-            ':status' => "(For Budget) " . "Budgeted: " . $_POST['budgeted'] . " Status: " . $_POST['statusBudget']
+            ':status' => "(For Budget)\n" . "Budgeted: " . $_POST['budgeted'] . "\nStatus: " . $_POST['statusBudget']
         ), array(
             ':rfpID' => $rfpID
         ))) {

@@ -81,7 +81,7 @@
                 $subArray[] = '<div class="text-center">' . $row['week_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['period_number'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['refNo'] . '</div>';
-                $subArray[] = "<pre style='text-align:center;'>" . $row['status'] . "</pre>";
+                $subArray[] = "<pre style='text-align:center;'>" . substr($row['status'], 0, strrpos($row['status'], 'g')) . 'g' . "</pre>";
                 $subArray[] = '<div class="text-center">' . $row['ExpenseAccount'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['Section'] . '</div>';
                 $subArray[] = '<div class="text-center">' . $row['lastName'] . ', ' . $row['firstName'] . '</div>';
