@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2018 at 05:07 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Generation Time: Sep 03, 2018 at 09:17 AM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -307,7 +307,12 @@ INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `rec
 (26, 2, 'Yes', '2018-08-30', 'Bantillan, E.', 'Approved', NULL, '2018-08-30'),
 (27, 2, NULL, NULL, NULL, '', NULL, NULL),
 (28, 2, NULL, NULL, NULL, '', NULL, NULL),
-(29, 2, 'Yes', '2018-09-03', 'Bantillan, E.', 'Approved', NULL, '2018-09-03');
+(29, 2, 'Yes', '2018-09-03', 'Bantillan, E.', 'Approved', NULL, '2018-09-03'),
+(30, 2, NULL, NULL, NULL, '', NULL, NULL),
+(31, 2, NULL, NULL, NULL, '', NULL, NULL),
+(32, 2, NULL, NULL, NULL, '', NULL, NULL),
+(33, 2, NULL, NULL, NULL, '', NULL, NULL),
+(34, 2, NULL, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -366,7 +371,12 @@ CREATE TABLE `cctl` (
 INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
 (21, 5, '2018-08-31', 'Example 2', 'Approved', NULL, '2018-08-31'),
 (22, 5, NULL, NULL, '', NULL, NULL),
-(23, 5, NULL, NULL, '', NULL, NULL);
+(23, 5, NULL, NULL, '', NULL, NULL),
+(24, 5, NULL, NULL, '', NULL, NULL),
+(25, 5, NULL, NULL, '', NULL, NULL),
+(26, 5, NULL, NULL, '', NULL, NULL),
+(27, 5, NULL, NULL, '', NULL, NULL),
+(28, 5, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -480,7 +490,12 @@ CREATE TABLE `jsr` (
 --
 
 INSERT INTO `jsr` (`jsrID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `purchasingID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `refNo`, `status`, `state`, `purpose`, `remarks`, `cost`, `chargeTo`) VALUES
-(2, 1, 2, 139, 23, 21, 24, 18, 10, 3, '2018-08-31', '2018-09-02', 123456, '(For Purchasing)\nStatus: Installed', 'Active', '123456', '123456', '123456.00', 'NEH - IM');
+(2, 1, 2, 139, 23, 21, 24, 18, 10, 3, '2018-08-31', '2018-09-02', 123456, '(For Purchasing)\nStatus: Installed', 'Active', '123456', '123456', '123456.00', 'NEH - IM'),
+(3, 1, 3, 140, 29, 24, 30, 20, 22, 7, '2018-07-13', '2018-09-03', 53523, '(For JGM)\nStatus: Processing', 'Inactive', NULL, NULL, '0.00', 'NEH - IM'),
+(4, 1, 3, 140, 30, 25, 31, 21, 22, 7, '2018-07-13', '2018-09-03', 65456, '(For JGM)\nStatus: Processing', 'Inactive', 'Repair EPSON projector', 'Noisy fan, flex problem', '0.00', 'NEH - IM'),
+(5, 1, 3, 140, 31, 26, 32, 22, 14, 4, '2018-07-13', '2018-09-03', 5464647, '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00', 'NEH - IM'),
+(6, 1, 3, 140, 32, 27, 33, 23, 12, 7, '2018-07-13', '2018-09-03', 989789, '(For JGM)\nStatus: Processing', 'Inactive', 'Repair EPSON projector', 'Noisy fan, flex problem', '0.00', 'NEH - IM'),
+(7, 1, 3, 140, 33, 28, 34, 24, 22, 7, '2018-07-13', '2018-09-03', 23673, '(For JGM)\nStatus: Processing', 'Active', 'Repair Epson projector', 'noisy fan, flex problem', '0.00', 'NEH - IM');
 
 -- --------------------------------------------------------
 
@@ -530,7 +545,12 @@ INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `r
 (25, '2018-08-30', 'Approved', '2018-08-30', NULL),
 (26, '2018-08-30', 'Disapproved', '2018-08-30', 'Hahaha'),
 (27, '2018-08-30', 'Approved', '2018-08-30', NULL),
-(28, '2018-08-30', 'Approved', '2018-08-30', NULL);
+(28, '2018-08-30', 'Approved', '2018-08-30', NULL),
+(29, '2018-07-18', 'Processing', '2018-07-18', NULL),
+(30, '2018-07-18', 'Processing', '2018-07-18', NULL),
+(31, '2018-07-18', 'Processing', '2018-07-18', NULL),
+(32, '2018-07-18', 'Processing', '2018-07-18', NULL),
+(33, '2018-07-18', 'Processing', '2018-07-18', NULL);
 
 -- --------------------------------------------------------
 
@@ -591,7 +611,12 @@ CREATE TABLE `purchasing` (
 
 INSERT INTO `purchasing` (`purchasingID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `poNo`, `remarks`, `releaseDate`) VALUES
 (18, 6, '2018-08-30', 'Person 1', 'Installed', 911, NULL, '2018-08-30'),
-(19, 6, NULL, NULL, '', NULL, NULL, NULL);
+(19, 6, NULL, NULL, '', NULL, NULL, NULL),
+(20, 6, NULL, NULL, '', NULL, NULL, NULL),
+(21, 6, NULL, NULL, '', NULL, NULL, NULL),
+(22, 6, NULL, NULL, '', NULL, NULL, NULL),
+(23, 6, NULL, NULL, '', NULL, NULL, NULL),
+(24, 6, NULL, NULL, '', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -649,7 +674,8 @@ INSERT INTO `section` (`sectionID`, `type`) VALUES
 (4, 'LDM'),
 (5, 'Golden Block'),
 (6, 'PreAg'),
-(7, 'Gen. Mgt.');
+(7, 'Gen. Mgt.'),
+(8, 'R&D - LEF');
 
 -- --------------------------------------------------------
 
@@ -675,7 +701,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
 (1, 1, 1, 'Omar', 'Abdullah', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
-(2, 1, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
+(2, 1, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'jb', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(4, 1, 1, 'Jeffrey', 'Bunda', '...', 'jeffrey', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
 
 --
 -- Indexes for dumped tables
@@ -842,7 +870,7 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `ca`
@@ -854,7 +882,7 @@ ALTER TABLE `ca`
 -- AUTO_INCREMENT for table `cctl`
 --
 ALTER TABLE `cctl`
-  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -878,7 +906,7 @@ ALTER TABLE `expense_account`
 -- AUTO_INCREMENT for table `jsr`
 --
 ALTER TABLE `jsr`
-  MODIFY `jsrID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `jsrID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `lead_time`
@@ -890,7 +918,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pr`
@@ -902,7 +930,7 @@ ALTER TABLE `pr`
 -- AUTO_INCREMENT for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `rfp`
@@ -914,13 +942,13 @@ ALTER TABLE `rfp`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `sectionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sectionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
