@@ -40,24 +40,23 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="receivedByBudget">Received By</label>
-                                    <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
-                                        <option value=""></option>
-                                        <option value="Nica">Nica</option>
-                                        <option value="Bantillan, E.">Bantillan, E.</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
                                     <label for="statusBudget">Status</label>
                                     <select name="statusBudget" id="statusBudget" class="form-control" required>
-                                        <option value=""></option>
                                         <option value="Approved">Approved</option>
                                         <option value="Cancelled">Cancelled</option>
                                         <option value="Disapproved">Disapproved</option>
                                         <option value="For Signature">For Signature</option>
                                         <option value="Processing">Processing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="receivedByBudget">Received By</label>
+                                    <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
+                                        <option value=""></option>
+                                        <option value="Nica">Nica</option>
+                                        <option value="Bantillan, E.">Bantillan, E.</option>
                                     </select>
                                 </div>
                             </div>

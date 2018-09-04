@@ -58,9 +58,6 @@
                     <a class="nav-link purchasingTab" data-toggle="tab" href="#purchasingSection">For Purchasing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link accountingTab" data-toggle="tab" href="#accountingSection">For Accounting</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link summaryTab" data-toggle="tab" href="#summarySection">Summary</a>
                 </li>
             </ul>
@@ -192,33 +189,6 @@
                         </table>
                     </div>
                 </div>
-                <div class="tab-pane container-fluid fade" id="accountingSection">
-                    <div class="table-responsive">
-                        <br>
-                        <table id="accounting" class="stripe hover cell-border" style="width:100%">
-                            <thead>
-                                <tr class="text-center text-light">
-                                    <th style="background-color: #3AAFA9">NO</th>
-                                    <th style="background-color: #3AAFA9">Reference no.</th>
-                                    <th style="background-color: #3AAFA9">Requestor</th>
-                                    <th style="background-color: #3AAFA9">Expense Account</th>
-                                    <th style="background-color: #3AAFA9">Section</th>
-                                    <th style="background-color: #3AAFA9">Purpose</th>
-                                    <th style="background-color: #3AAFA9">Remarks</th>
-                                    <th style="background-color: #3AAFA9">Cost</th>
-                                    <th style="background-color: #3AAFA9">Charge to</th>
-                                    <th style="background-color: #EB465A">Date Received (Entered)</th>
-                                    <th style="background-color: #EB465A">Received by</th>
-                                    <th style="background-color: #EB465A">Status</th>
-                                    <th style="background-color: #EB465A">Remarks</th>
-                                    <th style="background-color: #EB465A">Release Date</th>
-                                    <th style="background-color: #EB465A">Lead time (Days)</th>
-                                    <th style="background-color: #EB465A">Action</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
                 <div class="tab-pane container-fluid fade" id="summarySection">
                     <div class="table-responsive">
                         <br>
@@ -248,7 +218,6 @@
             <script src="../scripts/js/JobServiceRequest/cctl.js"></script>
             <script src="../scripts/js/JobServiceRequest/budget.js"></script>
             <script src="../scripts/js/JobServiceRequest/purchasing.js"></script>
-            <!-- <script src="../scripts/js/PurchaseRequest/accounting.js"></script> -->
             <script src="../scripts/js/JobServiceRequest/summary.js"></script>
     </body>
 

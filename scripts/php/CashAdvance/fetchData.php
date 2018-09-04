@@ -63,7 +63,7 @@
     		$subArray[] = '<div class="text-center">' . $row['DateApproved'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['ManagerRemarks'] . '</div>';
     		$subArray[] = '<div class="text-center">' . $row['NoOfDays'] . '</div>';
-    		$subArray[] = "<div class='btn-group'><button type='button' id='".$row['caID']."' name='btnUpdate' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['caID']."' name='btnDelete' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
+    		$subArray[] = "<div class='btn-group'><button type='button' id='".$row['caID']."' name='btnSelect' class='btn btn-outline-info'><span class='oi oi-pencil'></span></button><button type='button' id='".$row['caID']."' name='btnDelete' class='btn btn-outline-danger'><span class='oi oi-trash'></span></button></div>";
     		$data[] = $subArray;
     	}
 		$output = array(

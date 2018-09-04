@@ -112,7 +112,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Received / Entered</label>
                                         <div class="form-group">
-                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control" required>
+                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -121,12 +121,11 @@
                                         <label>Status</label>
                                         <div class="form-group">
                                             <select class="form-control" name="status" required>
-                                                <option></option>
                                                 <option value="Approved">Approved</option>
                                                 <option value="Cancelled">Cancelled</option>
                                                 <option value="Disapproved">Disapproved</option>
                                                 <option value="For Signature">For Signature</option>
-                                                <option value="Processing">Processing</option>
+                                                <option value="Processing" selected>Processing</option>
                                             </select>
                                         </div>
                                     </div>
@@ -135,7 +134,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Approved</label>
                                         <div class="form-group">
-                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control" required>
+                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +152,7 @@
                         <input type="hidden" name="getIdCashAdvance">
                         <div class="row">
                             <div class="col-md-12">
-                                <button type="submit" name="cashAdvancebtnSubmit" id="cashAdvancebtnSubmit" class="btn btn-outline-success btn-block btn-lg">ADD</button>
+                                <button type="submit" name="cashAdvancebtnSubmit" class="btn btn-outline-success btn-block btn-lg">ADD</button>
                             </div>
                         </div>
                     </form>

@@ -83,8 +83,6 @@
 			$queryCashAdvance = $dbOperation->insertData("ca", $cashAdvanceData);
 			if($queryCashAdvance) {
 				echo "Inserted Successfully";
-			} else {
-				return false;
 			}
 			/* -------------------------------------------------- */
 
