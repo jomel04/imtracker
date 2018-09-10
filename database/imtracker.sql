@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2018 at 10:51 AM
+-- Generation Time: Sep 10, 2018 at 08:38 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -43,7 +43,11 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(50, 3, NULL, NULL, '', NULL, NULL);
+(70, 3, NULL, NULL, '', NULL, NULL),
+(71, 3, NULL, NULL, '', NULL, NULL),
+(72, 3, NULL, NULL, '', NULL, NULL),
+(73, 3, NULL, NULL, '', NULL, NULL),
+(74, 3, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -298,7 +302,11 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(53, 2, NULL, NULL, NULL, '', NULL, NULL);
+(73, 2, NULL, NULL, NULL, '', NULL, NULL),
+(74, 2, NULL, NULL, NULL, '', NULL, NULL),
+(75, 2, NULL, NULL, NULL, '', NULL, NULL),
+(76, 2, NULL, NULL, NULL, '', NULL, NULL),
+(77, 2, 'Yes', '2018-09-10', 'Eheginia Bantilan', 'Processing', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -330,7 +338,11 @@ CREATE TABLE `ca` (
 --
 
 INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
-(29, 1, 1, 140, 52, 53, 50, 2, 5, '2018-09-04', '2018-09-04 02:51:22', '(For JGM)\nStatus: Approved', 'Active', NULL, NULL, '0.00');
+(49, 1, 3, 141, 72, 73, 70, 4, 4, '2018-09-10', '2018-09-10 10:27:13', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
+(50, 1, 3, 141, 73, 74, 71, 3, 4, '2018-09-10', '2018-09-10 10:27:24', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
+(51, 1, 2, 141, 74, 75, 72, 4, 7, '2018-09-10', '2018-09-10 10:29:02', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
+(52, 1, 3, 141, 75, 76, 73, 7, 4, '2018-09-10', '2018-09-10 10:29:13', '(For JGM)\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
+(53, 1, 3, 141, 76, 77, 74, 10, 3, '2018-09-10', '2018-09-10 10:51:34', '(For Budget)\nBudgeted: Yes\nStatus: Processing', 'Active', NULL, NULL, '2.00');
 
 -- --------------------------------------------------------
 
@@ -498,7 +510,11 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(52, NULL, 'Approved', NULL, NULL);
+(72, NULL, 'Processing', NULL, NULL),
+(73, NULL, 'Processing', NULL, NULL),
+(74, NULL, 'Processing', NULL, NULL),
+(75, '2018-09-10', 'Approved', '2018-09-10', NULL),
+(76, '2018-09-10', 'Approved', '2018-09-10', NULL);
 
 -- --------------------------------------------------------
 
@@ -778,7 +794,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -790,13 +806,13 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `cctl`
@@ -838,7 +854,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `pr`
