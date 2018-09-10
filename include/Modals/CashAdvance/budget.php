@@ -33,7 +33,8 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="dateApprovedBudget">Date Approved</label>
-                                    <input type="date" name="dateApprovedBudget" id="dateApprovedBudget" class="form-control" required>
+                                    <span class="requiredField text-danger"></span>
+                                    <input type="date" name="dateApprovedBudget" id="dateApprovedBudget" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -53,10 +54,14 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="receivedByBudget">Received By</label>
+                                    <span class="requiredField text-danger"></span>
                                     <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
                                         <option value=""></option>
-                                        <option value="Nica">Nica</option>
-                                        <option value="Bantillan, E.">Bantillan, E.</option>
+                                        <option value="Edwin Chua">Edwin Chua</option>
+                                        <option value="Eheginia Bantilan">Eheginia Bantilan</option>
+                                        <option value="Dannica Ngojo">Dannica Ngojo</option>
+                                        <option value="Jeroen de Haas">Jeroen de Haas</option>
+                                        <option value="Karla Briones">Karla Briones</option>
                                     </select>
                                 </div>
                             </div>

@@ -21,25 +21,34 @@ $(document).ready(function () {
     // $("input[name='dateCreated'], select[name='expenseAccount'], select[name='section'], select[name='requestor']")
     /* --------------------------------------------------------------------------- */
 
-    //For JGM Status
+    //For Selecting Status
     /* --------------------------------------------------------------------------- */
-    $("select[name='status']").change(function() {
-        if(this.value != 'Approved') {
+    $("select[name='status']").change(function () {
+        if (this.value != 'Approved') {
+            $('span.costRequired').text('');
+            $('span.dateRequired').text('');
             $("input[name='dateReceived']").prop('disabled', true);
             $("input[name='dateApproved']").prop('disabled', true);
+            $('button[name="cashAdvancebtnSubmit"]').removeAttr("data-dismiss").removeAttr('disabled');
             $('button[name="cashAdvancebtnUpdate"]').removeAttr("data-dismiss").removeAttr('disabled');
         } else {
-            if($("input[name='cost']").val() == 0.00) {
+            if ($("input[name='cost']").val() == 0.00) {
                 $('button[name="cashAdvancebtnUpdate"]').prop('disabled', true);
+                $('button[name="cashAdvancebtnSubmit"]').prop('disabled', true);
+                $('span.costRequired').text('(Please fill out this field)');
             }
             $("input[name='dateReceived']").removeAttr('disabled').attr('required', true);
             $("input[name='dateApproved']").removeAttr('disabled').attr('required', true);
+            $('span.dateRequired').text('(Please fill out this field)');
         }
     });
-    $("input[name='cost'], input[name='dateReceived'], input[name='dateApproved']").change(function() {
-        if($("input[name='cost']").val() != 0.00 && $("input[name='dateReceived']").val() != "" && $("input[name='dateApproved']").val() != "") {
+    $("input[name='cost'], input[name='dateReceived'], input[name='dateApproved']").change(function () {
+        if ($("input[name='cost']").val() != 0.00 && $("input[name='dateReceived']").val() != "" && $("input[name='dateApproved']").val() != "") {
+            $('span.costRequired').text('');
+            $('span.dateRequired').text('');
             $('button[name="cashAdvancebtnUpdate"]').attr("data-dismiss", "modal").removeAttr('disabled');
-        } 
+            $('button[name="cashAdvancebtnSubmit"]').attr("data-dismiss", "modal").removeAttr('disabled');
+        }
     });
     /* --------------------------------------------------------------------------- */
 
@@ -48,7 +57,7 @@ $(document).ready(function () {
         $("#cashAdvanceForm")[0].reset();
         $("input[name='action']").val("Insert");
         $("button[name='cashAdvancebtnUpdate']").attr('name', 'cashAdvancebtnSubmit');
-        $('button[name="cashAdvancebtnSubmit"]').removeAttr("data-dismiss", "modal");
+        $('button[name="cashAdvancebtnSubmit"]').removeAttr("data-dismiss");
         $("button[name='cashAdvancebtnSubmit']").text("ADD");
         $("input[name='dateCreated']").prop("disabled", false);
         $("select[name='expenseAccount']").prop("disabled", false);
@@ -56,6 +65,8 @@ $(document).ready(function () {
         $("select[name='requestor']").prop("disabled", false);
         $("input[name='dateReceived']").prop('disabled', true);
         $("input[name='dateApproved']").prop('disabled', true);
+        $('span.costRequired').text('');
+        $('span.dateRequired').text('');
     });
 
     //Inserting Data
@@ -170,7 +181,7 @@ $(document).ready(function () {
                     alert("There is an error!");
                 }
             });
-        } else if(status != "Approved") {
+        } else if (status != "Approved") {
             $.ajax({
                 url: "../scripts/php/CashAdvance/insertData.php",
                 method: "POST",
@@ -234,6 +245,7 @@ $(document).ready(function () {
                 $("input[name='action']").val("Update");
                 $("input[name='getIdCashAdvance']").val(id);
                 $("button[name='cashAdvancebtnSubmit']").attr('name', 'cashAdvancebtnUpdate').text("UPDATE");
+                $("button[name='cashAdvancebtnUpdate']").removeAttr("data-dismiss");
                 $("input[name='dateCreated']").val(data.dateCreated).prop("disabled", true);
                 $("select[name='expenseAccount']").val(data.expenseAccount.expenseID).prop("disabled", true);
                 $("select[name='section']").val(data.section.sectionID).prop("disabled", true);
@@ -241,9 +253,9 @@ $(document).ready(function () {
                 $("textarea[name='purpose']").val(data.purpose);
                 $("textarea[name='cashAdvanceRemarks']").val(data.remarks);
                 $("input[name='cost']").val(data.cost);
-                $("input[name='dateReceived']").val(data.dateReceived);
+                $("input[name='dateReceived']").val(data.dateReceived).prop('disabled', true);;
                 $("select[name='status']").val(data.status);
-                $("input[name='dateApproved']").val(data.dateApproved);
+                $("input[name='dateApproved']").val(data.dateApproved).prop('disabled', true);;
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
             },
             error: function () {
@@ -251,7 +263,7 @@ $(document).ready(function () {
             }
         })
     });
-    
+
     // Show all records
     // $(document).on('click', 'button[name="btnShowAll"]', function () {
     //     var dataTable = $("#cashAdvance").DataTable({

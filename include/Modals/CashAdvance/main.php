@@ -85,6 +85,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Cost</label>
+                                        <span class="costRequired text-danger"></span>
                                         <div class="form-group">
                                             <input type="number" name="cost" id="cost" class="form-control" value="0.00">
                                         </div>
@@ -111,6 +112,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Received / Entered</label>
+                                        <span class="dateRequired text-danger"></span>
                                         <div class="form-group">
                                             <input type="date" name="dateReceived" id="dateReceived" class="form-control">
                                         </div>
@@ -133,6 +135,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Approved</label>
+                                        <span class="dateRequired text-danger"></span>
                                         <div class="form-group">
                                             <input type="date" name="dateApproved" id="dateApproved" class="form-control">
                                         </div>

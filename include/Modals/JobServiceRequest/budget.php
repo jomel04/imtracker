@@ -43,8 +43,11 @@
                                     <label for="receivedByBudget">Received By</label>
                                     <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
                                         <option value=""></option>
-                                        <option value="Nica">Nica</option>
-                                        <option value="Bantillan, E.">Bantillan, E.</option>
+                                        <option value="Edwin Chua">Edwin Chua</option>
+                                        <option value="Eheginia Bantilan">Eheginia Bantilan</option>
+                                        <option value="Dannica Ngojo">Dannica Ngojo</option>
+                                        <option value="Jeroen de Haas">Jeroen de Haas</option>
+                                        <option value="Karla Briones">Karla Briones</option>
                                     </select>
                                 </div>
                             </div>
