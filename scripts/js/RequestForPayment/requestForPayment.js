@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     //Fetching Data
     var dataTable = $("#requestForPayment").DataTable({
         "processing": true,
@@ -15,19 +15,57 @@ $(document).ready(function() {
         "stateSave": true,
         "pagingType": "full_numbers"
     });
-    $("button[name='btnAdd']").click(function() {
+
+    //For Selecting Status
+    /* --------------------------------------------------------------------------- */
+    $("select[name='status']").change(function () {
+        if (this.value != 'Approved') {
+            $('span.costRequired').text('');
+            $('span.dateRequestForPayment').text('');
+            $("input[name='dateReceived']").prop('disabled', true).val('');
+            $("input[name='dateApproved']").prop('disabled', true).val('');
+            $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss").removeAttr('disabled');
+            $('button[name="requestForPaymentbtnUpdate"]').removeAttr("data-dismiss").removeAttr('disabled');
+        } else {
+            if ($("input[name='cost']").val() == 0.00) {
+                $('button[name="requestForPaymentbtnUpdate"]').prop('disabled', true);
+                $('button[name="requestForPaymentbtnSubmit"]').prop('disabled', true);
+                $('span.costRequired').text('(Please fill out this field)');
+            }
+            $("input[name='dateReceived']").removeAttr('disabled').attr('required', true);
+            $("input[name='dateApproved']").removeAttr('disabled').attr('required', true);
+            $('span.dateRequestForPayment').text('(Please fill out this field)');
+        }
+    });
+    $("input[name='cost'], input[name='dateReceived'], input[name='dateApproved']").change(function () {
+        if ($("input[name='cost']").val() != 0.00 && $("input[name='dateReceived']").val() != "" && $("input[name='dateApproved']").val() != "") {
+            $('span.costRequired').text('');
+            $('span.dateRequestForPayment').text('');
+            $('button[name="requestForPaymentbtnUpdate"]').attr("data-dismiss", "modal").removeAttr('disabled');
+            $('button[name="requestForPaymentbtnSubmit"]').attr("data-dismiss", "modal").removeAttr('disabled');
+        }
+    });
+    /* --------------------------------------------------------------------------- */
+
+    //Add new record
+    $("button[name='btnAdd']").click(function () {
         $("#requestForPaymentForm")[0].reset();
-        $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss", "modal");
         $("input[name='action']").val("Insert");
-        $("button[name='requestForPaymentbtnSubmit']").text("ADD");
+        $('button[name="requestForPaymentbtnUpdate"]').removeAttr("data-dismiss", "modal");
+        $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss", "modal").text("ADD");
         $("input[name='dateCreated']").prop("disabled", false);
         $("select[name='expenseAccount']").prop("disabled", false);
         $("select[name='section']").prop("disabled", false);
         $("select[name='requestor']").prop("disabled", false);
         $("select[name='payee']").prop("disabled", false);
+        $("input[name='dateReceived']").prop('disabled', true);
+        $("input[name='dateApproved']").prop('disabled', true);
+        $('span.costRequired').text('');
+        $('span.dateRequestForPayment').text('');
     });
-    //Inserting to Database
-    $(document).on("click", "button[name='requestForPaymentbtnSubmit']", function() {
+
+    //Inserting Data
+    $(document).on("click", "button[name='requestForPaymentbtnSubmit']", function () {
         //Get ID
         var id = $("input[name='getIdRequestForPayment']").val();
         //Data
@@ -65,22 +103,115 @@ $(document).ready(function() {
                     dateApproved: dateApproved,
                     managerRemarks: managerRemarks
                 },
-                success: function(data) {
+                success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
                 },
-                error: function() {
+                error: function () {
+                    alert("There is an error!");
+                }
+            });
+        } else if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && payee != "" && status != "") {
+            $.ajax({
+                url: "../scripts/php/RequestForPayment/insertData.php",
+                method: "POST",
+                data: {
+                    id: id,
+                    action: action,
+                    dateCreated: dateCreated,
+                    expenseAccount: expenseAccount,
+                    section: section,
+                    requestor: requestor,
+                    payee: payee,
+                    purpose: purpose,
+                    requestForPaymentRemarks: requestForPaymentRemarks,
+                    cost: cost,
+                    dateReceived: dateReceived,
+                    status: status,
+                    dateApproved: dateApproved,
+                    managerRemarks: managerRemarks
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                },
+                error: function () {
                     alert("There is an error!");
                 }
             });
         }
     });
-    $(document).on("click", "#btnClose", function() {
+
+    //Updating Data
+    $(document).on("click", "button[name='requestForPaymentbtnUpdate']", function () {
+        //Get ID
+        var id = $("input[name='getIdRequestForPayment']").val();
+        //Data
+        var purpose = $("textarea[name='purpose']").val();
+        var requestForPaymentRemarks = $("textarea[name='requestForPaymentRemarks']").val();
+        var cost = $("input[name='cost']").val();
+
+        var dateReceived = $("input[name='dateReceived']").val();
+        var status = $("select[name='status']").val();
+        var dateApproved = $("input[name='dateApproved']").val();
+        var managerRemarks = $("textarea[name='managerRemarks']").val();
+
+        var action = $("input[name='action']").val();
+        if (status == "Approved" && dateReceived != "" && dateApproved != "") {
+            $.ajax({
+                url: "../scripts/php/RequestForPayment/insertData.php",
+                method: "POST",
+                data: {
+                    id: id,
+                    action: action,
+                    purpose: purpose,
+                    requestForPaymentRemarks: requestForPaymentRemarks,
+                    cost: cost,
+                    dateReceived: dateReceived,
+                    status: status,
+                    dateApproved: dateApproved,
+                    managerRemarks: managerRemarks
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                },
+                error: function () {
+                    alert("There is an error!");
+                }
+            });
+        } else if (status != "Approved") {
+            $.ajax({
+                url: "../scripts/php/RequestForPayment/insertData.php",
+                method: "POST",
+                data: {
+                    id: id,
+                    action: action,
+                    purpose: purpose,
+                    requestForPaymentRemarks: requestForPaymentRemarks,
+                    cost: cost,
+                    dateReceived: dateReceived,
+                    status: status,
+                    dateApproved: dateApproved,
+                    managerRemarks: managerRemarks
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                },
+                error: function () {
+                    alert("There is an error!");
+                }
+            });
+        }
+    });
+
+    $(document).on("click", "#btnClose", function () {
         $("#requestForPaymentForm")[0].reset();
     });
 
     //For Update
-    $(document).on("click", "button[name='btnUpdate']", function() {
+    $(document).on("click", "button[name='btnSelect']", function () {
         var id = $(this).attr("id");
         $.ajax({
             url: "../scripts/php/RequestForPayment/selectData.php",
@@ -89,12 +220,12 @@ $(document).ready(function() {
                 id: id
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 $("#requestForPaymentModal").modal("show");
                 $("input[name='action']").val("Update");
                 $("input[name='getIdRequestForPayment']").val(id);
-                $("button[name='requestForPaymentbtnSubmit']").text("UPDATE");
-                $('button[name="requestForPaymentbtnSubmit"]').attr("data-dismiss", "modal");
+                $("button[name='requestForPaymentbtnSubmit']").attr('name', 'requestForPaymentbtnUpdate').text("UPDATE");
+                $('button[name="requestForPaymentbtnUpdate"]').removeAttr("data-dismiss");
                 $("input[name='dateCreated']").val(data.dateCreated).prop("disabled", true);
                 $("select[name='expenseAccount']").val(data.expenseAccount.expenseID).prop("disabled", true);
                 $("select[name='section']").val(data.section.sectionID).prop("disabled", true);
@@ -108,7 +239,7 @@ $(document).ready(function() {
                 $("input[name='dateApproved']").val(data.dateApproved);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
             },
-            error: function() {
+            error: function () {
                 alert("There is an error!");
             }
         })

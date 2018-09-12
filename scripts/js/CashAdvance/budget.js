@@ -24,18 +24,30 @@ $(document).ready(function () {
   //For Selecting Status
   $('select[name="statusBudget"]').change(function () {
     if (this.value != "Approved") {
+      $("select[name='budgeted']").removeAttr("disabled");
+      $("input[name='dateReceivedBudget']").removeAttr("disabled");
+      $("select[name='receivedByBudget']").removeAttr("disabled");
       $("input[name='dateApprovedBudget']").prop("disabled", true);
+      $('span.dateApprovedBudget').text('');
     } else {
-      $("input[name='dateApprovedBudget']").removeAttr("disabled");
+      $("select[name='budgeted']").removeAttr("disabled");
+      $("input[name='dateReceivedBudget']").removeAttr("disabled");
+      $("select[name='receivedByBudget']").removeAttr("disabled");
+      $("input[name='dateApprovedBudget']").removeAttr("disabled").focus();
+      $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss").attr('disabled', true);
+      $('span.dateApprovedBudget').text('(Please fill out this field)');
     }
   });
-  $("input[name='dateApprovedBudget']").change(function () {
-    if ($("input[name='dateApprovedBudget']").val() != "") {
-      $('button[name="btnSubmitBudget"]').attr("data-dismiss", "modal");
+  $("select[name='budgeted'], input[name='dateReceivedBudget'], select[name='receivedByBudget'], input[name='dateApprovedBudget']").change(function () {
+    if ($("select[name='budgeted']").val() != "" && $("input[name='dateReceivedBudget']").val() != "" && $("select[name='statusBudget']").val() != "" && $("select[name='receivedByBudget']").val() != "" || $("input[name='dateApprovedBudget']").val() != "") {
+      $('span.dateApprovedBudget').text('');
+      $('button[name="btnSubmitBudget"]').attr("data-dismiss", "modal").removeAttr('disabled');
+    } else {
+      $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss").attr('disabled', true);
     }
   });
 
-  //Selecting Budget Data
+  //Selecting Data
   $(document).on("click", 'button[name="btnUpdateBudget"]', function () {
     var id = $(this).attr("id");
     $.ajax({
@@ -47,15 +59,16 @@ $(document).ready(function () {
       dataType: "json",
       success: function (data) {
         $("#budgetModal").modal("show");
-        $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss");
-        $("input[name='dateApprovedBudget']").prop("disabled", true);
         $("input[name='getIdBudget']").val(id);
-        $("select[name='budgeted']").val(data.budgeted);
-        $("input[name='dateReceivedBudget']").val(data.dateReceivedBudget);
-        $("input[name='dateApprovedBudget']").val(data.dateApprovedBudget);
-        $("select[name='receivedByBudget']").val(data.receivedByBudget);
+        $("select[name='budgeted']").val(data.budgeted).prop("disabled", true);
+        $("input[name='dateReceivedBudget']").val(data.dateReceivedBudget).prop("disabled", true);
+        $("input[name='dateApprovedBudget']").val(data.dateApprovedBudget).prop("disabled", true);
+        $("select[name='receivedByBudget']").val(data.receivedByBudget).prop("disabled", true);
         $("select[name='statusBudget']").val(data.statusBudget);
         $("textarea[name='remarksBudget']").val(data.remarksBudget);
+        if (data.statusBudget != "") {
+          $('button[name="btnSubmitBudget"]').attr("data-dismiss", "modal");
+        }
       },
       error: function () {
         alert("There is an error");
@@ -63,7 +76,7 @@ $(document).ready(function () {
     });
   });
 
-  //Submitting Accounting Data
+  //Submitting Data
   $(document).on("click", 'button[name="btnSubmitBudget"]', function () {
     var id = $('input[name="getIdBudget"]').val();
     var budgeted = $('select[name="budgeted"]').val();
@@ -72,7 +85,7 @@ $(document).ready(function () {
     var receivedByBudget = $('select[name="receivedByBudget"]').val();
     var statusBudget = $('select[name="statusBudget"]').val();
     var remarksBudget = $('textarea[name="remarksBudget"]').val();
-    if (budgeted != "" && dateReceivedBudget != "" && receivedByBudget != "" && statusBudget != "") {
+    if (budgeted != "" && dateReceivedBudget != "" && dateApprovedBudget != "" && receivedByBudget != "" && statusBudget != "") {
       $.ajax({
         url: "../scripts/php/Budget/CashAdvance/updateData.php",
         method: "POST",
@@ -88,15 +101,35 @@ $(document).ready(function () {
         success: function (data) {
           alert(data);
           dataTable.ajax.reload();
+          $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss");
+        },
+        error: function () {
+          alert("There is an error!");
+        }
+      });
+    } else if (budgeted != "" && dateReceivedBudget != "" && receivedByBudget != "" && statusBudget != "") {
+      $.ajax({
+        url: "../scripts/php/Budget/CashAdvance/updateData.php",
+        method: "POST",
+        data: {
+          id: id,
+          budgeted: budgeted,
+          dateReceivedBudget: dateReceivedBudget,
+          dateApprovedBudget: dateApprovedBudget,
+          receivedByBudget: receivedByBudget,
+          statusBudget: statusBudget,
+          remarksBudget: remarksBudget
+        },
+        success: function (data) {
+          alert(data);
+          dataTable.ajax.reload();
+          $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss");
         },
         error: function () {
           alert("There is an error!");
         }
       });
     }
-    // else {
-    //   alert("There are still empty fields!");
-    // }
   });
 
   // For Delete

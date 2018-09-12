@@ -33,8 +33,8 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="dateApprovedBudget">Date Approved</label>
-                                    <span class="requiredField text-danger"></span>
-                                    <input type="date" name="dateApprovedBudget" id="dateApprovedBudget" class="form-control">
+                                    <span class="dateApprovedBudget text-danger"></span>
+                                    <input type="date" name="dateApprovedBudget" id="dateApprovedBudget" class="form-control" required>
                                 </div>
                             </div>
                         </div>

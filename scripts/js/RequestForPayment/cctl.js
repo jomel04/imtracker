@@ -21,7 +21,31 @@ $(document).ready(function () {
         dataTable.ajax.reload();
     });
 
-    //Selecting Data Budget Data
+    //For Selecting Status
+    $('select[name="statusCctl"]').change(function () {
+        if (this.value != "Approved") {
+            $("input[name='dateReceivedCctl']").removeAttr("disabled");
+            $("select[name='receivedByCctl']").removeAttr("disabled");
+            $("input[name='dateApprovedCctl']").prop("disabled", true);
+            $('span.dateCctl').text('');
+        } else {
+            $("input[name='dateReceivedCctl']").removeAttr("disabled");
+            $("select[name='receivedByCctl']").removeAttr("disabled");
+            $("input[name='dateApprovedCctl']").removeAttr("disabled").focus();
+            $('button[name="btnSubmitCctl"]').removeAttr("data-dismiss").attr('disabled', true);
+            $('span.dateCctl').text('(Please fill out this field)');
+        }
+    });
+    $("input[name='dateReceivedCctl'], select[name='receivedByCctl'], input[name='dateApprovedCctl']").change(function () {
+        if ($("input[name='dateReceivedCctl']").val() != "" && $("select[name='statusCctl']").val() != "" && $("select[name='receivedByCctl']").val() != "" || $("input[name='dateApprovedCctl']").val() != "") {
+            $('span.dateCctl').text('');
+            $('button[name="btnSubmitCctl"]').attr("data-dismiss", "modal").removeAttr('disabled');
+        } else {
+            $('button[name="btnSubmitCctl"]').removeAttr("data-dismiss").attr('disabled', true);
+        }
+    });
+
+    //Selecting Data
     $(document).on('click', 'button[name="btnUpdateCctl"]', function () {
         var id = $(this).attr('id');
         $.ajax({
@@ -33,13 +57,15 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 $('#cctlModal').modal('show');
-                $('button[name="btnSubmitCctl"]').attr("data-dismiss", "modal");
                 $("input[name='getIdCctl']").val(id);
-                $("input[name='dateReceivedCctl']").val(data.dateReceivedCctl);
-                $("select[name='receivedByCctl']").val(data.receivedByCctl);
+                $("input[name='dateReceivedCctl']").val(data.dateReceivedCctl).attr('disabled', true);
+                $("select[name='receivedByCctl']").val(data.receivedByCctl).attr('disabled', true);
                 $("select[name='statusCctl']").val(data.statusCctl);
                 $("textarea[name='remarksCctl']").val(data.remarksCctl);
-                $("input[name='dateApprovedCctl']").val(data.dateApprovedCctl);
+                $("input[name='dateApprovedCctl']").val(data.dateApprovedCctl).attr('disabled', true);
+                if (data.statusCctl != "") {
+                    $('button[name="btnSubmitCctl"]').attr("data-dismiss", "modal");
+                }
             },
             error: function () {
                 alert("There is an error");
@@ -47,7 +73,7 @@ $(document).ready(function () {
         });
     });
 
-    //Submitting Accounting Data
+    //Submitting Data
     $(document).on('click', 'button[name="btnSubmitCctl"]', function () {
         var id = $('input[name="getIdCctl"]').val();
         var dateReceivedCctl = $('input[name="dateReceivedCctl"]').val();
@@ -70,13 +96,33 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
+                    $('button[name="btnSubmitCctl"]').removeAttr("data-dismiss");
                 },
                 error: function () {
                     alert("There is an error!");
                 }
             });
-        } else {
-            alert("There are still empty fields!");
+        } else if (dateReceivedCctl != "" && receivedByCctl != "" && statusCctl != "") {
+            $.ajax({
+                url: "../scripts/php/CCTL/RequestForPayment/updateData.php",
+                method: "POST",
+                data: {
+                    id: id,
+                    dateReceivedCctl: dateReceivedCctl,
+                    receivedByCctl: receivedByCctl,
+                    statusCctl: statusCctl,
+                    remarksCctl: remarksCctl,
+                    dateApprovedCctl: dateApprovedCctl
+                },
+                success: function (data) {
+                    alert(data);
+                    dataTable.ajax.reload();
+                    $('button[name="btnSubmitCctl"]').removeAttr("data-dismiss");
+                },
+                error: function () {
+                    alert("There is an error!");
+                }
+            });
         }
     });
 

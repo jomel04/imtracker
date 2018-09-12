@@ -112,9 +112,9 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Received / Entered</label>
-                                        <span class="dateRequired text-danger"></span>
+                                        <span class="dateCashAdvance text-danger"></span>
                                         <div class="form-group">
-                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control">
+                                            <input type="date" name="dateReceived" id="dateReceived" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -135,9 +135,9 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Approved</label>
-                                        <span class="dateRequired text-danger"></span>
+                                        <span class="dateCashAdvance text-danger"></span>
                                         <div class="form-group">
-                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control">
+                                            <input type="date" name="dateApproved" id="dateApproved" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

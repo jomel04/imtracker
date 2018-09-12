@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 10, 2018 at 08:38 AM
+-- Generation Time: Sep 12, 2018 at 10:09 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -43,11 +43,25 @@ CREATE TABLE `accounting` (
 --
 
 INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(70, 3, NULL, NULL, '', NULL, NULL),
-(71, 3, NULL, NULL, '', NULL, NULL),
+(70, 3, '2018-09-12', '', 'Released', NULL, '2018-09-12'),
+(71, 3, '2018-09-12', 'Merliza Caday', 'Processing', NULL, NULL),
 (72, 3, NULL, NULL, '', NULL, NULL),
 (73, 3, NULL, NULL, '', NULL, NULL),
-(74, 3, NULL, NULL, '', NULL, NULL);
+(74, 3, NULL, NULL, '', NULL, NULL),
+(75, 3, NULL, NULL, '', NULL, NULL),
+(76, 3, NULL, NULL, '', NULL, NULL),
+(77, 3, NULL, NULL, '', NULL, NULL),
+(78, 3, NULL, NULL, '', NULL, NULL),
+(79, 3, '2018-09-12', 'Clarissa Lagulay', 'Processing', NULL, NULL),
+(80, 3, '2018-09-12', 'Clarissa Lagulay', 'Released', NULL, '2018-09-12'),
+(81, 3, NULL, NULL, '', NULL, NULL),
+(82, 3, NULL, NULL, '', NULL, NULL),
+(83, 3, NULL, NULL, '', NULL, NULL),
+(84, 3, NULL, NULL, '', NULL, NULL),
+(85, 3, NULL, NULL, '', NULL, NULL),
+(86, 3, NULL, NULL, '', NULL, NULL),
+(87, 3, NULL, NULL, '', NULL, NULL),
+(88, 3, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -302,11 +316,25 @@ CREATE TABLE `budget` (
 --
 
 INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(73, 2, NULL, NULL, NULL, '', NULL, NULL),
-(74, 2, NULL, NULL, NULL, '', NULL, NULL),
-(75, 2, NULL, NULL, NULL, '', NULL, NULL),
-(76, 2, NULL, NULL, NULL, '', NULL, NULL),
-(77, 2, 'Yes', '2018-09-10', 'Eheginia Bantilan', 'Processing', NULL, NULL);
+(73, 2, 'No', '2018-09-12', 'Karla Briones', 'Approved', NULL, '2018-09-12'),
+(74, 2, 'Yes', '2018-09-12', 'Eheginia Bantilan', 'Approved', NULL, NULL),
+(75, 2, 'No', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
+(76, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-06-12'),
+(77, 2, 'Yes', '2018-09-10', 'Eheginia Bantilan', 'Approved', NULL, '2018-09-12'),
+(78, 2, 'Yes', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
+(79, 2, 'Yes', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
+(80, 2, 'Yes', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-09-12'),
+(81, 2, 'Yes', '2018-09-12', 'Jeroen de Haas', 'Approved', NULL, NULL),
+(82, 2, 'No', '2018-09-12', 'Jeroen de Haas', 'Approved', NULL, '2018-09-12'),
+(83, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-09-12'),
+(84, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Processing', NULL, NULL),
+(85, 2, 'No', '2018-12-12', 'Eheginia Bantilan', 'Processing', NULL, NULL),
+(86, 2, NULL, NULL, NULL, '', NULL, NULL),
+(87, 2, NULL, NULL, NULL, '', NULL, NULL),
+(88, 2, NULL, NULL, NULL, '', NULL, NULL),
+(89, 2, NULL, NULL, NULL, '', NULL, NULL),
+(90, 2, 'No', '2018-09-12', 'Karla Briones', 'Processing', NULL, NULL),
+(91, 2, NULL, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -338,11 +366,21 @@ CREATE TABLE `ca` (
 --
 
 INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
-(49, 1, 3, 141, 72, 73, 70, 4, 4, '2018-09-10', '2018-09-10 10:27:13', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
-(50, 1, 3, 141, 73, 74, 71, 3, 4, '2018-09-10', '2018-09-10 10:27:24', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
-(51, 1, 2, 141, 74, 75, 72, 4, 7, '2018-09-10', '2018-09-10 10:29:02', '(For JGM)\nStatus: Processing', 'Active', NULL, NULL, '0.00'),
-(52, 1, 3, 141, 75, 76, 73, 7, 4, '2018-09-10', '2018-09-10 10:29:13', '(For JGM)\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
-(53, 1, 3, 141, 76, 77, 74, 10, 3, '2018-09-10', '2018-09-10 10:51:34', '(For Budget)\nBudgeted: Yes\nStatus: Processing', 'Active', NULL, NULL, '2.00');
+(49, 1, 3, 141, 72, 73, 70, 4, 4, '2018-09-10', '2018-09-10 10:27:13', '(For Accounting)\nStatus: Released\nOn: 2018-09-12', 'Active', NULL, NULL, '100000.00'),
+(50, 1, 3, 141, 73, 74, 71, 3, 4, '2018-09-10', '2018-09-10 10:27:24', '(For Accounting)\nStatus: Processing\nOn: ', 'Active', NULL, NULL, '10000.00'),
+(51, 1, 2, 141, 74, 75, 72, 4, 7, '2018-09-10', '2018-09-10 10:29:02', '(For Budget)\nBudgeted: No\nStatus: Approved', 'Active', NULL, NULL, '10000.00'),
+(52, 1, 3, 141, 75, 76, 73, 7, 4, '2018-09-10', '2018-09-10 10:29:13', '(For Budget)\nBudgeted: No\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
+(53, 1, 3, 141, 76, 77, 74, 10, 3, '2018-09-10', '2018-09-10 10:51:34', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '2.00'),
+(54, 1, 1, 141, 77, 78, 75, 5, 4, '2018-09-12', '2018-09-12 09:40:08', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '99999.00'),
+(55, 1, 2, 141, 78, 79, 76, 2, 7, '2018-09-12', '2018-09-12 09:55:33', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '10000.00'),
+(56, 1, 2, 141, 79, 80, 77, 1, 5, '2018-09-12', '2018-09-12 09:58:58', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
+(57, 1, 2, 141, 80, 81, 78, 2, 7, '2018-09-12', '2018-09-12 10:22:49', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
+(58, 1, 3, 141, 81, 82, 79, 3, 7, '2018-09-12', '2018-09-12 10:40:55', '(For Accounting)\nStatus: Processing\nOn: ', 'Active', NULL, NULL, '100000.00'),
+(59, 1, 3, 141, 82, 83, 80, 6, 5, '2018-09-12', '2018-09-12 10:41:12', '(For Accounting)\nStatus: Released\nOn: 2018-09-12', 'Active', NULL, NULL, '10000.00'),
+(60, 1, 3, 141, 83, 84, 81, 2, 7, '2018-09-12', '2018-09-12 11:35:40', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
+(61, 1, 2, 141, 84, 85, 82, 5, 3, '2018-09-12', '2018-09-12 11:38:30', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
+(62, 1, 2, 141, 89, 90, 87, 3, 5, '2018-09-12', '2018-09-12 02:45:50', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
+(63, 1, 2, 141, 90, 91, 88, 5, 5, '2018-09-12', '2018-09-12 03:00:37', '(For JGM)\nStatus: Approved', 'Active', NULL, NULL, '45345.00');
 
 -- --------------------------------------------------------
 
@@ -359,6 +397,16 @@ CREATE TABLE `cctl` (
   `remarks` varchar(50) DEFAULT NULL,
   `dateApproved` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cctl`
+--
+
+INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
+(1, 5, '2018-09-12', 'Mark Pulido', 'Approved', NULL, '2018-09-12'),
+(2, 5, NULL, NULL, '', NULL, NULL),
+(3, 5, '2018-09-12', 'Chenelly Doromal', 'Approved', NULL, '2018-09-12'),
+(4, 5, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -510,11 +558,25 @@ CREATE TABLE `manager` (
 --
 
 INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(72, NULL, 'Processing', NULL, NULL),
-(73, NULL, 'Processing', NULL, NULL),
-(74, NULL, 'Processing', NULL, NULL),
+(72, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(73, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(74, '2018-09-12', 'Approved', '2018-09-12', NULL),
 (75, '2018-09-10', 'Approved', '2018-09-10', NULL),
-(76, '2018-09-10', 'Approved', '2018-09-10', NULL);
+(76, '2018-09-10', 'Approved', '2018-09-10', NULL),
+(77, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(78, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(79, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(80, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(81, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(82, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(83, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(84, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(85, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(86, '2018-09-12', 'Approved', '2018-09-12', 'Hahahaha'),
+(87, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(88, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(89, '2018-09-12', 'Approved', '2018-09-12', NULL),
+(90, '2018-09-12', 'Approved', '2018-09-12', NULL);
 
 -- --------------------------------------------------------
 
@@ -588,6 +650,15 @@ CREATE TABLE `rfp` (
   `remarks` text,
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `rfp`
+--
+
+INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `payee`, `purpose`, `remarks`, `cost`) VALUES
+(1, 1, 3, 141, 85, 1, 86, 83, 3, 5, '2018-09-12', '2018-09-12 02:12:23', '(For Cctl)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '100.00'),
+(2, 1, 1, 141, 87, 3, 88, 85, 3, 5, '2018-09-12', '2018-09-12 02:14:13', '(For Cctl)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '98978978.00'),
+(3, 1, 1, 141, 88, 4, 89, 86, 5, 4, '2018-09-12', '2018-09-12 02:16:18', '(For JGM)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '999999.00');
 
 -- --------------------------------------------------------
 
@@ -794,7 +865,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -806,19 +877,19 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `cctl`
 --
 ALTER TABLE `cctl`
-  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -842,7 +913,7 @@ ALTER TABLE `expense_account`
 -- AUTO_INCREMENT for table `jsr`
 --
 ALTER TABLE `jsr`
-  MODIFY `jsrID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `jsrID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lead_time`
@@ -854,19 +925,19 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `pr`
 --
 ALTER TABLE `pr`
-  MODIFY `prID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `prID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `purchasingID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rfp`
