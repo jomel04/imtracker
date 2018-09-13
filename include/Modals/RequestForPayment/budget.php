@@ -33,24 +33,12 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="dateApprovedBudget">Date Approved</label>
+                                    <span class="dateApprovedBudget text-danger"></span>
                                     <input type="date" name="dateApprovedBudget" id="dateApprovedBudget" class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="receivedByBudget">Received By</label>
-                                    <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
-                                        <option value=""></option>
-                                        <option value="Edwin Chua">Edwin Chua</option>
-                                        <option value="Eheginia Bantilan">Eheginia Bantilan</option>
-                                        <option value="Dannica Ngojo">Dannica Ngojo</option>
-                                        <option value="Jeroen de Haas">Jeroen de Haas</option>
-                                        <option value="Karla Briones">Karla Briones</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="statusBudget">Status</label>
@@ -61,6 +49,19 @@
                                         <option value="Disapproved">Disapproved</option>
                                         <option value="For Signature">For Signature</option>
                                         <option value="Processing">Processing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="receivedByBudget">Received By</label>
+                                    <select name="receivedByBudget" id="receivedByBudget" class="form-control" required>
+                                        <option value=""></option>
+                                        <option value="Edwin Chua">Edwin Chua</option>
+                                        <option value="Eheginia Bantilan">Eheginia Bantilan</option>
+                                        <option value="Dannica Ngojo">Dannica Ngojo</option>
+                                        <option value="Jeroen de Haas">Jeroen de Haas</option>
+                                        <option value="Karla Briones">Karla Briones</option>
                                     </select>
                                 </div>
                             </div>

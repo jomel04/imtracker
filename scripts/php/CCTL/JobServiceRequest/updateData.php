@@ -16,7 +16,7 @@
             ':receivedBy' => $_POST['receivedByCctl'],
             ':status' => $_POST['statusCctl'],
             ':remarks' => (!empty($_POST['remarksCctl'])) ? $_POST['remarksCctl'] : NULL,
-            ':dateApproved' => date('Y-m-d', strtotime($_POST['dateApprovedCctl']))
+            ':dateApproved' => (!empty($_POST['dateApprovedCctl'])) ? date('Y-m-d', strtotime($_POST['dateApprovedCctl'])) : NULL
         ), array(
             ':cctlID' => $_POST['id']
         )) && $dbOperation->updateData('jsr', array(

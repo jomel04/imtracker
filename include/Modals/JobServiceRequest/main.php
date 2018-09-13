@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <select name="chargeTo" class="form-control" required>
                                                 <option></option>
-                                                <option value="DANA FDN">DANA FDN</option>
+                                                <option value="DANA FOUNDATION">DANA FOUNDATION</option>
                                                 <option value="DFADI">DFADI</option>
                                                 <option value="DFAI">DFAI</option>
                                                 <option value="DFFC">DFFC</option>
@@ -112,6 +112,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Cost</label>
+                                        <span class="costRequired text-danger"></span>
                                         <div class="form-group">
                                             <input type="number" name="cost" id="cost" class="form-control" value="0.00">
                                         </div>
@@ -138,6 +139,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Received / Entered</label>
+                                        <span class="dateJobServiceRequest text-danger"></span>
                                         <div class="form-group">
                                             <input type="date" name="dateReceived" id="dateReceived" class="form-control" required>
                                         </div>
@@ -148,12 +150,11 @@
                                         <label>Status</label>
                                         <div class="form-group">
                                             <select class="form-control" name="status" required>
-                                                <option></option>
                                                 <option value="Approved">Approved</option>
                                                 <option value="Cancelled">Cancelled</option>
                                                 <option value="Disapproved">Disapproved</option>
                                                 <option value="For Signature">For Signature</option>
-                                                <option value="Processing">Processing</option>
+                                                <option value="Processing" selected>Processing</option>
                                             </select>
                                         </div>
                                     </div>
@@ -161,6 +162,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12">
                                         <label>Date Approved</label>
+                                        <span class="dateJobServiceRequest text-danger"></span>
                                         <div class="form-group">
                                             <input type="date" name="dateApproved" id="dateApproved" class="form-control" required>
                                         </div>

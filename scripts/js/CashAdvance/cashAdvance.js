@@ -103,9 +103,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && status != "") {
@@ -130,9 +127,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         }
@@ -170,9 +164,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else if (status != "Approved") {
@@ -193,9 +184,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         }
@@ -247,13 +235,10 @@ $(document).ready(function () {
                 $("textarea[name='purpose']").val(data.purpose);
                 $("textarea[name='cashAdvanceRemarks']").val(data.remarks);
                 $("input[name='cost']").val(data.cost);
-                $("input[name='dateReceived']").val(data.dateReceived).prop('disabled', true);;
+                $("input[name='dateReceived']").val(data.dateReceived).prop('disabled', true);
                 $("select[name='status']").val(data.status);
-                $("input[name='dateApproved']").val(data.dateApproved).prop('disabled', true);;
+                $("input[name='dateApproved']").val(data.dateApproved).prop('disabled', true);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
-            },
-            error: function () {
-                alert("There is an error!");
             }
         })
     });

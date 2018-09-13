@@ -21,6 +21,31 @@ $(document).ready(function () {
         dataTable.ajax.reload();
     });
 
+    //For Selecting Status
+    $('select[name="statusPurchasing"]').change(function () {
+        if (this.value == "") {
+            $("input[name='dateReceivedPurchasing']").attr('disabled', true);
+            $("select[name='receivedByPurchasing']").attr('disabled', true);
+            $("input[name='poNoPurchasing']").attr('disabled', true);
+            $("input[name='releaseDatePurchasing']").attr('disabled', true);
+            $('span.requiredPurchasing').text('');
+        } else {
+            $("input[name='dateReceivedPurchasing']").removeAttr('disabled');
+            $("select[name='receivedByPurchasing']").removeAttr('disabled');
+            $("input[name='poNoPurchasing']").removeAttr('disabled');
+            $("input[name='releaseDatePurchasing']").removeAttr('disabled');
+            $('span.requiredPurchasing').text('(Please fill out this field)');
+        }
+    });
+    $("input[name='dateReceivedPurchasing'], select[name='receivedByPurchasing'], input[name='poNoPurchasing'], input[name='releaseDatePurchasing']").change(function () {
+        if ($("input[name='dateReceivedPurchasing']").val() != "" && $("select[name='receivedByPurchasing']").val() != "" && $("input[name='poNoPurchasing']").val() != "" && $("input[name='releaseDatePurchasing']").val() != "") {
+            $('span.requiredPurchasing').text('');
+            $('button[name="btnSubmitPurchasing"]').attr("data-dismiss", "modal");
+        } else {
+            $('button[name="btnSubmitPurchasing"]').removeAttr("data-dismiss");
+        }
+    });
+
     //Selecting Purchasing Data
     $(document).on('click', 'button[name="btnUpdatePurchasing"]', function () {
         var id = $(this).attr('id');
@@ -33,17 +58,16 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 $('#purchasingModal').modal('show');
-                $('button[name="btnSubmitPurchasing"]').attr("data-dismiss", "modal");
                 $("input[name='getIdPurchasing']").val(id);
-                $("input[name='dateReceivedPurchasing']").val(data.dateReceivedPurchasing);
-                $("select[name='receivedByPurchasing']").val(data.receivedByPurchasing);
+                $("input[name='dateReceivedPurchasing']").val(data.dateReceivedPurchasing).prop("disabled", true);
+                $("select[name='receivedByPurchasing']").val(data.receivedByPurchasing).prop("disabled", true);
                 $("select[name='statusPurchasing']").val(data.statusPurchasing);
-                $("input[name='poNoPurchasing']").val(data.poNoPurchasing);
+                $("input[name='poNoPurchasing']").val(data.poNoPurchasing).prop("disabled", true);
                 $("textarea[name='remarksPurchasing']").val(data.remarksPurchasing);
-                $("input[name='releaseDatePurchasing']").val(data.releaseDatePurchasing);
-            },
-            error: function () {
-                alert("There is an error");
+                $("input[name='releaseDatePurchasing']").val(data.releaseDatePurchasing).prop("disabled", true);
+                if (data.statusPurchasing != "") {
+                    $('button[name="btnSubmitPurchasing"]').attr("data-dismiss", "modal");
+                }
             }
         });
     });
@@ -57,7 +81,7 @@ $(document).ready(function () {
         var poNoPurchasing = $('input[name="poNoPurchasing"]').val();
         var remarksPurchasing = $('textarea[name="remarksPurchasing"]').val();
         var releaseDatePurchasing = $('input[name="releaseDatePurchasing"]').val();
-        if (dateReceivedPurchasing != "" && receivedByPurchasing != "" && statusPurchasing != "" && poNoPurchasing != "") {
+        if (dateReceivedPurchasing != "" && receivedByPurchasing != "" && statusPurchasing != "" && poNoPurchasing != "" && releaseDatePurchasing != "") {
             $.ajax({
                 url: "../scripts/php/Purchasing/PurchaseRequest/updateData.php",
                 method: "POST",
@@ -73,13 +97,8 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
-        } else {
-            alert("There are still empty fields!");
         }
     });
 

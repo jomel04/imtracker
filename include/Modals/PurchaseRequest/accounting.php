@@ -23,8 +23,8 @@
                                     <label for="receivedByAccounting">Received By</label>
                                     <select name="receivedByAccounting" id="receivedByAccounting" class="form-control" required>
                                         <option value=""></option>
-                                        <option value="Person 1">Person 1</option>
-                                        <option value="Person 2">Person 2</option>
+                                        <option value="Merliza Caday">Merliza Caday</option>
+                                        <option value="Clarissa Lagulay">Clarissa Lagulay</option>
                                     </select>
                                 </div>
                             </div>

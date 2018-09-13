@@ -21,21 +21,12 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="dateApprovedCctl">Date Approved</label>
+                                    <span class="dateCctl text-danger"></span>
                                     <input type="date" name="dateApprovedCctl" id="dateApprovedCctl" class="form-control" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="receivedByCctl">Received By</label>
-                                    <select name="receivedByCctl" id="receivedByCctl" class="form-control" required>
-                                        <option value=""></option>
-                                        <option value="Example 1">Example 1</option>
-                                        <option value="Example 2">Example 2</option>
-                                    </select>
-                                </div>
-                            </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="statusCctl">Status</label>
@@ -46,6 +37,17 @@
                                         <option value="Disapproved">Disapproved</option>
                                         <option value="For Signature">For Signature</option>
                                         <option value="Processing">Processing</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="receivedByCctl">Received By</label>
+                                    <select name="receivedByCctl" id="receivedByCctl" class="form-control" required>
+                                        <option value=""></option>
+                                        <option value="Mark Pulido">Mark Pulido</option>
+                                        <option value="Danica Bendigo">Danica Bendigo</option>
+                                        <option value="Chenelly Doromal">Chenelly Doromal</option>
                                     </select>
                                 </div>
                             </div>
@@ -67,6 +69,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" id="btnSkip" class="btn btn-outline-secondary btn-lg">SKIP</button>
                     <button type="button" id="btnClose" class="btn btn-outline-danger btn-lg" data-dismiss="modal">CLOSE</button>
                 </div>
             </div>

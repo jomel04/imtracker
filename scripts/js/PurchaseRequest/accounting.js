@@ -40,9 +40,6 @@ $(document).ready(function () {
                 $("select[name='statusAccounting']").val(data.statusAccounting);
                 $("textarea[name='remarksAccounting']").val(data.remarksAccounting);
                 $("input[name='releaseDateAccounting']").val(data.releaseDateAccounting);
-            },
-            error: function () {
-                alert("There is an error");
             }
         });
     });
@@ -70,9 +67,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else {

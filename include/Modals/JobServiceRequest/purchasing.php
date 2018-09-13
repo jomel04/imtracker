@@ -15,19 +15,18 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="dateReceivedPurchasing">Date Received / Entered</label>
-                                    <input type="date" name="dateReceivedPurchasing" id="dateReceivedPurchasing" class="form-control"
-                                        required>
+                                    <span class="requiredPurchasing text-danger"></span>
+                                    <input type="date" name="dateReceivedPurchasing" id="dateReceivedPurchasing" class="form-control" required>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="receivedByPurchasing">Received By</label>
-                                    <select name="receivedByPurchasing" id="receivedByPurchasing" class="form-control"
-                                        required>
+                                    <span class="requiredPurchasing text-danger"></span>
+                                    <select name="receivedByPurchasing" id="receivedByPurchasing" class="form-control" required>
                                         <option value=""></option>
-                                        <option value="Person 1">Person 1</option>
-                                        <option value="Person 2">Person 2</option>
-                                        <option value="Person 3">Person 3</option>
+                                        <option value="Crisbel Chatto">Crisbel Chatto</option>
+                                        <option value="Richard Castillano">Richard Castillano</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,8 +46,8 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="poNoPurchasing">PO no.</label>
-                                    <input type="number" name="poNoPurchasing" id="poNoPurchasing" class="form-control"
-                                        required>
+                                    <span class="requiredPurchasing text-danger"></span>
+                                    <input type="number" name="poNoPurchasing" id="poNoPurchasing" class="form-control" required>
                                 </div>
                             </div>
                         </div>
@@ -56,8 +55,8 @@
                             <div class="col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="releaseDatePurchasing">Release Date</label>
-                                    <input type="date" name="releaseDatePurchasing" id="releaseDatePurchasing" class="form-control"
-                                        required>
+                                    <span class="requiredPurchasing text-danger"></span>
+                                    <input type="date" name="releaseDatePurchasing" id="releaseDatePurchasing" class="form-control" required>
                                 </div>
                             </div>
                         </div>

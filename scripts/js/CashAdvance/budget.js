@@ -69,9 +69,6 @@ $(document).ready(function () {
         if (data.statusBudget != "") {
           $('button[name="btnSubmitBudget"]').attr("data-dismiss", "modal");
         }
-      },
-      error: function () {
-        alert("There is an error");
       }
     });
   });
@@ -102,9 +99,6 @@ $(document).ready(function () {
           alert(data);
           dataTable.ajax.reload();
           $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss");
-        },
-        error: function () {
-          alert("There is an error!");
         }
       });
     } else if (budgeted != "" && dateReceivedBudget != "" && receivedByBudget != "" && statusBudget != "") {
@@ -124,9 +118,6 @@ $(document).ready(function () {
           alert(data);
           dataTable.ajax.reload();
           $('button[name="btnSubmitBudget"]').removeAttr("data-dismiss");
-        },
-        error: function () {
-          alert("There is an error!");
         }
       });
     }

@@ -51,8 +51,8 @@ $(document).ready(function () {
     $("button[name='btnAdd']").click(function () {
         $("#requestForPaymentForm")[0].reset();
         $("input[name='action']").val("Insert");
-        $('button[name="requestForPaymentbtnUpdate"]').removeAttr("data-dismiss", "modal");
-        $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss", "modal").text("ADD");
+        $('button[name="requestForPaymentbtnUpdate"]').attr("name", "requestForPaymentbtnSubmit");
+        $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss").text("ADD");
         $("input[name='dateCreated']").prop("disabled", false);
         $("select[name='expenseAccount']").prop("disabled", false);
         $("select[name='section']").prop("disabled", false);
@@ -106,9 +106,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else if (dateCreated != "" && expenseAccount != "" && section != "" && requestor != "" && payee != "" && status != "") {
@@ -134,9 +131,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         }
@@ -175,9 +169,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else if (status != "Approved") {
@@ -198,9 +189,6 @@ $(document).ready(function () {
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         }
@@ -210,7 +198,7 @@ $(document).ready(function () {
         $("#requestForPaymentForm")[0].reset();
     });
 
-    //For Update
+    //For Selecting Data
     $(document).on("click", "button[name='btnSelect']", function () {
         var id = $(this).attr("id");
         $.ajax({
@@ -234,13 +222,10 @@ $(document).ready(function () {
                 $("textarea[name='purpose']").val(data.purpose);
                 $("textarea[name='requestForPaymentRemarks']").val(data.remarks);
                 $("input[name='cost']").val(data.cost);
-                $("input[name='dateReceived']").val(data.dateReceived);
+                $("input[name='dateReceived']").val(data.dateReceived).prop('disabled', true);
                 $("select[name='status']").val(data.status);
-                $("input[name='dateApproved']").val(data.dateApproved);
+                $("input[name='dateApproved']").val(data.dateApproved).prop('disabled', true);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
-            },
-            error: function () {
-                alert("There is an error!");
             }
         })
     });

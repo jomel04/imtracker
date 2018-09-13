@@ -66,9 +66,6 @@ $(document).ready(function () {
                 if (data.statusAccounting != "") {
                     $('button[name="btnSubmitAccounting"]').attr("data-dismiss", "modal");
                 }
-            },
-            error: function () {
-                alert("There is an error");
             }
         });
     });
@@ -97,9 +94,6 @@ $(document).ready(function () {
                     alert(data);
                     dataTable.ajax.reload();
                     $('button[name="btnSubmitAccounting"]').removeAttr("data-dismiss");
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         } else if (dateReceivedAccounting != "" && receivedByAccounting != "" && statusAccounting != "") {
@@ -118,9 +112,6 @@ $(document).ready(function () {
                     alert(data);
                     dataTable.ajax.reload();
                     $('button[name="btnSubmitAccounting"]').removeAttr("data-dismiss");
-                },
-                error: function () {
-                    alert("There is an error!");
                 }
             });
         }

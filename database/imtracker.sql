@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2018 at 10:09 AM
+-- Generation Time: Sep 13, 2018 at 09:42 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -37,31 +37,6 @@ CREATE TABLE `accounting` (
   `remarks` text,
   `releaseDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `accounting`
---
-
-INSERT INTO `accounting` (`acctgID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `releaseDate`) VALUES
-(70, 3, '2018-09-12', '', 'Released', NULL, '2018-09-12'),
-(71, 3, '2018-09-12', 'Merliza Caday', 'Processing', NULL, NULL),
-(72, 3, NULL, NULL, '', NULL, NULL),
-(73, 3, NULL, NULL, '', NULL, NULL),
-(74, 3, NULL, NULL, '', NULL, NULL),
-(75, 3, NULL, NULL, '', NULL, NULL),
-(76, 3, NULL, NULL, '', NULL, NULL),
-(77, 3, NULL, NULL, '', NULL, NULL),
-(78, 3, NULL, NULL, '', NULL, NULL),
-(79, 3, '2018-09-12', 'Clarissa Lagulay', 'Processing', NULL, NULL),
-(80, 3, '2018-09-12', 'Clarissa Lagulay', 'Released', NULL, '2018-09-12'),
-(81, 3, NULL, NULL, '', NULL, NULL),
-(82, 3, NULL, NULL, '', NULL, NULL),
-(83, 3, NULL, NULL, '', NULL, NULL),
-(84, 3, NULL, NULL, '', NULL, NULL),
-(85, 3, NULL, NULL, '', NULL, NULL),
-(86, 3, NULL, NULL, '', NULL, NULL),
-(87, 3, NULL, NULL, '', NULL, NULL),
-(88, 3, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,31 +286,6 @@ CREATE TABLE `budget` (
   `dateApproved` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `budget`
---
-
-INSERT INTO `budget` (`budgetID`, `leadTimeID`, `budgeted`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(73, 2, 'No', '2018-09-12', 'Karla Briones', 'Approved', NULL, '2018-09-12'),
-(74, 2, 'Yes', '2018-09-12', 'Eheginia Bantilan', 'Approved', NULL, NULL),
-(75, 2, 'No', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
-(76, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-06-12'),
-(77, 2, 'Yes', '2018-09-10', 'Eheginia Bantilan', 'Approved', NULL, '2018-09-12'),
-(78, 2, 'Yes', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
-(79, 2, 'Yes', '2018-09-12', 'Karla Briones', 'Approved', NULL, NULL),
-(80, 2, 'Yes', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-09-12'),
-(81, 2, 'Yes', '2018-09-12', 'Jeroen de Haas', 'Approved', NULL, NULL),
-(82, 2, 'No', '2018-09-12', 'Jeroen de Haas', 'Approved', NULL, '2018-09-12'),
-(83, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Approved', NULL, '2018-09-12'),
-(84, 2, 'No', '2018-09-12', 'Dannica Ngojo', 'Processing', NULL, NULL),
-(85, 2, 'No', '2018-12-12', 'Eheginia Bantilan', 'Processing', NULL, NULL),
-(86, 2, NULL, NULL, NULL, '', NULL, NULL),
-(87, 2, NULL, NULL, NULL, '', NULL, NULL),
-(88, 2, NULL, NULL, NULL, '', NULL, NULL),
-(89, 2, NULL, NULL, NULL, '', NULL, NULL),
-(90, 2, 'No', '2018-09-12', 'Karla Briones', 'Processing', NULL, NULL),
-(91, 2, NULL, NULL, NULL, '', NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -361,27 +311,6 @@ CREATE TABLE `ca` (
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `ca`
---
-
-INSERT INTO `ca` (`caID`, `adminID`, `userID`, `calID`, `managerID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `purpose`, `remarks`, `cost`) VALUES
-(49, 1, 3, 141, 72, 73, 70, 4, 4, '2018-09-10', '2018-09-10 10:27:13', '(For Accounting)\nStatus: Released\nOn: 2018-09-12', 'Active', NULL, NULL, '100000.00'),
-(50, 1, 3, 141, 73, 74, 71, 3, 4, '2018-09-10', '2018-09-10 10:27:24', '(For Accounting)\nStatus: Processing\nOn: ', 'Active', NULL, NULL, '10000.00'),
-(51, 1, 2, 141, 74, 75, 72, 4, 7, '2018-09-10', '2018-09-10 10:29:02', '(For Budget)\nBudgeted: No\nStatus: Approved', 'Active', NULL, NULL, '10000.00'),
-(52, 1, 3, 141, 75, 76, 73, 7, 4, '2018-09-10', '2018-09-10 10:29:13', '(For Budget)\nBudgeted: No\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
-(53, 1, 3, 141, 76, 77, 74, 10, 3, '2018-09-10', '2018-09-10 10:51:34', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '2.00'),
-(54, 1, 1, 141, 77, 78, 75, 5, 4, '2018-09-12', '2018-09-12 09:40:08', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '99999.00'),
-(55, 1, 2, 141, 78, 79, 76, 2, 7, '2018-09-12', '2018-09-12 09:55:33', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '10000.00'),
-(56, 1, 2, 141, 79, 80, 77, 1, 5, '2018-09-12', '2018-09-12 09:58:58', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
-(57, 1, 2, 141, 80, 81, 78, 2, 7, '2018-09-12', '2018-09-12 10:22:49', '(For Budget)\nBudgeted: Yes\nStatus: Approved', 'Active', NULL, NULL, '1000.00'),
-(58, 1, 3, 141, 81, 82, 79, 3, 7, '2018-09-12', '2018-09-12 10:40:55', '(For Accounting)\nStatus: Processing\nOn: ', 'Active', NULL, NULL, '100000.00'),
-(59, 1, 3, 141, 82, 83, 80, 6, 5, '2018-09-12', '2018-09-12 10:41:12', '(For Accounting)\nStatus: Released\nOn: 2018-09-12', 'Active', NULL, NULL, '10000.00'),
-(60, 1, 3, 141, 83, 84, 81, 2, 7, '2018-09-12', '2018-09-12 11:35:40', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
-(61, 1, 2, 141, 84, 85, 82, 5, 3, '2018-09-12', '2018-09-12 11:38:30', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
-(62, 1, 2, 141, 89, 90, 87, 3, 5, '2018-09-12', '2018-09-12 02:45:50', '(For Budget)\nBudgeted: No\nStatus: Processing', 'Active', NULL, NULL, '10000.00'),
-(63, 1, 2, 141, 90, 91, 88, 5, 5, '2018-09-12', '2018-09-12 03:00:37', '(For JGM)\nStatus: Approved', 'Active', NULL, NULL, '45345.00');
-
 -- --------------------------------------------------------
 
 --
@@ -397,16 +326,6 @@ CREATE TABLE `cctl` (
   `remarks` varchar(50) DEFAULT NULL,
   `dateApproved` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cctl`
---
-
-INSERT INTO `cctl` (`cctlID`, `leadTimeID`, `dateReceived`, `receivedBy`, `status`, `remarks`, `dateApproved`) VALUES
-(1, 5, '2018-09-12', 'Mark Pulido', 'Approved', NULL, '2018-09-12'),
-(2, 5, NULL, NULL, '', NULL, NULL),
-(3, 5, '2018-09-12', 'Chenelly Doromal', 'Approved', NULL, '2018-09-12'),
-(4, 5, NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -553,31 +472,6 @@ CREATE TABLE `manager` (
   `remarks` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `manager`
---
-
-INSERT INTO `manager` (`managerID`, `dateReceived`, `status`, `dateApproved`, `remarks`) VALUES
-(72, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(73, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(74, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(75, '2018-09-10', 'Approved', '2018-09-10', NULL),
-(76, '2018-09-10', 'Approved', '2018-09-10', NULL),
-(77, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(78, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(79, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(80, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(81, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(82, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(83, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(84, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(85, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(86, '2018-09-12', 'Approved', '2018-09-12', 'Hahahaha'),
-(87, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(88, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(89, '2018-09-12', 'Approved', '2018-09-12', NULL),
-(90, '2018-09-12', 'Approved', '2018-09-12', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -651,15 +545,6 @@ CREATE TABLE `rfp` (
   `cost` decimal(18,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `rfp`
---
-
-INSERT INTO `rfp` (`rfpID`, `adminID`, `userID`, `calID`, `managerID`, `cctlID`, `budgetID`, `acctgID`, `expenseID`, `sectionID`, `dateCreated`, `dateEntered`, `status`, `state`, `payee`, `purpose`, `remarks`, `cost`) VALUES
-(1, 1, 3, 141, 85, 1, 86, 83, 3, 5, '2018-09-12', '2018-09-12 02:12:23', '(For Cctl)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '100.00'),
-(2, 1, 1, 141, 87, 3, 88, 85, 3, 5, '2018-09-12', '2018-09-12 02:14:13', '(For Cctl)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '98978978.00'),
-(3, 1, 1, 141, 88, 4, 89, 86, 5, 4, '2018-09-12', '2018-09-12 02:16:18', '(For JGM)\nStatus: Approved', 'Active', 'CFBA travel Station', NULL, NULL, '999999.00');
-
 -- --------------------------------------------------------
 
 --
@@ -708,9 +593,45 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
-(1, 1, 1, 'Omar', 'Abdullah', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(1, 1, 1, 'Omar', 'Abdullah', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (2, 1, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
-(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'jb', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin');
+(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'jb', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(4, 1, 1, 'Joel', 'Mora', '...', 'Joel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(5, 1, 1, 'Alrex', 'Manayan', '...', 'Alrex', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(6, 1, 1, 'Renee Rose', 'Cayoca', '...', 'Renee', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(7, 1, 1, 'Gabriel Japeth', 'Calida', '...', 'Gabriel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(8, 1, 1, 'Wendell', 'Tangiday', '...', 'Wendell', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(9, 1, 1, 'Ian Jake', 'Lumogdang', '...', 'Ian', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(10, 1, 1, 'Mark Delfin', 'Lanaban Jr.', '...', 'Mark', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(11, 1, 1, 'Jon', 'Molina', '...', 'Jon', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(12, 1, 1, 'Johnly', 'Lagcao', '...', 'Johnly', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(13, 1, 1, 'Levi', 'Padilla', '...', 'Levi', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(14, 1, 1, 'Jay', 'Jamio', '...', 'Jay', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(15, 1, 1, 'Rodrigo', 'Arozado Jr,', '...', 'Rodrigo', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(16, 1, 1, 'Allan', 'Soylon', '...', 'Allan', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(17, 1, 1, 'Alan', 'Maldora', '...', 'Alan', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(18, 1, 1, 'Jovenil', 'Sialana', '...', 'Jovenil', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(19, 1, 1, 'Jerry', 'Gingone', '...', 'Jerry', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(20, 1, 1, 'Noel', 'Seguros', '...', 'Noel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(21, 1, 1, 'Michael', 'Maguilang', '...', 'MIchael', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(22, 1, 1, 'Zosimo', 'Ledama', '...', 'Zosimo', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(23, 1, 1, 'Mohammad', 'Egkayogen', '...', 'Mohammad', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(24, 1, 1, 'Omar', 'Abdullah', '...', 'Omar', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(25, 1, 1, 'Pedrito', 'Mamugay', '...', 'Pedrito', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(26, 1, 1, 'James', 'Carpentero', '...', 'James', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(27, 1, 1, 'Mohammad', 'Ty', '...', 'Mohammad', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(28, 1, 1, 'Methushella', 'Gaon', '...', 'Methushella', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(29, 1, 1, 'Jeffrey Roy', 'Bunda', '...', 'Jeffrey', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(30, 1, 1, 'Noel', 'Bausin', '...', 'Noel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(31, 1, 1, 'Ronald', 'Veniegas', '...', 'Ronald', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(32, 1, 1, 'Rea Jean', 'Perdilan', '...', 'Rea', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(33, 1, 1, 'Brian Rey', 'Consad', '...', 'Brian', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(34, 1, 1, 'Romel', 'Martin', '...', 'Romel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(35, 1, 1, 'Jade', 'Sollano', '...', 'Jade', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(36, 1, 1, 'Eric', 'Penaranda', '...', 'Eric', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(37, 1, 1, 'Christian', 'Labrador', '...', 'Christian', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(38, 1, 1, 'Romeo', 'Mugas', '...', 'Romeo', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(39, 1, 1, 'Darryl', 'Pontillo', '...', 'Darryl', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
 
 --
 -- Indexes for dumped tables
@@ -865,7 +786,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `accounting`
 --
 ALTER TABLE `accounting`
-  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `acctgID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `banana_calendars`
@@ -877,19 +798,19 @@ ALTER TABLE `banana_calendars`
 -- AUTO_INCREMENT for table `budget`
 --
 ALTER TABLE `budget`
-  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `budgetID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `ca`
 --
 ALTER TABLE `ca`
-  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `caID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cctl`
 --
 ALTER TABLE `cctl`
-  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cctlID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -925,7 +846,7 @@ ALTER TABLE `lead_time`
 -- AUTO_INCREMENT for table `manager`
 --
 ALTER TABLE `manager`
-  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pr`
@@ -943,7 +864,7 @@ ALTER TABLE `purchasing`
 -- AUTO_INCREMENT for table `rfp`
 --
 ALTER TABLE `rfp`
-  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `rfpID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `section`
@@ -955,7 +876,7 @@ ALTER TABLE `section`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
