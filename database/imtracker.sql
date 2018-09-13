@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 13, 2018 at 09:42 AM
+-- Generation Time: Sep 13, 2018 at 09:45 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 5.6.37
 
@@ -593,9 +593,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
-(1, 1, 1, 'Omar', 'Abdullah', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
-(2, 1, 1, 'Malkuth', 'Anggadol', '...', 'admin1', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
-(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'jb', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(1, 1, 1, 'Omar', 'Abdullah', '...', 'omar', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(2, 1, 1, 'Malkuth', 'Anggadol', '...', 'malkuth', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
 (4, 1, 1, 'Joel', 'Mora', '...', 'Joel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (5, 1, 1, 'Alrex', 'Manayan', '...', 'Alrex', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (6, 1, 1, 'Renee Rose', 'Cayoca', '...', 'Renee', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
