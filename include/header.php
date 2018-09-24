@@ -39,21 +39,31 @@
                 <?php endif; ?>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">
-                    Settings
+                <?php if($activeMenu == 'settings'): ?>
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDrop" data-toggle="dropdown">
+                    <?php echo $_SESSION['name'];?>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="../pages/profile.php">Profile</a>
+                    <a class="dropdown-item" href="../pages/settings.php">Settings</a>
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
+                <?php else: ?>
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">
+                    <?php echo $_SESSION['name'];?>
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="../pages/settings.php">Settings</a>
+                    <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
+                </div>
+                <?php endif; ?>
             </li>
         	<?php elseif($_SESSION['userType'] == 'User'): ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDrop" data-toggle="dropdown">
-                    Settings
+                    <?php echo $_SESSION['name'];?>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="../pages/profile.php">Profile</a>
+                    <a class="dropdown-item" href="../pages/userprofile.php">Settings</a>
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
             </li>

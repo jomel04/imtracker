@@ -16,6 +16,7 @@
         foreach($query as $result) {
             if(password_verify($password, $result->password)) {
                 $_SESSION['user'] = $result->userID;
+                $_SESSION['name'] = $result->firstName;
                 $_SESSION['userType'] = $result->userType;
                 if($_SESSION['userType'] == 'Admin') {
                     echo "<script>location.assign('../../../pages/home.php');</script>";

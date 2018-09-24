@@ -15,7 +15,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>NEH | Request for Payment</title>
+        <title>NEH | Purchase Request</title>
         <!-- ICON -->
         <link rel="icon" href="../resources/images/NEH.png">
         <link rel="stylesheet" type="text/css" href="../resources/icons/font/css/open-iconic-bootstrap.css">
