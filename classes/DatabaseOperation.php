@@ -84,7 +84,7 @@
 		//Delete Data
 		public function deleteData($table, $id) {
 			try {
-				$stmt = $this->connect()->prepare("DELETE FROM {$table} WHERE " . str_replace(":", "", array_keys($id)) . " = " . array_keys($id));
+				$stmt = $this->connect()->prepare("DELETE FROM {$table} WHERE " . implode(", ", str_replace(":", "", array_keys($id))) . " = " . implode(", ", array_values($id)));
 				$result = $stmt->execute($id);
 				if(!$result) {
 					return false;

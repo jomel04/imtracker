@@ -188,6 +188,7 @@ $(document).ready(function () {
             });
         }
     });
+    
     $(document).on("click", "#btnClose", function () {
         $("#cashAdvanceForm")[0].reset();
     });
@@ -240,7 +241,7 @@ $(document).ready(function () {
                 $("input[name='dateApproved']").val(data.dateApproved).prop('disabled', true);
                 $("textarea[name='managerRemarks']").val(data.managerRemarks);
             }
-        })
+        });
     });
 
     // Show all records

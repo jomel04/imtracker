@@ -39,6 +39,8 @@
     <?php
         $activeMenu = 'settings';
         require '../include/header.php';
+        require '../include/Modals/Settings/company.php';
+        require '../include/Modals/Settings/users.php';
     ?>
     <div class="container-fluid">
         <div class="row" style="margin-top: 100px;">
@@ -57,7 +59,7 @@
             <div class="col-sm-9 col-md-9">
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <button class="btn btn-outline-primary">Add company</button>
+                        <button class="btn btn-outline-primary" id="btnAddCompany" data-toggle="modal" data-target="#companyModal">Add company</button>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -78,7 +80,7 @@
                         </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <button class="btn btn-outline-primary">Add user</button>
+                        <button class="btn btn-outline-primary" id="btnAddUsers" data-toggle="modal" data-target="#usersModal">Add user</button>
                         <br>
                         <br>
                         <div class="table-responsive">

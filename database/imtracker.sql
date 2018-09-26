@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2018 at 08:33 AM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 5.6.37
+-- Generation Time: Sep 26, 2018 at 05:30 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -344,7 +344,9 @@ CREATE TABLE `company` (
 
 INSERT INTO `company` (`companyID`, `name`) VALUES
 (1, 'NEH'),
-(2, 'DANA');
+(2, 'DANA'),
+(3, 'Dana Foundation'),
+(4, 'Nader & Ebrahim s/o Hassan Philippines Inc.');
 
 -- --------------------------------------------------------
 
@@ -816,7 +818,7 @@ ALTER TABLE `cctl`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `companyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `companyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `department`
