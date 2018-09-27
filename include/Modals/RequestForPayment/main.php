@@ -89,8 +89,6 @@
                                             <select name="payee" class="form-control" required>
                                                 <option></option>
                                                 <option value="CFBA travel Station">CFBA travel Station</option>
-                                                <option value="Example 2">Example 2</option>
-                                                <option value="Example 3">Example 3</option>
                                             </select>
                                         </div>
                                     </div>

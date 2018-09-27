@@ -1,19 +1,18 @@
 $(document).ready(function () {
   //Fetching Budget Data
   var dataTable = $("#budget").DataTable({
-    processing: true,
-    serverSide: true,
-    order: [],
-    ajax: {
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "ajax": {
       url: "../scripts/php/Budget/CashAdvance/fetchData.php",
-      method: "POST"
+      type: "POST"
     },
-    columnDefs: [{
+    "columnDefs": [{
       targets: [0],
       orderable: false
     }],
-    stateSave: true,
-    pagingType: "full_numbers"
+    "stateSave": true
   });
 
   //Clicking Budget Tab

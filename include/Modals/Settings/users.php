@@ -80,7 +80,7 @@
                                     <label>Role:</label>
                                     <select name="role" class="form-control">
                                         <option value="Admin">Admin</option>
-                                        <option value="User" selected>User</option>
+                                        <option value="User">User</option>
                                         <option value="Manager">Manager</option>
                                     </select>
                                 </div>

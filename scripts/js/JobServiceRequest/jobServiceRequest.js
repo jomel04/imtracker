@@ -12,8 +12,7 @@ $(document).ready(function () {
             "targets": [0],
             "orderable": false
         }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        "stateSave": true
     });
 
     //For Selecting Status
@@ -27,9 +26,10 @@ $(document).ready(function () {
             $('button[name="jobServiceRequestbtnSubmit"]').removeAttr("data-dismiss").removeAttr('disabled');
             $('button[name="jobServiceRequestbtnUpdate"]').removeAttr("data-dismiss").removeAttr('disabled');
         } else {
+            $('button[name="jobServiceRequestbtnSubmit"]').prop('disabled', true);
+            $('button[name="jobServiceRequestbtnUpdate"]').prop('disabled', true);
+            
             if ($("input[name='cost']").val() == 0.00) {
-                $('button[name="jobServiceRequestbtnSubmit"]').prop('disabled', true);
-                $('button[name="jobServiceRequestbtnUpdate"]').prop('disabled', true);
                 $('span.costRequired').text('(Please fill out this field)');
             }
             $("input[name='dateReceived']").removeAttr('disabled').attr('required', true);

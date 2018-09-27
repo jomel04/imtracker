@@ -37,6 +37,8 @@
 <body>
     <?php
         require '../include/header.php';
+        require '../include/Modals/Settings/userProfile.php';
+        require '../include/Modals/Settings/changePass.php';
     ?>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs justify-content-center mt-4">
@@ -155,6 +157,7 @@
     <script src="../scripts/js/UserView/RequestForPayment.js"></script>
     <script src="../scripts/js/UserView/PurchaseRequest.js"></script>
     <script src="../scripts/js/UserView/JobServiceRequest.js"></script>
+    <script src="../scripts/js/UserView/userProfile.js"></script>
 </body>
 
 </html>

@@ -6,14 +6,13 @@ $(document).ready(function() {
         "order": [],
         "ajax": {
             url: "../scripts/php/Summary/purchaseRequest.php",
-            method: "POST"
+            type: "POST"
         },
         "columnDefs": [{
             "targets": [0],
             "orderable": false
         }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        "stateSave": true
     });
 
     //Clicking Budget Tab

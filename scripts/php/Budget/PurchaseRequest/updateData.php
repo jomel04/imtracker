@@ -13,8 +13,8 @@
         //Get Data
         if($dbOperation->updateData('budget', array(
             ':budgeted' => $_POST['budgeted'],
-            ':dateReceived' => date('Y-m-d', strtotime($_POST['dateReceivedBudget'])),
-            ':dateApproved' => date('Y-m-d', strtotime($_POST['dateApprovedBudget'])),
+            ':dateReceived' => (!empty($_POST['dateReceivedBudget'])) ? date('Y-m-d', strtotime($_POST['dateReceivedBudget'])) : NULL,
+            ':dateApproved' => (!empty($_POST['dateApprovedBudget'])) ? date('Y-m-d', strtotime($_POST['dateApprovedBudget'])) : NULL,
             ':receivedBy' => $_POST['receivedByBudget'],
             ':status' => $_POST['statusBudget'],
             ':remarks' => (!empty($_POST['remarksBudget'])) ? $_POST['remarksBudget'] : NULL

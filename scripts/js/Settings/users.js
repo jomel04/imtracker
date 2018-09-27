@@ -12,8 +12,7 @@ $(document).ready(function () {
             "targets": [0],
             "orderable": false
         }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        "stateSave": true
     });
 
     //Adding data-dismiss to button[name="usersBtnSubmit"]
@@ -46,7 +45,7 @@ $(document).ready(function () {
         var company = $("select[name='company']").val();
         var department = $("select[name='department']").val();
         var email = $("input[name='email']").val();
-        var role = $("select[name='role']").val();
+        var role = $('select[name="role"]').val();
         var username = $("input[name='username']").val();
         var password = $("input[name='password']").val();
         var confirmPassword = $("input[name='confirmPassword']").val();
@@ -56,7 +55,7 @@ $(document).ready(function () {
             alert("Password doesn't match!");
             return false;
         }
-        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && username != "" && password != "" && confirmPassword != "") {
+        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && role != "" && username != "" && password != "" && confirmPassword != "") {
             $.ajax({
                 url: "../scripts/php/Settings/Users/insertData.php",
                 method: "POST",
@@ -111,7 +110,7 @@ $(document).ready(function () {
             }
         });
     });
-
+    
     //Updating Data
     $(document).on('click', 'button[name="usersBtnUpdate"]', function () {
         //Get ID
@@ -122,8 +121,9 @@ $(document).ready(function () {
         var company = $("select[name='company']").val();
         var department = $("select[name='department']").val();
         var email = $("input[name='email']").val();
+        var role = $('select[name="role"]').val();
         var action = $("input[name='action']").val();
-        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "") {
+        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && role != "") {
             $.ajax({
                 url: "../scripts/php/Settings/Users/insertData.php",
                 method: "POST",
@@ -134,7 +134,8 @@ $(document).ready(function () {
                     lastName: lastName,
                     company: company,
                     department: department,
-                    email: email
+                    email: email,
+                    role: role
                 },
                 success: function (data) {
                     alert(data);

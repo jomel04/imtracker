@@ -12,8 +12,7 @@ $(document).ready(function () {
             "targets": [0],
             "orderable": false
         }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        "stateSave": true
     });
 
     //For Selecting Status
@@ -27,9 +26,9 @@ $(document).ready(function () {
             $('button[name="requestForPaymentbtnSubmit"]').removeAttr("data-dismiss").removeAttr('disabled');
             $('button[name="requestForPaymentbtnUpdate"]').removeAttr("data-dismiss").removeAttr('disabled');
         } else {
+            $('button[name="requestForPaymentbtnUpdate"]').prop('disabled', true);
+            $('button[name="requestForPaymentbtnSubmit"]').prop('disabled', true);
             if ($("input[name='cost']").val() == 0.00) {
-                $('button[name="requestForPaymentbtnUpdate"]').prop('disabled', true);
-                $('button[name="requestForPaymentbtnSubmit"]').prop('disabled', true);
                 $('span.costRequired').text('(Please fill out this field)');
             }
             $("input[name='dateReceived']").removeAttr('disabled').attr('required', true);

@@ -12,8 +12,7 @@ $(document).ready(function () {
             "targets": [0],
             "orderable": false
         }],
-        "stateSave": true,
-        "pagingType": "full_numbers"
+        "stateSave": true
     });
 
     //Adding data-dismiss to button[name="expenseAccountBtnSubmit"]

@@ -43,6 +43,7 @@
                             <div class="col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="releaseDateAccounting">Release Date</label>
+                                    <span class="releaseDateAccounting text-danger"></span>
                                     <input type="date" name="releaseDateAccounting" id="releaseDateAccounting" class="form-control" required>
                                 </div>
                             </div>
