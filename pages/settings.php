@@ -41,25 +41,30 @@
         require '../include/header.php';
         require '../include/Modals/Settings/company.php';
         require '../include/Modals/Settings/users.php';
+        require '../include/Modals/Settings/department.php';
+        require '../include/Modals/Settings/section.php';
+        require '../include/Modals/Settings/expenseAccount.php';
     ?>
     <div class="container-fluid">
         <div class="row" style="margin-top: 100px;">
             <div class="col-sm-3 col-md-3">
                 <div class="nav flex-column nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab"
-                        aria-controls="v-pills-home" aria-selected="true">Company</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
-                        aria-controls="v-pills-profile" aria-selected="false">Users</a>
-                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
-                        aria-controls="v-pills-messages" aria-selected="false">Department</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
-                        aria-controls="v-pills-settings" aria-selected="false">Section</a>
+                    <a class="nav-link active" id="v-pills-company-tab" data-toggle="pill" href="#v-pills-company" role="tab"
+                        aria-controls="v-pills-company" aria-selected="true">Company</a>
+                    <a class="nav-link" id="v-pills-users-tab" data-toggle="pill" href="#v-pills-users" role="tab"
+                        aria-controls="v-pills-users" aria-selected="false">Users</a>
+                    <a class="nav-link" id="v-pills-department-tab" data-toggle="pill" href="#v-pills-department" role="tab"
+                        aria-controls="v-pills-department" aria-selected="false">Department</a>
+                    <a class="nav-link" id="v-pills-section-tab" data-toggle="pill" href="#v-pills-section" role="tab"
+                        aria-controls="v-pills-section" aria-selected="false">Section</a>
+                    <a class="nav-link" id="v-pills-expenseAccount-tab" data-toggle="pill" href="#v-pills-expenseAccount" role="tab"
+                        aria-controls="v-pills-expenseAccount" aria-selected="false">Expense Account</a>
                 </div>
             </div>
             <div class="col-sm-9 col-md-9">
                 <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                        <button class="btn btn-outline-primary" id="btnAddCompany" data-toggle="modal" data-target="#companyModal">Add company</button>
+                    <div class="tab-pane fade show active" id="v-pills-company" role="tabpanel" aria-labelledby="v-pills-company-tab">
+                        <button class="col-md-4 offset-md-4 btn btn-outline-primary btn-md" id="btnAddCompany" data-toggle="modal" data-target="#companyModal">Add company</button>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -79,8 +84,8 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                        <button class="btn btn-outline-primary" id="btnAddUsers" data-toggle="modal" data-target="#usersModal">Add user</button>
+                    <div class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
+                        <button class="col-md-4 offset-md-4 btn btn-outline-primary btn-md" id="btnAddUsers" data-toggle="modal" data-target="#usersModal">Add user</button>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -104,8 +109,8 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                        <button class="btn btn-outline-primary">Add department</button>
+                    <div class="tab-pane fade" id="v-pills-department" role="tabpanel" aria-labelledby="v-pills-department-tab">
+                        <button class="col-md-4 offset-md-4 btn btn-outline-primary btn-md" id="btnAddDepartment" data-toggle="modal" data-target="#departmentModal">Add department</button>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -125,8 +130,8 @@
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                        <button class="btn btn-outline-primary">Add section</button>
+                    <div class="tab-pane fade" id="v-pills-section" role="tabpanel" aria-labelledby="v-pills-section-tab">
+                        <button class="col-md-4 offset-md-4 btn btn-outline-primary btn-md" id="btnAddSection" data-toggle="modal" data-target="#sectionModal">Add section</button>
                         <br>
                         <br>
                         <div class="table-responsive">
@@ -146,6 +151,27 @@
                             </table>
                         </div>
                     </div>
+                    <div class="tab-pane fade" id="v-pills-expenseAccount" role="tabpanel" aria-labelledby="v-pills-expenseAccount-tab">
+                        <button class="col-md-4 offset-md-4 btn btn-outline-primary btn-md" id="btnAddExpenseAccount" data-toggle="modal" data-target="#expenseAccountModal">Add Expense Account</button>
+                        <br>
+                        <br>
+                        <div class="table-responsive">
+                            <table id="expenseAccount" class="stripe hover cell-border" style="width:100%">
+                                <thead>
+                                    <tr class="text-white text-center">
+                                        <th colspan="3" style="background-color: #3AAFA9;border-left: 2px solid #3AAFA9;border-right: 2px solid #3AAFA9">
+                                            <h3>Expense Account</h3>
+                                        </th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th style="border-left: 2px solid #3AAFA9;border-bottom: 2px solid #3AAFA9">NO.</th>
+                                        <th style="border-bottom: 2px solid #3AAFA9">Expense Account</th>
+                                        <th style="border-right: 2px solid #3AAFA9;border-bottom: 2px solid #3AAFA9">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,6 +180,7 @@
     <script src="../scripts/js/Settings/users.js"></script>
     <script src="../scripts/js/Settings/department.js"></script>
     <script src="../scripts/js/Settings/section.js"></script>
+    <script src="../scripts/js/Settings/expenseAccount.js"></script>
 </body>
 
 </html>

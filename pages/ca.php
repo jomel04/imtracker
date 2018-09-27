@@ -61,10 +61,7 @@
             <div class="tab-content">
                 <div class="tab-pane container-fluid active" id="cashAdvanceSection">
                     <div class="row mt-3">
-                        <div class="col-sm-6 text-left">
-                            <button type="button" name="btnShowAll" class="btn btn-outline-primary btn-md">Show all records</button>
-                        </div>
-                        <div class="col-sm-6 text-right">
+                        <div class="col-sm-12 text-right">
                             <button type="button" name="btnAdd" id="btnAdd" data-toggle="modal" data-target="#cashAdvanceModal" class="btn btn-outline-primary btn-md">Add new record</button>
                         </div>
                     </div>
@@ -76,7 +73,7 @@
                                     <th colspan="11" style="background-color: #3AAFA9;border-left: 2px solid #3AAFA9;border-right: 2px solid #3AAFA9">
                                         <h3>Innovations Management Cash Advance Tracker</h3>
                                     </th>
-                                    <th colspan="6" style="background-color: #EB465A;border-left: 2px solid #EB465A;border-right: 2px solid #EB465A">
+                                    <th colspan="6" style="background-color: #FF0080;border-left: 2px solid #FF0080;border-right: 2px solid #FF0080">
                                         <h3>For JGM</h3>
                                     </th>
                                 </tr>
@@ -92,12 +89,12 @@
                                     <th style="border-bottom: 2px solid #3AAFA9">Purpose</th>
                                     <th style="border-bottom: 2px solid #3AAFA9">Remarks</th>
                                     <th style="border-bottom: 2px solid #3AAFA9">Cost</th>
-                                    <th style="border-left: 2px solid #EB465A;border-bottom: 2px solid #EB465A">Date Received (Entered)</th>
-                                    <th style="border-bottom: 2px solid #EB465A">Status</th>
-                                    <th style="border-bottom: 2px solid #EB465A">Date Approved</th>
-                                    <th style="border-bottom: 2px solid #EB465A">Remarks</th>
-                                    <th style="border-bottom: 2px solid #EB465A">No. of Days</th>
-                                    <th style="border-right: 2px solid #EB465A;border-bottom: 2px solid #EB465A">Action</th>
+                                    <th style="border-left: 2px solid #FF0080;border-bottom: 2px solid #FF0080">Date Received (Entered)</th>
+                                    <th style="border-bottom: 2px solid #FF0080">Status</th>
+                                    <th style="border-bottom: 2px solid #FF0080">Date Approved</th>
+                                    <th style="border-bottom: 2px solid #FF0080">Remarks</th>
+                                    <th style="border-bottom: 2px solid #FF0080">No. of Days</th>
+                                    <th style="border-right: 2px solid #FF0080;border-bottom: 2px solid #FF0080">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -116,14 +113,14 @@
                                     <th style="background-color: #3AAFA9">Purpose</th>
                                     <th style="background-color: #3AAFA9">Remarks</th>
                                     <th style="background-color: #3AAFA9">Cost</th>
-                                    <th style="background-color: #EB465A">Budgeted</th>
-                                    <th style="background-color: #EB465A">Date Received (Entered)</th>
-                                    <th style="background-color: #EB465A">Received by</th>
-                                    <th style="background-color: #EB465A">Status</th>
-                                    <th style="background-color: #EB465A">Remarks</th>
-                                    <th style="background-color: #EB465A">Date Approved</th>
-                                    <th style="background-color: #EB465A">Lead time (Days)</th>
-                                    <th style="background-color: #EB465A">Action</th>
+                                    <th style="background-color: #FF0080">Budgeted</th>
+                                    <th style="background-color: #FF0080">Date Received (Entered)</th>
+                                    <th style="background-color: #FF0080">Received by</th>
+                                    <th style="background-color: #FF0080">Status</th>
+                                    <th style="background-color: #FF0080">Remarks</th>
+                                    <th style="background-color: #FF0080">Date Approved</th>
+                                    <th style="background-color: #FF0080">Lead time (Days)</th>
+                                    <th style="background-color: #FF0080">Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -142,13 +139,13 @@
                                     <th style="background-color: #3AAFA9">Purpose</th>
                                     <th style="background-color: #3AAFA9">Remarks</th>
                                     <th style="background-color: #3AAFA9">Cost</th>
-                                    <th style="background-color: #EB465A">Date Received (Entered)</th>
-                                    <th style="background-color: #EB465A">Received by</th>
-                                    <th style="background-color: #EB465A">Status</th>
-                                    <th style="background-color: #EB465A">Remarks</th>
-                                    <th style="background-color: #EB465A">Release Date</th>
-                                    <th style="background-color: #EB465A">Lead time (Days)</th>
-                                    <th style="background-color: #EB465A">Action</th>
+                                    <th style="background-color: #FF0080">Date Received (Entered)</th>
+                                    <th style="background-color: #FF0080">Received by</th>
+                                    <th style="background-color: #FF0080">Status</th>
+                                    <th style="background-color: #FF0080">Remarks</th>
+                                    <th style="background-color: #FF0080">Release Date</th>
+                                    <th style="background-color: #FF0080">Lead time (Days)</th>
+                                    <th style="background-color: #FF0080">Action</th>
                                 </tr>
                             </thead>
                         </table>

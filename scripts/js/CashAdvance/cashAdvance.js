@@ -243,26 +243,4 @@ $(document).ready(function () {
             }
         });
     });
-
-    // Show all records
-    // $(document).on('click', 'button[name="btnShowAll"]', function () {
-    //     var dataTable = $("#cashAdvance").DataTable({
-    //         "processing": true,
-    //         "serverSide": true,
-    //         "order": [],
-    //         "ajax": {
-    //             url: "../scripts/php/CashAdvance/fetchData.php",
-    //             type: "POST"
-    //         },
-    //         "data": {
-    //             showAll: $('button[name="btnShowAll"]')
-    //         },
-    //         "columnDefs": [{
-    //             "targets": [0],
-    //             "orderable": false
-    //         }],
-    //         "stateSave": true,
-    //         "pagingType": "full_numbers"
-    //     });
-    // });
 });

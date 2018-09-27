@@ -4,7 +4,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="col-md-12 modal-title text-center">USERS</h4>
+                <h4 class="col-md-4 offset-md-4 modal-title text-center">USERS</h4>
                 <button type="button" id="btnClose" class="close" data-dismiss="modal">&times;</button>
             </div>
             <!-- Modal body -->
@@ -71,6 +71,18 @@
                                     <label>Email:</label>
                                     <input type="email" name="email" class="form-control" placeholder="Enter Email"
                                         required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label>Role:</label>
+                                    <select name="role" class="form-control">
+                                        <option value="Admin">Admin</option>
+                                        <option value="User" selected>User</option>
+                                        <option value="Manager">Manager</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

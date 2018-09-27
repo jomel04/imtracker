@@ -16,38 +16,62 @@ $(document).ready(function () {
         "pagingType": "full_numbers"
     });
 
-    //Adding data-dismiss to button[name="companyBtnSubmit"]
-    $("input[name='companyName']").change(function () {
-        if ($(this).val() != "") {
-            $('button[name="companyBtnSubmit"]').attr("data-dismiss", "modal");
+    //Adding data-dismiss to button[name="usersBtnSubmit"]
+    $("input[name='firstName'], input[name='lastName'], select[name='company'], select[name='department'], input[name='email'], input[name='username'], input[name='password'], input[name='confirmPassword']").change(function () {
+        if ($("input[name='firstName']").val() != "" && $("input[name='lastName']").val() != "" && $("select[name='company']").val() != "" && $("select[name='department']").val() != "" && $("input[name='email']").val() != "" && $("input[name='username']").val() != "" && $("input[name='password']").val() != "" && $("input[name='confirmPassword']").val() != "") {
+            $('button[name="usersBtnSubmit"]').focus().attr("data-dismiss", "modal");
         } else {
-            $('button[name="companyBtnSubmit"]').removeAttr("data-dismiss");
+            $('button[name="usersBtnSubmit"]').removeAttr("data-dismiss");
         }
     });
+
     //Adding new record
-    $(document).on('click', '#btnAddCompany', function () {
-        $('#companyForm')[0].reset();
+    $(document).on('click', '#btnAddUsers', function () {
+        $('#usersForm')[0].reset();
         $("input[name='action']").val("Insert");
-        $('button[name="companyBtnSubmit"]').removeAttr('data-dismiss');
-        $("button[name='companyBtnUpdate']").attr('name', 'companyBtnSubmit').text("ADD").removeAttr('data-dismiss');
+        $('button[name="usersBtnSubmit"]').removeAttr('data-dismiss');
+        $("button[name='usersBtnUpdate']").attr('name', 'usersBtnSubmit').text("ADD").removeAttr('data-dismiss');
+        $('input[name="username"]').removeAttr('disabled');
+        $('input[name="password"]').removeAttr('disabled');
+        $('input[name="confirmPassword"]').removeAttr('disabled');
     });
 
     //Submitting form (INSERTING DATA)
-    $(document).on('click', 'button[name="companyBtnSubmit"]', function () {
+    $(document).on('click', 'button[name="usersBtnSubmit"]', function () {
         //Get ID
-        var id = $("input[name='getCompanyId']").val();
+        var id = $("input[name='getUserId']").val();
         //Data
-        var companyName = $("input[name='companyName']").val();
+        var firstName = $("input[name='firstName']").val();
+        var lastName = $("input[name='lastName']").val();
+        var company = $("select[name='company']").val();
+        var department = $("select[name='department']").val();
+        var email = $("input[name='email']").val();
+        var role = $("select[name='role']").val();
+        var username = $("input[name='username']").val();
+        var password = $("input[name='password']").val();
+        var confirmPassword = $("input[name='confirmPassword']").val();
 
         var action = $("input[name='action']").val();
-        if (companyName != "") {
+        if (password != confirmPassword) {
+            alert("Password doesn't match!");
+            return false;
+        }
+        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && username != "" && password != "" && confirmPassword != "") {
             $.ajax({
                 url: "../scripts/php/Settings/Users/insertData.php",
                 method: "POST",
                 data: {
                     id: id,
                     action: action,
-                    companyName: companyName
+                    firstName: firstName,
+                    lastName: lastName,
+                    company: company,
+                    department: department,
+                    email: email,
+                    role: role,
+                    username: username,
+                    password: password,
+                    confirmPassword: confirmPassword,
                 },
                 success: function (data) {
                     alert(data);
@@ -58,7 +82,7 @@ $(document).ready(function () {
     });
 
     //Selecting Data
-    $(document).on('click', 'button[name="companyBtnSelect"]', function () {
+    $(document).on('click', 'button[name="usersBtnSelect"]', function () {
         var id = $(this).attr('id');
         $.ajax({
             url: "../scripts/php/Settings/Users/selectData.php",
@@ -68,44 +92,60 @@ $(document).ready(function () {
             },
             dataType: "json",
             success: function (data) {
-                $("#companyModal").modal("show");
+                $("#usersModal").modal("show");
                 $("input[name='action']").val("Update");
-                $("input[name='getCompanyId']").val(id);
-                $("button[name='companyBtnSubmit']").attr('name', 'companyBtnUpdate').text("UPDATE");
-                $("button[name='companyBtnUpdate']").attr('data-dismiss', 'modal');
-                $('input[name="companyName"]').val(data.name.name);
+                $("input[name='getUserId']").val(id);
+                $("button[name='usersBtnSubmit']").attr('name', 'usersBtnUpdate').text("UPDATE");
+                $("button[name='usersBtnUpdate']").attr('data-dismiss', 'modal');
+                $('input[name="firstName"]').val(data.firstName);
+                $('input[name="lastName"]').val(data.lastName);
+                $('select[name="company"]').val(data.company.companyID);
+                $('select[name="department"]').val(data.department.departmentID);
+                $('input[name="email"]').val(data.email);
+                $('select[name="role"]').val(data.role);
+                if (data.role != 'Admin') {
+                    $('input[name="username"]').val(data.username).attr('disabled', true);
+                    $('input[name="password"]').attr('disabled', true);
+                    $('input[name="confirmPassword"]').attr('disabled', true);
+                }
             }
         });
     });
 
     //Updating Data
-    $(document).on('click', 'button[name="companyBtnUpdate"]', function () {
+    $(document).on('click', 'button[name="usersBtnUpdate"]', function () {
         //Get ID
-        var id = $("input[name='getCompanyId']").val();
+        var id = $("input[name='getUserId']").val();
         //Data
-        var companyName = $("input[name='companyName']").val();
+        var firstName = $("input[name='firstName']").val();
+        var lastName = $("input[name='lastName']").val();
+        var company = $("select[name='company']").val();
+        var department = $("select[name='department']").val();
+        var email = $("input[name='email']").val();
         var action = $("input[name='action']").val();
-        if (companyName != "") {
+        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "") {
             $.ajax({
                 url: "../scripts/php/Settings/Users/insertData.php",
                 method: "POST",
                 data: {
                     id: id,
                     action: action,
-                    companyName: companyName
+                    firstName: firstName,
+                    lastName: lastName,
+                    company: company,
+                    department: department,
+                    email: email
                 },
                 success: function (data) {
                     alert(data);
                     dataTable.ajax.reload();
                 }
             });
-        } else {
-            alert('Please fill out the field');
         }
     });
 
     //Deleting Data
-    $(document).on('click', 'button[name="companyBtnDelete"]', function () {
+    $(document).on('click', 'button[name="usersBtnDelete"]', function () {
         var id = $(this).attr("id");
         if (confirm('Are you sure you want to delete this data?')) {
             $.ajax({

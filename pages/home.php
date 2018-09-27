@@ -32,6 +32,11 @@ if(isset($_SESSION['userType']) == 'Admin') {
         h1 {
             font-family: Helvetica, sans-serif;
         }
+        .container-fluid {
+            background-image: url(../resources/images/background-kitten.jpg);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
     </style>
 </head>
 
@@ -40,10 +45,10 @@ if(isset($_SESSION['userType']) == 'Admin') {
         $activeMenu = '';
         require '../include/header.php';
         ?>
-    <div class="container h-100">
+    <div class="container-fluid h-100">
         <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-sm-12 col-md-12 text-center">
-                <h1 class="text-primary">Innovations Management Document Tracking System</h1>
+            <div class="col-sm-12 col-md-5 offset-md-6 text-center">
+                <h1 class="text-white">Innovations Management Document Tracking System</h1>
             </div>
         </div>
     </div>

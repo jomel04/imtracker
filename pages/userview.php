@@ -36,8 +36,8 @@
 
 <body>
     <?php
-            require '../include/header.php';
-        ?>
+        require '../include/header.php';
+    ?>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs justify-content-center mt-4">
         <li class="nav-item">

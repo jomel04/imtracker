@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2018 at 05:30 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Sep 27, 2018 at 09:54 AM
+-- Server version: 10.1.34-MariaDB
+-- PHP Version: 5.6.37
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -597,7 +597,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastName`, `email`, `username`, `password`, `userType`) VALUES
 (1, 1, 1, 'Omar', 'Abdullah', '...', 'omar', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (2, 1, 1, 'Malkuth', 'Anggadol', '...', 'malkuth', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
-(3, 1, 1, 'Jacky Lou', 'Beltran', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
+(3, 1, 1, 'Jaybeeee', 'Beltran', '...', 'admin', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'Admin'),
 (4, 1, 1, 'Joel', 'Mora', '...', 'Joel', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (5, 1, 1, 'Alrex', 'Manayan', '...', 'Alrex', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (6, 1, 1, 'Renee Rose', 'Cayoca', '...', 'Renee', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
@@ -633,7 +633,10 @@ INSERT INTO `users` (`userID`, `companyID`, `departmentID`, `firstName`, `lastNa
 (36, 1, 1, 'Eric', 'Penaranda', '...', 'Eric', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (37, 1, 1, 'Christian', 'Labrador', '...', 'Christian', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
 (38, 1, 1, 'Romeo', 'Mugas', '...', 'Romeo', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
-(39, 1, 1, 'Darryl', 'Pontillo', '...', 'Darryl', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User');
+(39, 1, 1, 'Darryl', 'Pontillo', '...', 'Darryl', '$2y$10$van4YxewjKUqpCIhOgPiJuztl3QNWzHMPXdkJ7p7Bfjn77zJRPikS', 'User'),
+(40, 1, 1, 'Jomel', 'Macion', 'macion.jomel04@gmail.com', 'admin123', '$2y$10$UKwwqx7WN7f3db0NpROuL.ktanwaOTnwBvH.7oDVW5y54FjmtSC7C', 'User'),
+(41, 3, 2, 'Daven Jay12', 'Piloton12', 'davenjaypiloton12@gmail.com', 'daven', '$2y$10$UKwwqx7WN7f3db0NpROuL.ktanwaOTnwBvH.7oDVW5y54FjmtSC7C', 'User'),
+(42, 1, 2, 'Example', 'Example', 'example@gmail.com', 'example', '$2y$10$UKwwqx7WN7f3db0NpROuL.ktanwaOTnwBvH.7oDVW5y54FjmtSC7C', 'User');
 
 --
 -- Indexes for dumped tables
@@ -824,7 +827,7 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `departmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `departmentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `expense_account`
@@ -872,13 +875,13 @@ ALTER TABLE `rfp`
 -- AUTO_INCREMENT for table `section`
 --
 ALTER TABLE `section`
-  MODIFY `sectionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `sectionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- Constraints for dumped tables

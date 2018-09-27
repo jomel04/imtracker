@@ -1,11 +1,11 @@
 $(document).ready(function () {
     //Fetching Data
-    var dataTable = $('#section').DataTable({
+    var dataTable = $('#expenseAccount').DataTable({
         "processing": true,
         "serverSide": true,
         "order": [],
         "ajax": {
-            url: "../scripts/php/Settings/Section/fetchData.php",
+            url: "../scripts/php/Settings/ExpenseAccount/fetchData.php",
             type: "POST"
         },
         "columnDefs": [{
@@ -16,38 +16,38 @@ $(document).ready(function () {
         "pagingType": "full_numbers"
     });
 
-    //Adding data-dismiss to button[name="sectionBtnSubmit"]
-    $("input[name='sectionName']").change(function () {
+    //Adding data-dismiss to button[name="expenseAccountBtnSubmit"]
+    $("input[name='expenseAccount']").change(function () {
         if ($(this).val() != "") {
-            $('button[name="sectionBtnSubmit"]').attr("data-dismiss", "modal");
+            $('button[name="expenseAccountBtnSubmit"]').attr("data-dismiss", "modal");
         } else {
-            $('button[name="sectionBtnSubmit"]').removeAttr("data-dismiss");
+            $('button[name="expenseAccountBtnSubmit"]').removeAttr("data-dismiss");
         }
     });
     //Adding new record
-    $(document).on('click', '#btnAddSection', function () {
-        $('#sectionForm')[0].reset();
+    $(document).on('click', '#btnAddExpenseAccount', function () {
+        $('#expenseAccountForm')[0].reset();
         $("input[name='action']").val("Insert");
-        $('button[name="sectionBtnSubmit"]').removeAttr('data-dismiss');
-        $("button[name='sectionBtnUpdate']").attr('name', 'sectionBtnSubmit').text("ADD").removeAttr('data-dismiss');
+        $('button[name="expenseAccountBtnSubmit"]').removeAttr('data-dismiss');
+        $("button[name='expenseAccountBtnUpdate']").attr('name', 'expenseAccountBtnSubmit').text("ADD").removeAttr('data-dismiss');
     });
 
     //Submitting form (INSERTING DATA)
-    $(document).on('click', 'button[name="sectionBtnSubmit"]', function () {
+    $(document).on('click', 'button[name="expenseAccountBtnSubmit"]', function () {
         //Get ID
-        var id = $("input[name='getSectionId']").val();
+        var id = $("input[name='getExpenseAccountId']").val();
         //Data
-        var sectionName = $("input[name='sectionName']").val();
+        var expenseAccount = $("input[name='expenseAccount']").val();
 
         var action = $("input[name='action']").val();
-        if (sectionName != "") {
+        if (expenseAccount != "") {
             $.ajax({
-                url: "../scripts/php/Settings/Section/insertData.php",
+                url: "../scripts/php/Settings/ExpenseAccount/insertData.php",
                 method: "POST",
                 data: {
                     id: id,
                     action: action,
-                    sectionName: sectionName
+                    expenseAccount: expenseAccount
                 },
                 success: function (data) {
                     alert(data);
@@ -58,41 +58,41 @@ $(document).ready(function () {
     });
 
     //Selecting Data
-    $(document).on('click', 'button[name="sectionBtnSelect"]', function () {
+    $(document).on('click', 'button[name="expenseAccountBtnSelect"]', function () {
         var id = $(this).attr('id');
         $.ajax({
-            url: "../scripts/php/Settings/Section/selectData.php",
+            url: "../scripts/php/Settings/ExpenseAccount/selectData.php",
             method: "POST",
             data: {
                 id: id
             },
             dataType: "json",
             success: function (data) {
-                $("#sectionModal").modal("show");
+                $("#expenseAccountModal").modal("show");
                 $("input[name='action']").val("Update");
-                $("input[name='getSectionId']").val(id);
-                $("button[name='sectionBtnSubmit']").attr('name', 'sectionBtnUpdate').text("UPDATE");
-                $("button[name='sectionBtnUpdate']").attr('data-dismiss', 'modal');
-                $('input[name="sectionName"]').val(data.name.type);
+                $("input[name='getExpenseAccountId']").val(id);
+                $("button[name='expenseAccountBtnSubmit']").attr('name', 'expenseAccountBtnUpdate').text("UPDATE");
+                $("button[name='expenseAccountBtnUpdate']").attr('data-dismiss', 'modal');
+                $('input[name="expenseAccount"]').val(data.name.type);
             }
         });
     });
 
     //Updating Data
-    $(document).on('click', 'button[name="sectionBtnUpdate"]', function () {
+    $(document).on('click', 'button[name="expenseAccountBtnUpdate"]', function () {
         //Get ID
-        var id = $("input[name='getSectionId']").val();
+        var id = $("input[name='getExpenseAccountId']").val();
         //Data
-        var sectionName = $("input[name='sectionName']").val();
+        var expenseAccount = $("input[name='expenseAccount']").val();
         var action = $("input[name='action']").val();
-        if (sectionName != "") {
+        if (expenseAccount != "") {
             $.ajax({
-                url: "../scripts/php/Settings/Section/insertData.php",
+                url: "../scripts/php/Settings/ExpenseAccount/insertData.php",
                 method: "POST",
                 data: {
                     id: id,
                     action: action,
-                    sectionName: sectionName
+                    expenseAccount: expenseAccount
                 },
                 success: function (data) {
                     alert(data);
@@ -105,11 +105,11 @@ $(document).ready(function () {
     });
 
     //Deleting Data
-    $(document).on('click', 'button[name="sectionBtnDelete"]', function () {
+    $(document).on('click', 'button[name="expenseAccountBtnDelete"]', function () {
         var id = $(this).attr("id");
         if (confirm('Are you sure you want to delete this data?')) {
             $.ajax({
-                url: "../scripts/php/Settings/Section/deleteData.php",
+                url: "../scripts/php/Settings/ExpenseAccount/deleteData.php",
                 method: "POST",
                 data: {
                     id: id
