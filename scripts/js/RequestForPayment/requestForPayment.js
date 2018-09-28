@@ -56,7 +56,7 @@ $(document).ready(function () {
         $("select[name='expenseAccount']").prop("disabled", false);
         $("select[name='section']").prop("disabled", false);
         $("select[name='requestor']").prop("disabled", false);
-        $("select[name='payee']").prop("disabled", false);
+        $("input[name='payee']").prop("disabled", false);
         $("input[name='dateReceived']").prop('disabled', true);
         $("input[name='dateApproved']").prop('disabled', true);
         $('span.costRequired').text('');
@@ -72,7 +72,7 @@ $(document).ready(function () {
         var expenseAccount = $("select[name='expenseAccount']").val();
         var section = $("select[name='section']").val();
         var requestor = $("select[name='requestor']").val();
-        var payee = $("select[name='payee']").val();
+        var payee = $("input[name='payee']").val();
         var purpose = $("textarea[name='purpose']").val();
         var requestForPaymentRemarks = $("textarea[name='requestForPaymentRemarks']").val();
         var cost = $("input[name='cost']").val();
@@ -217,7 +217,7 @@ $(document).ready(function () {
                 $("select[name='expenseAccount']").val(data.expenseAccount.expenseID).prop("disabled", true);
                 $("select[name='section']").val(data.section.sectionID).prop("disabled", true);
                 $("select[name='requestor']").val(data.requestor).prop("disabled", true);
-                $("select[name='payee']").val(data.payee).prop("disabled", true);
+                $("input[name='payee']").val(data.payee).prop("disabled", true);
                 $("textarea[name='purpose']").val(data.purpose);
                 $("textarea[name='requestForPaymentRemarks']").val(data.remarks);
                 $("input[name='cost']").val(data.cost);

@@ -102,6 +102,9 @@ $(document).ready(function () {
                 $('select[name="department"]').val(data.department.departmentID);
                 $('input[name="email"]').val(data.email);
                 $('select[name="role"]').val(data.role);
+                $('input[name="username"]').val(data.username);
+                $('input[name="password"]').attr('disabled', true);
+                $('input[name="confirmPassword"]').attr('disabled', true);
                 if (data.role != 'Admin') {
                     $('input[name="username"]').val(data.username).attr('disabled', true);
                     $('input[name="password"]').attr('disabled', true);
@@ -121,9 +124,10 @@ $(document).ready(function () {
         var company = $("select[name='company']").val();
         var department = $("select[name='department']").val();
         var email = $("input[name='email']").val();
+        var username = $("input[name='username']").val();
         var role = $('select[name="role"]').val();
         var action = $("input[name='action']").val();
-        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && role != "") {
+        if (firstName != "" && lastName != "" && company != "" && department != "" && email != "" && username != "" && role != "") {
             $.ajax({
                 url: "../scripts/php/Settings/Users/insertData.php",
                 method: "POST",
@@ -135,6 +139,7 @@ $(document).ready(function () {
                     company: company,
                     department: department,
                     email: email,
+                    username: username,
                     role: role
                 },
                 success: function (data) {

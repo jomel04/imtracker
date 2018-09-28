@@ -32,6 +32,7 @@
                  ':firstName' => $_POST['firstName'],
                  ':lastName' => $_POST['lastName'],
                  ':email' => $_POST['email'],
+                 ':username' => $_POST['username'],
                  ':userType' => $_POST['role']
                 ),
                   array(':userID' => $_POST['id'])

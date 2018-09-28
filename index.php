@@ -54,15 +54,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <a href="#" class="text-primary">Forgot password?</a>
-                        </div>
-                    </div>
                     <br>
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                            <button type="submit" name="btnLogin" class="btn btn-outline-primary btn-block btn-md">LOGIN</button>
+                            <button type="submit" name="btnLogin" class="btn btn-outline-primary btn-block btn-lg">LOGIN</button>
                         </div>
                     </div>
                 </form>

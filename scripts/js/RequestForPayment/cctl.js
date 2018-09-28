@@ -135,4 +135,25 @@ $(document).ready(function () {
             return false;
         }
     });
+
+    //For skipping transaction
+    $(document).on('click', '#btnSkip', function () {
+        var id = $('input[name="getIdCctl"').val();
+        if (confirm('Are you sure you want to skip it?')) {
+            $.ajax({
+                url: "../scripts/php/CCTL/RequestForPayment/skip.php",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    $('#cctlModal').modal('hide');
+                    alert(data);
+                    dataTable.ajax.reload();
+                }
+            });
+        } else {
+            return false;
+        }
+    });
 });

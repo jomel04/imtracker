@@ -86,10 +86,7 @@
                                     <div class="col-sm-12 col-md-12">
                                         <label>Payee</label>
                                         <div class="form-group">
-                                            <select name="payee" class="form-control" required>
-                                                <option></option>
-                                                <option value="CFBA travel Station">CFBA travel Station</option>
-                                            </select>
+                                            <input type="text" name="payee" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

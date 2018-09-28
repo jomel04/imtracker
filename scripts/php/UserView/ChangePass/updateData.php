@@ -8,7 +8,11 @@
     if(isset($_SESSION['user'])) {
         if ($_POST['newPassword'] != $_POST['confirmPassword']) {
             echo '<script>alert("Password confirmation doesn\'t match!")</script>';
-            echo '<script>location.assign("../../../../pages/userview.php")</script>';
+            if($_SESSION['userType'] != 'Admin') {
+                echo '<script>location.assign("../../../../pages/userview.php")</script>';
+            } else {
+                echo '<script>location.assign("../../../../pages/settings.php")</script>';
+            }
             return false;
         } 
         //Select specific user from Database
@@ -24,13 +28,22 @@
                 );
                 if($statement) {
                     echo "<script>alert('Updated Successfully!')</script>";
-                    echo '<script>location.assign("../../../../pages/userview.php")</script>';
+                    echo "<script>alert('Please login to continue!')</script>";
+                    if($_SESSION['userType'] != 'Admin') {
+                        echo '<script>location.assign("../../../../scripts/php/Authentication/logout.php")</script>';
+                    } else {
+                        echo '<script>location.assign("../../../../scripts/php/Authentication/logout.php")</script>';
+                    }
                 } else {
                     return false;
                 }
             } else {
-                echo "<script>alert('Password confirmation doesn't match!')</script>";
-                echo '<script>location.assign("../../../../pages/userview.php")</script>';
+                echo "<script>alert('Old Password doesn\'t match!')</script>";
+                if($_SESSION['userType'] != 'Admin') {
+                    echo '<script>location.assign("../../../../pages/userview.php")</script>';
+                } else {
+                    echo '<script>location.assign("../../../../pages/settings.php")</script>';
+                }
             }
         }
     }

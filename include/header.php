@@ -45,6 +45,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="../pages/settings.php">Settings</a>
+                    <a class="dropdown-item btnChangePass" id="<?php echo $_SESSION['user'];?>" href="#" data-toggle="modal" data-target="#changePassModal">Change Pass</a>
                     <a class="dropdown-item" href="../scripts/php/Authentication/logout.php">Log Out</a>
                 </div>
                 <?php else: ?>

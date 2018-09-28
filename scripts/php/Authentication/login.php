@@ -8,10 +8,12 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        //User Login
         $query = $dbOperation->selectRow("users", array(":username" => $username));
         if(!$query) {
             echo "<script>location.assign('../../../index.php');
             alert('Account doesn\'t exist');</script>";
+            return false;
         }
         foreach($query as $result) {
             if(password_verify($password, $result->password)) {

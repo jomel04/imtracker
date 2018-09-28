@@ -44,6 +44,7 @@
         require '../include/Modals/Settings/department.php';
         require '../include/Modals/Settings/section.php';
         require '../include/Modals/Settings/expenseAccount.php';
+        require '../include/Modals/Settings/changePass.php';
     ?>
     <div class="container-fluid">
         <div class="row" style="margin-top: 100px;">

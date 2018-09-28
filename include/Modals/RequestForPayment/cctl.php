@@ -68,6 +68,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" id="btnSkip" class="btn btn-outline-secondary btn-lg">SKIP</button>
                     <button type="button" id="btnClose" class="btn btn-outline-danger btn-lg" data-dismiss="modal">CLOSE</button>
                 </div>
             </div>
